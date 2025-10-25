@@ -1,0 +1,138 @@
+.main {
+  min-height: 100vh;
+}
+
+.heroSection {
+  padding-top: 150px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.heroSubtitle {
+  font-size: 1.5rem;
+  color: var(--text-light);
+  margin-bottom: 50px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.commandTitle {
+  font-size: 2rem;
+  color: #ffffff;
+  text-shadow: 0 0 30px rgba(0, 0, 0, 0.8), 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.parallaxSection {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-image: url('/assets/interior bridge.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  margin: 60px 0;
+}
+
+@media (min-width: 768px) {
+  .parallaxSection {
+    background-attachment: fixed;
+  }
+}
+
+.featuresTitle {
+  font-size: 2rem;
+  color: var(--primary-neon);
+  text-shadow: 0 0 30px var(--shadow-cyan);
+}
+
+.featuresSubtitle {
+  font-size: 1.2rem;
+  color: var(--text-light);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.featureIcon {
+  width: 60px;
+  height: 60px;
+  border: 2px solid;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+  flex-shrink: 0;
+}
+
+.featureTitle {
+  margin-bottom: 10px;
+}
+
+.featureDescription {
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+.ctaTitle {
+  font-size: 2.5rem;
+  color: var(--text-white);
+  margin-bottom: 20px;
+}
+
+.ctaSubtitle {
+  font-size: 1.3rem;
+  color: var(--text-light);
+  margin-bottom: 40px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 768px) {
+  .heroSection {
+    padding-top: 120px;
+  }
+  
+  .heroSubtitle {
+    font-size: 1.2rem;
+  }
+  
+  .commandTitle {
+    font-size: 1.5rem;
+  }
+  
+  .featuresTitle {
+    font-size: 1.6rem;
+  }
+  
+  .featuresSubtitle {
+    font-size: 1rem;
+  }
+  
+  .featuresGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .ctaTitle {
+    font-size: 1.8rem;
+  }
+  
+  .ctaSubtitle {
+    font-size: 1.1rem;
+  }
+}

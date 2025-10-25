@@ -1,0 +1,390 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Audiowide&family=Rajdhani:wght@300;400;600;700&display=swap');
+
+/* CSS Variables for consistent theming */
+:root {
+  --primary-neon: #00ffff;
+  --secondary-neon: #ff00ff;
+  --accent-neon: #8a2be2;
+  --text-light: #f0f0f0;
+  --text-white: #ffffff;
+  --bg-white: #ffffff;
+  --bg-glass: rgba(255, 255, 255, 0.1);
+  --bg-dark-glass: rgba(0, 0, 0, 0.3);
+  --shadow-cyan: rgba(0, 255, 255, 0.3);
+  --shadow-magenta: rgba(255, 0, 255, 0.3);
+  --shadow-purple: rgba(138, 43, 226, 0.3);
+}
+
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Rajdhani', sans-serif;
+  background: linear-gradient(135deg, #ffffff 0%, #e6f3ff 50%, #f0e6ff 100%);
+  color: var(--text-light);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 20%, var(--shadow-cyan) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, var(--shadow-magenta) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, var(--shadow-purple) 0%, transparent 70%);
+  opacity: 0.3;
+  z-index: -2;
+  pointer-events: none;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Orbitron', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+}
+
+/* Utility Classes */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section {
+  padding: 80px 0;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mb-3 {
+  margin-bottom: 1.5rem;
+}
+
+.mb-5 {
+  margin-bottom: 3rem;
+}
+
+.mt-5 {
+  margin-top: 3rem;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gap-3 {
+  gap: 1.5rem;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+/* Animations */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+@keyframes border-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes hologram-flicker {
+  0% { opacity: 1; }
+  98% { opacity: 1; }
+  99% { opacity: 0.96; }
+  100% { opacity: 0.98; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+  75% { opacity: 0.9; }
+}
+
+@keyframes hero-reflection {
+  0% {
+    transform: translate(-100%, -100%);
+  }
+  10%, 100% {
+    transform: translate(100%, 100%);
+  }
+}
+
+/* Hero Title */
+.hero-title {
+  font-family: 'Audiowide', cursive;
+  font-size: 4rem;
+  font-weight: 900;
+  background: linear-gradient(45deg, var(--primary-neon), var(--secondary-neon));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.hero-title::before {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: -100%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(0, 255, 255, 0.4) 40%,
+    rgba(255, 255, 255, 0.9) 50%,
+    rgba(255, 0, 255, 0.4) 60%,
+    transparent 70%
+  );
+  animation: hero-reflection 5s infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Neon Text */
+.neon-text {
+  color: var(--primary-neon);
+  text-shadow: 
+    0 0 5px var(--primary-neon),
+    0 0 10px var(--primary-neon),
+    0 0 15px var(--primary-neon);
+  animation: flicker 3s linear infinite;
+}
+
+/* Glass Morphism Panels */
+.glass-panel {
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  box-shadow: 
+    0 8px 32px var(--shadow-cyan),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  animation: shimmer 3s infinite;
+}
+
+/* Holographic Effects */
+.hologram {
+  position: relative;
+  background: var(--bg-glass);
+  backdrop-filter: blur(15px);
+  border: 2px solid transparent;
+  border-radius: 15px;
+  background-clip: padding-box;
+  padding: 2rem;
+}
+
+.hologram::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  padding: 2px;
+  background: linear-gradient(45deg, var(--primary-neon), var(--secondary-neon), var(--accent-neon));
+  border-radius: inherit;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  animation: border-flow 3s linear infinite;
+  background-size: 200% 200%;
+}
+
+.hologram::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 1px,
+      rgba(0, 255, 255, 0.03) 1px,
+      rgba(0, 255, 255, 0.03) 3px
+    );
+  pointer-events: none;
+  animation: hologram-flicker 0.15s infinite alternate;
+  border-radius: inherit;
+}
+
+.hologram:hover {
+  box-shadow: 
+    0 0 30px rgba(0, 255, 255, 0.3),
+    0 0 60px rgba(255, 0, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transform: translateZ(0) scale(1.01);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Stat Cards */
+.stat-card {
+  text-align: center;
+}
+
+.stat-number {
+  font-family: 'Orbitron', monospace;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--primary-neon);
+  text-shadow: 0 0 20px var(--shadow-cyan);
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 1rem;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Buttons */
+.neon-button {
+  display: inline-block;
+  padding: 15px 40px;
+  font-family: 'Orbitron', monospace;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--text-white);
+  background: linear-gradient(45deg, var(--primary-neon), var(--secondary-neon));
+  border: 2px solid var(--primary-neon);
+  border-radius: 50px;
+  box-shadow: 
+    0 0 20px var(--shadow-cyan),
+    0 0 40px var(--shadow-magenta);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.neon-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.neon-button:hover::before {
+  left: 100%;
+}
+
+.neon-button:hover {
+  transform: scale(1.05);
+  box-shadow: 
+    0 0 30px var(--shadow-cyan),
+    0 0 60px var(--shadow-magenta),
+    0 0 90px var(--shadow-purple);
+}
+
+.neon-button.secondary {
+  background: transparent;
+  color: var(--primary-neon);
+}
+
+.neon-button.secondary:hover {
+  background: linear-gradient(45deg, var(--primary-neon), var(--secondary-neon));
+  color: var(--text-white);
+}
+
+.btn-outline {
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  border-radius: 8px;
+  font-family: 'Orbitron', monospace;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 2px solid var(--primary-neon);
+  color: var(--primary-neon);
+  background: transparent;
+  display: inline-block;
+}
+
+.btn-outline:hover {
+  background: var(--primary-neon);
+  color: #000;
+  box-shadow: 0 0 20px var(--shadow-cyan);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+  
+  .neon-button {
+    padding: 12px 30px;
+    font-size: 0.9rem;
+  }
+}

@@ -1,0 +1,2830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neonlights.ai - Command the Power of AI Creation</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <style>
+        /* Single Page Application Styles */
+        .page-section {
+            display: none;
+        }
+        .page-section.active {
+            display: block;
+        }
+        .nav-links a.active {
+            color: var(--primary-neon);
+            text-shadow: 0 0 20px var(--shadow-cyan);
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Starfield Background -->
+    <div class="starfield" id="starfield"></div>
+    
+    <!-- Global Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo" onclick="navigateTo('home')">
+                <div class="logo-image-container">
+                    <img src="assets/128x128.png" alt="NeonLights AI Logo" class="logo-image">
+                </div>
+                <span class="logo-text">NEONLIGHTS AI</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link active" data-page="home" onclick="navigateTo('home'); return false;">Home</a></li>
+                <li><a href="#image" class="nav-link" data-page="image" onclick="navigateTo('image'); return false;">Image</a></li>
+                <li><a href="#video" class="nav-link" data-page="video" onclick="navigateTo('video'); return false;">Video</a></li>
+                <li><a href="#upscale" class="nav-link" data-page="upscale" onclick="navigateTo('upscale'); return false;">Upscale</a></li>
+                <li><a href="#gallery" class="nav-link" data-page="gallery" onclick="navigateTo('gallery'); return false;">Gallery</a></li>
+                <li><a href="#pricing" class="nav-link" data-page="pricing" onclick="navigateTo('pricing'); return false;">Pricing</a></li>
+                <li><a href="#profile" class="nav-link" data-page="profile" onclick="navigateTo('profile'); return false;">Profile</a></li>
+            </ul>
+            <div class="auth-section">
+                <a href="#" class="btn-outline btn-sm">Log In</a>
+                <div class="profile-avatar">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMjAiIGZpbGw9InVybCgjZ3JhZGllbnQwKSIvPgo8cGF0aCBkPSJNMjAgMTBDMTYuNjg2MyAxMCAxNCAxMi42ODYzIDE0IDE2QzE0IDE5LjMxMzcgMTYuNjg2MyAyMiAyMCAyMkMyMy4zMTM3IDIyIDI2IDE5LjMxMzcgMjYgMTZDMjYgMTIuNjg2MyAyMy4zMTM3IDEwIDIwIDEwWiIgZmlsbD0iIzAwZmZmZiIvPgo8cGF0aCBkPSJNMjAgMjRDMTQuNDc3MiAyNCAxMCAyOC40NzcyIDEwIDM0SDMwQzMwIDI4LjQ3NzIgMjUuNTIyOCAyNCAyMCAyNFoiIGZpbGw9IiMwMGZmZmYiLz4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZGllbnQwIiB4MT0iMCIgeTE9IjAiIHgyPSI0MCIgeTI9IjQwIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wIHN0b3AtY29sb3I9IiMwMGZmZmYiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZmYwMGZmIi8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPC9zdmc+Cg==" alt="Profile" />
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HOME PAGE -->
+    <div id="home-page" class="page-section active">
+        <!-- Hero Section -->
+        <section class="section" style="padding-top: 150px; min-height: 100vh; display: flex; align-items: center;">
+            <div class="container">
+                <div class="text-center">
+                    <h1 class="hero-title mb-3">NEONLIGHTS AI</h1>
+                    <p style="font-size: 1.5rem; color: var(--text-light); margin-bottom: 50px; max-width: 800px; margin-left: auto; margin-right: auto; line-height: 1.6;">
+                        Generate the Future.
+                    </p>
+                    
+                    <div class="flex-center gap-3 mb-5" style="flex-wrap: wrap;">
+                        <a href="#" onclick="navigateTo('image')" class="neon-button cta-button">Launch Image Generator</a>
+                        <a href="#" onclick="navigateTo('video')" class="neon-button cta-button secondary">Create Video</a>
+                    </div>
+                </div>
+                
+                <!-- Floating Stats Panels -->
+                <div class="grid-3 mt-5">
+                    <div class="stat-card hologram">
+                        <div class="stat-number">400K</div>
+                        <div class="stat-label">Active Creators</div>
+                    </div>
+                    
+                    <div class="stat-card hologram" style="animation-delay: -2s;">
+                        <div class="stat-number">15K</div>
+                        <div class="stat-label">Images Generated</div>
+                    </div>
+                    
+                    <div class="stat-card hologram" style="animation-delay: -4s;">
+                        <div class="stat-number">3K</div>
+                        <div class="stat-label">Videos Rendered</div>
+                    </div>
+                    
+                    <div class="stat-card hologram" style="animation-delay: -1s;">
+                        <div class="stat-number">99.7%</div>
+                        <div class="stat-label">Uptime</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+                <div class="container">
+                    <div class="text-center">
+                        <h2 style="font-size: 2rem; color: #ffffff; text-shadow: 0 0 30px rgba(0, 0, 0, 0.8), 0 2px 10px rgba(0, 0, 0, 0.5);">
+                            Command the Power of AI Creation
+                        </h2>
+                    </div>
+                </div>
+
+
+        <!-- Parallax Section -->
+        <section class="parallax-section">
+
+        </section>
+
+        <!-- Features Section -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 style="font-size: 2rem; color: var(--primary-neon); text-shadow: 0 0 30px var(--shadow-cyan);">
+                    Futuristic AI Capabilities
+                </h2>
+                <p style="font-size: 1.2rem; color: var(--text-light); max-width: 600px; margin: 0 auto;">
+                    Experience the next generation of creative AI technology
+                </p>
+                </div>
+                <div class="grid-2 gap-3">
+                    <div class="glass-panel" style="padding: 40px;">
+                        <div class="flex mb-3">
+                            <div style="width: 60px; height: 60px; border: 2px solid var(--primary-neon); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 20px; box-shadow: 0 0 20px var(--shadow-cyan);">
+                                <span style="font-size: 1.5rem;">🎨</span>
+                            </div>
+                            <div>
+                                <h3 style="color: var(--primary-neon); margin-bottom: 10px;">Ultra-HD Image Generation</h3>
+                                <p style="color: var(--text-light); line-height: 1.6;">
+                                    Create stunning 4K images with our advanced AI models. From photorealistic portraits to abstract art, unleash your creativity without limits.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-panel" style="padding: 40px;">
+                        <div class="flex mb-3">
+                            <div style="width: 60px; height: 60px; border: 2px solid var(--secondary-neon); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 20px; box-shadow: 0 0 20px var(--shadow-magenta);">
+                                <span style="font-size: 1.5rem;">🎬</span>
+                            </div>
+                            <div>
+                                <h3 style="color: var(--secondary-neon); margin-bottom: 10px;">Cinematic Video Creation</h3>
+                                <p style="color: var(--text-light); line-height: 1.6;">
+                                    Generate professional-quality videos up to 12 seconds long. Perfect for social media, presentations, and creative projects.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-panel" style="padding: 40px;">
+                        <div class="flex mb-3">
+                            <div style="width: 60px; height: 60px; border: 2px solid var(--primary-neon); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 20px; box-shadow: 0 0 20px var(--shadow-cyan);">
+                                <span style="font-size: 1.5rem;">🔮</span>
+                            </div>
+                            <div>
+                                <h3 style="color: var(--primary-neon); margin-bottom: 10px;">Advanced Upscaling</h3>
+                                <p style="color: var(--text-light); line-height: 1.6;">
+                                    Enhance any image up to 8x resolution with our AI upscaling technology. Transform low-res images into masterpieces.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="section">
+            <div class="container">
+                <div class="glass-panel" style="padding: 60px; text-align: center;">
+                    <h2 style="font-size: 2.5rem; color: var(--text-white); margin-bottom: 20px;">
+                        Ready to Create the <span class="neon-text">Future</span>?
+                    </h2>
+                    <p style="font-size: 1.3rem; color: var(--text-light); margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                        Join thousands of creators who are already using NeonLights.ai to bring their wildest visions to life.
+                    </p>
+                    <div class="flex-center gap-2" style="flex-wrap: wrap;">
+                        <a href="#" onclick="navigateTo('pricing')" class="neon-button cta-button">Get Started Now</a>
+                        <a href="#" onclick="navigateTo('gallery')" class="neon-button secondary">View Gallery</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- IMAGE PAGE -->
+    <div id="image-page" class="page-section">
+    <!-- Main Content -->
+    <main style="padding-top: 120px;" class="section">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="text-center mb-5">
+                <h1 style="font-size: 2.5rem; color: var(--primary-neon); text-shadow: 0 0 30px var(--shadow-cyan); margin-bottom: 20px;">
+                    Neural Image Generation
+                </h1>
+                <p style="font-size: 1.2rem; color: var(--text-light); max-width: 600px; margin: 0 auto;">
+                    Create stunning visuals with advanced AI models. From photorealistic portraits to abstract art.
+                </p>
+            </div>
+        </div>
+
+    <!-- AI Models Panel - Full Width Horizontal Grid -->
+    <section class="section" style="padding-top: 0; padding-bottom: 30px;">
+        <div class="container">
+            <div class="glass-card mb-4">
+                <h3 class="section-title mb-3">AI Models Panel</h3>
+                <div class="models-grid-horizontal">
+                    <div class="model-card active" data-model="seedream-4">
+                        <img src="assets/models/seedream-4.jpg" alt="Seedream 4">
+                        <div class="model-name">Seedream 4</div>
+                    </div>
+                    <div class="model-card" data-model="imagineart-1">
+                        <img src="assets/models/imagineart-1.png" alt="ImagineArt-1">
+                        <div class="model-name">ImagineArt-1</div>
+                    </div>
+                    <div class="model-card" data-model="neonlights-retro">
+                        <img src="assets/models/neonlights-retro.jpg" alt="Neonlights Retro">
+                        <div class="model-name">Neonlights Retro</div>
+                    </div>
+                    <div class="model-card" data-model="nano-banana">
+                        <img src="assets/models/nano-banana.png" alt="Nano Banana">
+                        <div class="model-name">Nano Banana</div>
+                    </div>
+                    <div class="model-card" data-model="hunyuan-image-3">
+                        <img src="assets/models/hunyuan-image-3.jpg" alt="Hunyuan Image 3">
+                        <div class="model-name">Hunyuan Image 3</div>
+                    </div>
+                    <div class="model-card" data-model="wan-2">
+                        <img src="assets/models/wan-2.jpg" alt="Wan-2">
+                        <div class="model-name">Wan-2</div>
+                    </div>
+                    <div class="model-card" data-model="minimax-image-01">
+                        <img src="assets/models/minimax-image-01.jpg" alt="Minimax Image-01">
+                        <div class="model-name">Minimax Image-01</div>
+                    </div>
+                    <div class="model-card" data-model="leonardo-phoenix">
+                        <img src="assets/models/leonardo-phoenix.png" alt="Leonardo Phoenix 1.0">
+                        <div class="model-name">Leonardo Phoenix 1.0</div>
+                    </div>
+                    <div class="model-card" data-model="flux-dev">
+                        <img src="assets/models/flux-dev.jpg" alt="Flux Dev">
+                        <div class="model-name">Flux Dev</div>
+                    </div>
+                    <div class="model-card" data-model="flux-pro-ultra">
+                        <img src="assets/models/flux-pro1.1-ultra.jpg" alt="Flux Pro1.1 Ultra">
+                        <div class="model-name">Flux Pro1.1 Ultra</div>
+                    </div>
+                    <div class="model-card" data-model="flux-kontext">
+                        <img src="assets/models/flux-kontext.jpg" alt="Flux Kontext Max">
+                        <div class="model-name">Flux Kontext Max</div>
+                    </div>
+                    <div class="model-card" data-model="ideogram-v3">
+                        <img src="assets/models/ideogram-v3.png" alt="Ideogram v3 Quality">
+                        <div class="model-name">Ideogram v3 Quality</div>
+                    </div>
+                    <div class="model-card" data-model="google-imagen-4">
+                        <img src="assets/models/google-imagen-4.jpg" alt="Google Imagen 4">
+                        <div class="model-name">Google Imagen 4</div>
+                    </div>
+                    <div class="model-card" data-model="google-imagen-4-ultra">
+                        <img src="assets/models/google-imagen-4-ultra.jpg" alt="Google Imagen 4 Ultra">
+                        <div class="model-name">Google Imagen 4 Ultra</div>
+                    </div>
+                    <div class="model-card" data-model="luma-photon">
+                        <img src="assets/models/luma-photon.jpg" alt="Luma Photon">
+                        <div class="model-name">Luma Photon</div>
+                    </div>
+                    <div class="model-card" data-model="recraft-v3">
+                        <img src="assets/models/recraft-v3.jpg" alt="Recraft V3">
+                        <div class="model-name">Recraft V3</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="image-generation-layout">
+                <!-- Left Column: Generation Controls -->
+                <div class="generation-controls">
+
+                    <!-- Dimensional Matrix Panel -->
+                    <div class="glass-card mb-4">
+                        <h3 class="section-title mb-3">Dimensional Matrix</h3>
+                        <div class="dimension-selector-vertical">
+                            <div class="dimension-option" data-ratio="9:16" data-size="1080x1920">
+                                <div class="ratio-preview portrait"></div>
+                                <div class="dimension-info">
+                                    <span>Portrait</span>
+                                </div>
+                            </div>
+                            <div class="dimension-option" data-ratio="16:9" data-size="1920x1080">
+                                <div class="ratio-preview landscape"></div>
+                                <div class="dimension-info">
+                                    <span>Landscape</span>
+                                </div>
+                            </div>
+                            <div class="dimension-option active" data-ratio="1:1" data-size="1024x1024">
+                                <div class="ratio-preview square"></div>
+                                <div class="dimension-info">
+                                    <span>Square</span>
+                                </div>
+                            </div>
+                            <div class="dimension-option" data-ratio="4:3" data-size="1536x1152">
+                                <div class="ratio-preview classic"></div>
+                                <div class="dimension-info">
+                                    <span>Classic</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Prompt Input -->
+                    <div class="glass-card mb-4">
+                        <h3 class="section-title mb-3">Neural Prompt Interface</h3>
+                        <div class="prompt-container">
+                            <textarea id="prompt-input" class="prompt-input" placeholder="Describe your vision..."></textarea>
+                        </div>
+                        
+                        <!-- Action Buttons -->
+                        <div class="prompt-action-buttons">
+                            <button class="btn-action-long" id="enhance-prompt-btn">
+                                <span>✨ Enhance Prompt</span>
+                            </button>
+                            <button class="btn-action-long" id="upload-images-btn">
+                                <span>📤 Upload Images</span>
+                            </button>
+                        </div>
+                        
+                        <!-- Reference Images Thumbnails -->
+                        <div class="reference-images-container" id="reference-images-container" style="display: none;">
+                            <div class="reference-images-grid" id="reference-images-grid">
+                                <!-- Thumbnails will be added here dynamically -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Generate Button -->
+                    <div class="generation-action">
+                        <button class="neon-button credits-display-btn" id="credits-display-btn">
+                            <span>Credits: 12,000</span>
+                        </button>
+                        <button class="neon-button generate-btn" id="generate-btn">
+                            <span class="btn-text">🚀 Generate <span style="color: #ff4444; font-size: 0.85em; margin-left: 5px;">-10</span></span>
+                            <span class="btn-loading" style="display: none;">⚡ Generating...</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Column: Recent Generations -->
+                <div class="recent-generations">
+                    <div class="glass-card">
+                        <h3 class="section-title mb-3">Recent Generations</h3>
+                        <div class="generations-grid" id="generations-grid">
+                            <!-- Placeholder generations -->
+                            <div class="generation-item">
+                                <div class="generation-image">
+                                    <img src="assets/landscape.jpg" alt="Generated image" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+                                </div>
+                                <div class="generation-info">
+                                    <p class="generation-prompt">Futuristic cityscape with neon lights</p>
+                                    <div class="generation-meta">
+                                        <span>Seedream 4</span>
+                                        <span>2 min ago</span>
+                                    </div>
+                                    <div class="generation-actions">
+                                        <button class="action-btn">📥</button>
+                                        <button class="action-btn">🔗</button>
+                                        <button class="action-btn">🗑️</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="generation-item">
+                                <div class="generation-image">
+                                    <img src="assets/portrait1.jpg" alt="Generated image" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+                                </div>
+                                <div class="generation-info">
+                                    <p class="generation-prompt">Abstract cosmic art with vibrant colors</p>
+                                    <div class="generation-meta">
+                                        <span>Leonardo Phoenix 1.0</span>
+                                        <span>5 min ago</span>
+                                    </div>
+                                    <div class="generation-actions">
+                                        <button class="action-btn">📥</button>
+                                        <button class="action-btn">🔗</button>
+                                        <button class="action-btn">🗑️</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="generation-item">
+                                <div class="generation-image">
+                                    <img src="assets/portrait2.jpg" alt="Generated image" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+                                </div>
+                                <div class="generation-info">
+                                    <p class="generation-prompt">Cyberpunk warrior in digital rain</p>
+                                    <div class="generation-meta">
+                                        <span>Flux1.1 Pro Ultra</span>
+                                        <span>12 min ago</span>
+                                    </div>
+                                    <div class="generation-actions">
+                                        <button class="action-btn">📥</button>
+                                        <button class="action-btn">🔗</button>
+                                        <button class="action-btn">🗑️</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="generation-item">
+                                <div class="generation-image">
+                                    <img src="assets/classic.jpg" alt="Generated image" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+                                </div>
+                                <div class="generation-info">
+                                    <p class="generation-prompt">Anime character in fantasy landscape</p>
+                                    <div class="generation-meta">
+                                        <span>ImagineArt-1</span>
+                                        <span>18 min ago</span>
+                                    </div>
+                                    <div class="generation-actions">
+                                        <button class="action-btn">📥</button>
+                                        <button class="action-btn">🔗</button>
+                                        <button class="action-btn">🗑️</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+            <!-- Image Generation Tips -->
+            <div class="glass-panel" style="padding: 30px;">
+                <h3 style="color: var(--secondary-neon); margin-bottom: 20px; text-align: center;">
+                    🎯 Image Generation Mastery
+                </h3>
+                <div class="grid-3 gap-2">
+                    <div>
+                        <h4 style="color: var(--primary-neon); margin-bottom: 10px;">🎨 Prompt Crafting</h4>
+                        <p style="color: var(--text-light); font-size: 0.9rem; line-height: 1.5;">
+                            Be specific with details, lighting, style, and mood. Include artistic references and descriptive adjectives for best results.
+                        </p>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--secondary-neon); margin-bottom: 10px;">⚡ Model Selection</h4>
+                        <p style="color: var(--text-light); font-size: 0.9rem; line-height: 1.5;">
+                            Flux Pro for ultra-quality, Seedream 4 for creative styles, Google Imagen 4 Ultra for photorealistic results.
+                        </p>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--accent-neon); margin-bottom: 10px;">📐 Aspect Ratios</h4>
+                        <p style="color: var(--text-light); font-size: 0.9rem; line-height: 1.5;">
+                            Square for social media, Landscape for desktop wallpapers, Portrait for mobile screens and posters.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    </main>
+    </div>
+
+    <!-- VIDEO PAGE -->
+    <div id="video-page" class="page-section">
+    <!-- Main Content -->
+    <main style="padding-top: 120px;" class="section">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="text-center mb-5">
+                <h1 style="font-size: 2.5rem; color: var(--primary-neon); text-shadow: 0 0 30px var(--shadow-cyan); margin-bottom: 20px;">
+                    Cinematic Video Rendering
+                </h1>
+                <p style="font-size: 1.2rem; color: var(--text-light); max-width: 600px; margin: 0 auto;">
+                    Transform your ideas into stunning video content with AI precision
+                </p>
+            </div>
+    <!-- Video Models Panel - 2x5 Grid -->
+    <section class="section" style="padding-top: 0; padding-bottom: 30px;">
+        <div class="container">
+            <div class="glass-card mb-4">
+                <h3 class="section-title mb-3">Video Models Panel</h3>
+                <div class="models-grid-2x5">
+                    <div class="model-card active" data-model="pixverse-v5">
+                        <img src="assets/models/pixverse-v5.jpg" alt="Pixverse V5">
+                        <div class="model-name">Pixverse V5</div>
+                    </div>
+                    <div class="model-card" data-model="kling-master-v2">
+                        <img src="assets/models/kling-master-v2.png" alt="Kling Master V2">
+                        <div class="model-name">Kling Master V2</div>
+                    </div>
+                    <div class="model-card" data-model="kling-2.5-turbo-pro">
+                        <img src="assets/models/kling-2.5-turbo-pro.jpg" alt="Kling 2.5 Turbo Pro">
+                        <div class="model-name">Kling 2.5 Turbo Pro</div>
+                    </div>
+                    <div class="model-card" data-model="minimax-helios-2">
+                        <img src="assets/models/minimax-helios-2.png" alt="Minimax Helios 2">
+                        <div class="model-name">Minimax Helios 2</div>
+                    </div>
+                    <div class="model-card" data-model="sora-2">
+                        <img src="assets/models/sora-2.jpg" alt="Sora 2">
+                        <div class="model-name">Sora 2</div>
+                    </div>
+                    <div class="model-card" data-model="sora-2-pro">
+                        <img src="assets/models/sora-2-pro.jpg" alt="Sora 2 Pro">
+                        <div class="model-name">Sora 2 Pro</div>
+                    </div>
+                    <div class="model-card" data-model="sora-2-pro-max">
+                        <img src="assets/models/sora-2-pro-max.jpg" alt="Sora 2 Pro Max">
+                        <div class="model-name">Sora 2 Pro Max</div>
+                    </div>
+                    <div class="model-card" data-model="veo-3.1">
+                        <img src="assets/models/veo-3.1.jpg" alt="Veo 3.1">
+                        <div class="model-name">Veo 3.1</div>
+                    </div>
+                    <div class="model-card" data-model="veo-3.1-fast">
+                        <img src="assets/models/veo-3.1-fast.jpg" alt="Veo 3.1 Fast">
+                        <div class="model-name">Veo 3.1 Fast</div>
+                    </div>
+                    <div class="model-card" data-model="coming-soon">
+                        <img src="assets/models/coming-soon.png" alt="Coming Soon">
+                        <div class="model-name">Coming Soon</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="image-generation-layout">
+                <!-- Left Column: Generation Controls -->
+                <div class="generation-controls">
+
+                    <!-- Dimensional Matrix Panel -->
+                    <div class="glass-card mb-4">
+                        <h3 class="section-title mb-3">Dimensional Matrix</h3>
+                        <div class="dimension-selector-vertical">
+                            <div class="dimension-option" data-ratio="9:16" data-size="1080x1920">
+                                <div class="ratio-preview portrait"></div>
+                                <div class="dimension-info">
+                                    <span>Portrait</span>
+                                </div>
+                            </div>
+                            <div class="dimension-option" data-ratio="16:9" data-size="1920x1080">
+                                <div class="ratio-preview landscape"></div>
+                                <div class="dimension-info">
+                                    <span>Landscape</span>
+                                </div>
+                            </div>
+                            <div class="dimension-option active" data-ratio="1:1" data-size="1024x1024">
+                                <div class="ratio-preview square"></div>
+                                <div class="dimension-info">
+                                    <span>Square</span>
+                                </div>
+                            </div>
+                            <div class="dimension-option" data-ratio="4:3" data-size="1536x1152">
+                                <div class="ratio-preview classic"></div>
+                                <div class="dimension-info">
+                                    <span>Classic</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Video Duration Selector -->
+                    <div class="glass-card mb-4" id="video-duration-panel">
+                        <h3 class="section-title mb-3">⏱️ Video Duration</h3>
+                        <select class="duration-dropdown" id="duration-selector">
+                            <!-- Duration options will be dynamically inserted here -->
+                        </select>
+                    </div>
+
+                    <!-- Prompt Input -->
+                    <div class="glass-card mb-4">
+                        <h3 class="section-title mb-3">Neural Prompt Interface</h3>
+                        <div class="prompt-container">
+                            <textarea id="prompt-input" class="prompt-input" placeholder="Describe your animation..."></textarea>
+                        </div>
+                        
+                        <!-- Action Buttons -->
+                        <div class="prompt-action-buttons">
+                            <button class="btn-action-long" id="start-frame-btn">
+                                <span>🎬 Start Frame</span>
+                            </button>
+                            <button class="btn-action-long disabled" id="end-frame-btn" disabled>
+                                <span>🎬 End Frame</span>
+                            </button>
+                        </div>
+                        
+                        <!-- Frame Images Display -->
+                        <div class="frame-images-container">
+                            <div class="frame-image-item" id="start-frame-container" style="display: none;">
+                                <div class="frame-thumbnail" id="start-frame-thumbnail"></div>
+                            </div>
+                            <div class="frame-image-item" id="end-frame-container" style="display: none;">
+                                <div class="frame-thumbnail" id="end-frame-thumbnail"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Generate Button -->
+                    <div class="generation-action">
+                        <button class="neon-button credits-display-btn" id="credits-display-btn">
+                            <span>Credits: 12,000</span>
+                        </button>
+                        <button class="neon-button generate-btn" id="generate-btn">
+                            <span class="btn-text">🚀 Render <span style="color: #ff4444; font-size: 0.85em; margin-left: 5px;">-10</span></span>
+                            <span class="btn-loading" style="display: none;">⚡ Rendering...</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Column: Recent Generations -->
+                <div class="recent-generations">
+                    <div class="glass-card">
+                        <h3 class="section-title mb-3">Recent Generations</h3>
+                        <div class="generations-grid" id="video-generations-grid">
+                            <!-- Video generation 1 -->
+                            <div class="generation-item">
+                                <div class="generation-image">
+                                    <video controls loop style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+                                        <source src="assets/video1.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
+                                <div class="generation-info">
+                                    <p class="generation-prompt">ring rotates around space ship</p>
+                                    <div class="generation-meta">
+                                        <span>Video Model 1</span>
+                                        <span>2 min ago</span>
+                                    </div>
+                                    <div class="generation-actions">
+                                        <button class="action-btn">📥</button>
+                                        <button class="action-btn">🔗</button>
+                                        <button class="action-btn">🗑️</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Video generation 2 -->
+                            <div class="generation-item">
+                                <div class="generation-image">
+                                    <video controls loop style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+                                        <source src="assets/video2.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
+                                <div class="generation-info">
+                                    <p class="generation-prompt">Abstract cosmic animation with vibrant colors</p>
+                                    <div class="generation-meta">
+                                        <span>Video Model 3</span>
+                                        <span>5 min ago</span>
+                                    </div>
+                                    <div class="generation-actions">
+                                        <button class="action-btn">📥</button>
+                                        <button class="action-btn">🔗</button>
+                                        <button class="action-btn">🗑️</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Video generation 3 -->
+                            <div class="generation-item">
+                                <div class="generation-image">
+                                    <video controls loop style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+                                        <source src="assets/video3.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
+                                <div class="generation-info">
+                                    <p class="generation-prompt">Cyberpunk city with neon lights at night</p>
+                                    <div class="generation-meta">
+                                        <span>Video Model 5</span>
+                                        <span>12 min ago</span>
+                                    </div>
+                                    <div class="generation-actions">
+                                        <button class="action-btn">📥</button>
+                                        <button class="action-btn">🔗</button>
+                                        <button class="action-btn">🗑️</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Video generation 4 -->
+                            <div class="generation-item">
+                                <div class="generation-image">
+                                    <video controls loop style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+                                        <source src="assets/video4.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
+                                <div class="generation-info">
+                                    <p class="generation-prompt">Smooth camera fly through futuristic corridor</p>
+                                    <div class="generation-meta">
+                                        <span>Video Model 2</span>
+                                        <span>18 min ago</span>
+                                    </div>
+                                    <div class="generation-actions">
+                                        <button class="action-btn">📥</button>
+                                        <button class="action-btn">🔗</button>
+                                        <button class="action-btn">🗑️</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+            <!-- Video Generation Tips -->
+            <div class="glass-panel" style="padding: 30px;">
+                <h3 style="color: var(--secondary-neon); margin-bottom: 20px; text-align: center;">
+                    🎯 Video Generation Mastery
+                </h3>
+                <div class="grid-3 gap-2">
+                    <div>
+                        <h4 style="color: var(--primary-neon); margin-bottom: 10px;">🎨 Scene Description</h4>
+                        <p style="color: var(--text-light); font-size: 0.9rem; line-height: 1.5;">
+                            Describe movement, camera angles, and visual effects. Mention specific actions and transitions you want to see.
+                        </p>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--secondary-neon); margin-bottom: 10px;">⚡ Model Performance</h4>
+                        <p style="color: var(--text-light); font-size: 0.9rem; line-height: 1.5;">
+                            CineMax Pro for ultra-quality, VideoForge for fast results, MotionCraft for smooth animations.
+                        </p>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--accent-neon); margin-bottom: 10px;">⏱️ Duration Tips</h4>
+                        <p style="color: var(--text-light); font-size: 0.9rem; line-height: 1.5;">
+                            Shorter videos (4-6s) work best for detailed scenes. Longer videos (8-12s) are great for simple motions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    </div>
+
+    <!-- UPSCALE PAGE -->
+    <div id="upscale-page" class="page-section">
+        <main style="padding-top: 120px; padding-bottom: 60px;" class="section">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="text-center mb-5">
+                <h1 style="font-size: 2.5rem; color: var(--primary-neon); text-shadow: 0 0 30px var(--shadow-cyan); margin-bottom: 20px;">
+                    AI Image Upscaler
+                </h1>
+                <p style="font-size: 1.2rem; color: var(--text-light); max-width: 600px; margin: 0 auto;">
+                    Transform low-resolution images into ultra-sharp masterpieces
+                </p>
+            </div>
+
+            <!-- Main Upscale Containers -->
+            <div class="upscale-main-grid">
+                
+                <!-- Left Container: Image Upload -->
+                <div class="upscale-container upscale-upload-container">
+                    <div class="upscale-container-header">
+                        <h3 class="upscale-container-title">Upload Image</h3>
+                    </div>
+                    <div class="upscale-container-body">
+                        <!-- Drag and Drop Area -->
+                        <div class="upscale-dropzone" id="upscaleDropzone">
+                            <div class="upscale-dropzone-content">
+                                <div class="upscale-dropzone-icon">📤</div>
+                                <p class="upscale-dropzone-text">Drop image here or click to upload</p>
+                                <p class="upscale-dropzone-subtext">PNG, JPG, WebP up to 10MB</p>
+                                <input type="file" id="upscaleFileInput" accept="image/png,image/jpeg,image/jpg,image/webp" style="display: none;">
+                                <button class="upscale-btn-choose" onclick="document.getElementById('upscaleFileInput').click()">
+                                    <span>📁 Choose File</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Confirm Button -->
+                        <button class="upscale-confirm-btn" id="upscaleConfirmBtn">
+                            <span class="upscale-btn-icon">✓</span>
+                            Confirm Selection
+                        </button>
+
+                        <!-- Recently Uploaded Images -->
+                        <div class="upscale-recent-section">
+                            <h4 class="upscale-recent-title">Recently Uploaded</h4>
+                            <div class="upscale-recent-scroll-container">
+                                <div class="upscale-recent-grid" id="upscaleRecentGrid">
+                                    <!-- Sample recent images (showing more for demonstration) -->
+                                    <div class="upscale-recent-item">
+                                        <img src="https://via.placeholder.com/150" alt="Recent 1" />
+                                        <div class="upscale-recent-overlay">✓</div>
+                                    </div>
+                                    <div class="upscale-recent-item">
+                                        <img src="https://via.placeholder.com/150" alt="Recent 2" />
+                                        <div class="upscale-recent-overlay">✓</div>
+                                    </div>
+                                    <div class="upscale-recent-item">
+                                        <img src="https://via.placeholder.com/150" alt="Recent 3" />
+                                        <div class="upscale-recent-overlay">✓</div>
+                                    </div>
+                                    <div class="upscale-recent-item">
+                                        <img src="https://via.placeholder.com/150" alt="Recent 4" />
+                                        <div class="upscale-recent-overlay">✓</div>
+                                    </div>
+                                    <div class="upscale-recent-item">
+                                        <img src="https://via.placeholder.com/150" alt="Recent 5" />
+                                        <div class="upscale-recent-overlay">✓</div>
+                                    </div>
+                                    <div class="upscale-recent-item">
+                                        <img src="https://via.placeholder.com/150" alt="Recent 6" />
+                                        <div class="upscale-recent-overlay">✓</div>
+                                    </div>
+                                    <div class="upscale-recent-item">
+                                        <img src="https://via.placeholder.com/150" alt="Recent 7" />
+                                        <div class="upscale-recent-overlay">✓</div>
+                                    </div>
+                                    <div class="upscale-recent-item">
+                                        <img src="https://via.placeholder.com/150" alt="Recent 8" />
+                                        <div class="upscale-recent-overlay">✓</div>
+                                    </div>
+                                    <div class="upscale-recent-item">
+                                        <img src="https://via.placeholder.com/150" alt="Recent 9" />
+                                        <div class="upscale-recent-overlay">✓</div>
+                                    </div>
+                                    <div class="upscale-recent-item">
+                                        <img src="https://via.placeholder.com/150" alt="Recent 10" />
+                                        <div class="upscale-recent-overlay">✓</div>
+                                    </div>
+                                    <div class="upscale-recent-item">
+                                        <img src="https://via.placeholder.com/150" alt="Recent 11" />
+                                        <div class="upscale-recent-overlay">✓</div>
+                                    </div>
+                                    <div class="upscale-recent-item">
+                                        <img src="https://via.placeholder.com/150" alt="Recent 12" />
+                                        <div class="upscale-recent-overlay">✓</div>
+                                    </div>
+                                    <div class="upscale-recent-item">
+                                        <img src="https://via.placeholder.com/150" alt="Recent 13" />
+                                        <div class="upscale-recent-overlay">✓</div>
+                                    </div>
+                                    <div class="upscale-recent-item">
+                                        <img src="https://via.placeholder.com/150" alt="Recent 14" />
+                                        <div class="upscale-recent-overlay">✓</div>
+                                    </div>
+                                    <div class="upscale-recent-item">
+                                        <img src="https://via.placeholder.com/150" alt="Recent 15" />
+                                        <div class="upscale-recent-overlay">✓</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Container: Settings & Controls -->
+                <div class="upscale-container upscale-settings-container">
+                    <div class="upscale-container-header">
+                        <h3 class="upscale-container-title">Model & Settings</h3>
+                    </div>
+                    <div class="upscale-container-body">
+                        
+                        <!-- Model Selector -->
+                        <div class="upscale-setting-group">
+                            <label class="upscale-label">Model</label>
+                            <div class="upscale-model-grid">
+                                <div class="upscale-model-option active" data-model="standard-v2">
+                                    <div class="upscale-model-icon">⚡</div>
+                                    <div class="upscale-model-name">Standard V2</div>
+                                </div>
+                                <div class="upscale-model-option" data-model="low-res-v2">
+                                    <div class="upscale-model-icon">🔍</div>
+                                    <div class="upscale-model-name">Low Resolution V2</div>
+                                </div>
+                                <div class="upscale-model-option" data-model="cgi">
+                                    <div class="upscale-model-icon">🎨</div>
+                                    <div class="upscale-model-name">CGI</div>
+                                </div>
+                                <div class="upscale-model-option" data-model="high-fidelity-v2">
+                                    <div class="upscale-model-icon">💎</div>
+                                    <div class="upscale-model-name">High Fidelity V2</div>
+                                </div>
+                                <div class="upscale-model-option" data-model="text-refine">
+                                    <div class="upscale-model-icon">📝</div>
+                                    <div class="upscale-model-name">Text Refine</div>
+                                </div>
+                                <div class="upscale-model-option disabled" data-model="topaz">
+                                    <div class="upscale-model-icon">✨</div>
+                                    <div class="upscale-model-name">Topaz Generative</div>
+                                    <div class="upscale-model-badge">Coming Soon</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Scale Factor -->
+                        <div class="upscale-setting-group">
+                            <label class="upscale-label">Scale Factor</label>
+                            <div class="upscale-scale-options">
+                                <button class="upscale-scale-btn active" data-scale="2">2x</button>
+                                <button class="upscale-scale-btn" data-scale="4">4x</button>
+                                <button class="upscale-scale-btn" data-scale="6">6x</button>
+                            </div>
+                        </div>
+
+                        <!-- Subject Detection -->
+                        <div class="upscale-setting-group">
+                            <label class="upscale-label">Subject Detection</label>
+                            <select class="upscale-select" id="subjectDetection">
+                                <option value="none">None</option>
+                                <option value="all">All</option>
+                                <option value="foreground">Foreground</option>
+                                <option value="background">Background</option>
+                            </select>
+                        </div>
+
+                        <!-- Face Enhancement Toggle -->
+                        <div class="upscale-setting-group">
+                            <label class="upscale-label">Face Enhancement</label>
+                            <div class="upscale-toggle-container">
+                                <label class="upscale-toggle">
+                                    <input type="checkbox" id="faceEnhancement">
+                                    <span class="upscale-toggle-slider"></span>
+                                </label>
+                                <span class="upscale-toggle-label">Off</span>
+                            </div>
+                        </div>
+
+                        <!-- Strength Slider -->
+                        <div class="upscale-setting-group">
+                            <label class="upscale-label">
+                                Strength
+                                <span class="upscale-value-display" id="strengthValue">80%</span>
+                            </label>
+                            <input type="range" class="upscale-slider" id="strengthSlider" min="0" max="100" value="80">
+                        </div>
+
+                        <!-- Creativity Slider -->
+                        <div class="upscale-setting-group">
+                            <label class="upscale-label">
+                                Creativity
+                                <span class="upscale-value-display" id="creativityValue">50%</span>
+                            </label>
+                            <input type="range" class="upscale-slider" id="creativitySlider" min="0" max="100" value="50">
+                        </div>
+
+                        <!-- Generate Button -->
+                        <button class="upscale-generate-btn">
+                            <span class="upscale-btn-icon">🚀</span>
+                            Upscale
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Warning/Attention Section -->
+            <div class="upscale-warning-section">
+                <div class="upscale-warning-content">
+                    <div class="upscale-warning-icon">⚠️</div>
+                    <div class="upscale-warning-text">
+                        <h4 class="upscale-warning-title">Important Notice</h4>
+                        <p class="upscale-warning-message">
+                            Upscaled images are <strong>not saved on the server</strong>. They will be permanently deleted when you refresh or leave this page. 
+                            Please <strong>download and save your upscaled images</strong> immediately after processing.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Container -->
+            <div class="upscale-results-container" id="upscaleResults">
+                <div class="upscale-container-header">
+                    <h3 class="upscale-container-title">Upscaled Result</h3>
+                </div>
+                <div class="upscale-container-body">
+                    <div class="upscale-result-content">
+                        <!-- Placeholder for result -->
+                        <div class="upscale-result-placeholder">
+                            <div class="upscale-placeholder-icon">🎯</div>
+                            <p class="upscale-placeholder-text">Your upscaled image will appear here</p>
+                            <p class="upscale-placeholder-subtext">Upload an image and click "Upscale" to begin</p>
+                        </div>
+                        
+                        <!-- Result image (hidden initially) -->
+                        <div class="upscale-result-image-container" style="display: none;">
+                            <img src="" alt="Upscaled Result" class="upscale-result-image" id="upscaleResultImage">
+                            <div class="upscale-result-actions">
+                                <button class="upscale-download-btn">
+                                    <span class="upscale-btn-icon">⬇️</span>
+                                    Download Image
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+    </div>
+
+    <!-- GALLERY PAGE -->
+    <div id="gallery-page" class="page-section">
+    <!-- Main Content -->
+    <main style="padding-top: 120px;" class="section">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="text-center mb-5">
+                <h1 style="font-size: 2.5rem; color: var(--primary-neon); text-shadow: 0 0 30px var(--shadow-cyan); margin-bottom: 20px;">
+                    Creative Gallery
+                </h1>
+                <p style="font-size: 1.2rem; color: var(--text-light); max-width: 600px; margin: 0 auto;">
+                    Your AI-generated masterpieces collection
+                </p>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="gallery-grid" id="gallery-grid">
+                <!-- Image Card 1 -->
+                <div class="gallery-card">
+                    <div class="gallery-image-container">
+                        <img src="assets/landscape.jpg" alt="Generated Image 1" class="gallery-image">
+                    </div>
+                    <div class="gallery-info">
+                        <div class="gallery-meta">
+                            <span class="gallery-model">Flux Pro1.1 Ultra</span>
+                            <span class="gallery-timestamp">2 hours ago</span>
+                        </div>
+                        <div class="gallery-actions">
+                            <button class="gallery-btn" title="Download">
+                                <span>📥</span>
+                                <span class="gallery-btn-text">Download</span>
+                            </button>
+                            <button class="gallery-btn" title="Copy Prompt">
+                                <span>📋</span>
+                                <span class="gallery-btn-text">Copy Prompt</span>
+                            </button>
+                            <button class="gallery-btn gallery-btn-delete" title="Delete">
+                                <span>🗑️</span>
+                                <span class="gallery-btn-text">Delete</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image Card 2 -->
+                <div class="gallery-card">
+                    <div class="gallery-image-container">
+                        <img src="assets/portrait1.jpg" alt="Generated Image 2" class="gallery-image">
+                    </div>
+                    <div class="gallery-info">
+                        <div class="gallery-meta">
+                            <span class="gallery-model">Google Imagen 4 Ultra</span>
+                            <span class="gallery-timestamp">5 hours ago</span>
+                        </div>
+                        <div class="gallery-actions">
+                            <button class="gallery-btn" title="Download">
+                                <span>📥</span>
+                                <span class="gallery-btn-text">Download</span>
+                            </button>
+                            <button class="gallery-btn" title="Copy Prompt">
+                                <span>📋</span>
+                                <span class="gallery-btn-text">Copy Prompt</span>
+                            </button>
+                            <button class="gallery-btn gallery-btn-delete" title="Delete">
+                                <span>🗑️</span>
+                                <span class="gallery-btn-text">Delete</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image Card 3 -->
+                <div class="gallery-card">
+                    <div class="gallery-image-container">
+                        <img src="assets/portrait2.jpg" alt="Generated Image 3" class="gallery-image">
+                    </div>
+                    <div class="gallery-info">
+                        <div class="gallery-meta">
+                            <span class="gallery-model">Seedream 4</span>
+                            <span class="gallery-timestamp">1 day ago</span>
+                        </div>
+                        <div class="gallery-actions">
+                            <button class="gallery-btn" title="Download">
+                                <span>📥</span>
+                                <span class="gallery-btn-text">Download</span>
+                            </button>
+                            <button class="gallery-btn" title="Copy Prompt">
+                                <span>📋</span>
+                                <span class="gallery-btn-text">Copy Prompt</span>
+                            </button>
+                            <button class="gallery-btn gallery-btn-delete" title="Delete">
+                                <span>🗑️</span>
+                                <span class="gallery-btn-text">Delete</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image Card 4 -->
+                <div class="gallery-card">
+                    <div class="gallery-image-container">
+                        <img src="assets/portrait3.jpg" alt="Generated Image 4" class="gallery-image">
+                    </div>
+                    <div class="gallery-info">
+                        <div class="gallery-meta">
+                            <span class="gallery-model">Ideogram v3 Quality</span>
+                            <span class="gallery-timestamp">2 days ago</span>
+                        </div>
+                        <div class="gallery-actions">
+                            <button class="gallery-btn" title="Download">
+                                <span>📥</span>
+                                <span class="gallery-btn-text">Download</span>
+                            </button>
+                            <button class="gallery-btn" title="Copy Prompt">
+                                <span>📋</span>
+                                <span class="gallery-btn-text">Copy Prompt</span>
+                            </button>
+                            <button class="gallery-btn gallery-btn-delete" title="Delete">
+                                <span>🗑️</span>
+                                <span class="gallery-btn-text">Delete</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image Card 5 -->
+                <div class="gallery-card">
+                    <div class="gallery-image-container">
+                        <img src="assets/classic.jpg" alt="Generated Image 5" class="gallery-image">
+                    </div>
+                    <div class="gallery-info">
+                        <div class="gallery-meta">
+                            <span class="gallery-model">Luma Photon</span>
+                            <span class="gallery-timestamp">3 days ago</span>
+                        </div>
+                        <div class="gallery-actions">
+                            <button class="gallery-btn" title="Download">
+                                <span>📥</span>
+                                <span class="gallery-btn-text">Download</span>
+                            </button>
+                            <button class="gallery-btn" title="Copy Prompt">
+                                <span>📋</span>
+                                <span class="gallery-btn-text">Copy Prompt</span>
+                            </button>
+                            <button class="gallery-btn gallery-btn-delete" title="Delete">
+                                <span>🗑️</span>
+                                <span class="gallery-btn-text">Delete</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image Card 6 -->
+                <div class="gallery-card">
+                    <div class="gallery-image-container">
+                        <img src="assets/portrait4.jpg" alt="Generated Image 6" class="gallery-image">
+                    </div>
+                    <div class="gallery-info">
+                        <div class="gallery-meta">
+                            <span class="gallery-model">Luma Photon</span>
+                            <span class="gallery-timestamp">3 days ago</span>
+                        </div>
+                        <div class="gallery-actions">
+                            <button class="gallery-btn" title="Download">
+                                <span>📥</span>
+                                <span class="gallery-btn-text">Download</span>
+                            </button>
+                            <button class="gallery-btn" title="Copy Prompt">
+                                <span>📋</span>
+                                <span class="gallery-btn-text">Copy Prompt</span>
+                            </button>
+                            <button class="gallery-btn gallery-btn-delete" title="Delete">
+                                <span>🗑️</span>
+                                <span class="gallery-btn-text">Delete</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <!-- Image Card 7 -->
+                <div class="gallery-card">
+                    <div class="gallery-image-container">
+                        <img src="assets/portrait5.jpg" alt="Generated Image 7" class="gallery-image">
+                    </div>
+                    <div class="gallery-info">
+                        <div class="gallery-meta">
+                            <span class="gallery-model">Luma Photon</span>
+                            <span class="gallery-timestamp">3 days ago</span>
+                        </div>
+                        <div class="gallery-actions">
+                            <button class="gallery-btn" title="Download">
+                                <span>📥</span>
+                                <span class="gallery-btn-text">Download</span>
+                            </button>
+                            <button class="gallery-btn" title="Copy Prompt">
+                                <span>📋</span>
+                                <span class="gallery-btn-text">Copy Prompt</span>
+                            </button>
+                            <button class="gallery-btn gallery-btn-delete" title="Delete">
+                                <span>🗑️</span>
+                                <span class="gallery-btn-text">Delete</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading Indicator (for infinite scroll) -->
+            <div class="gallery-loading" id="gallery-loading" style="display: none;">
+                <div class="loading-spinner"></div>
+                <p style="color: var(--text-light); margin-top: 15px;">Loading more images...</p>
+            </div>
+        </div>
+    </main>
+    </div>
+
+    <!-- PRICING PAGE -->
+    <div id="pricing-page" class="page-section">
+    <!-- Main Content -->
+    <main style="padding-top: 120px;" class="section">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="text-center mb-5">
+                <h1 style="font-size: 2.5rem; color: var(--primary-neon); text-shadow: 0 0 30px var(--shadow-cyan); margin-bottom: 20px;">
+                    Power Up Your Creativity
+                </h1>
+                <p style="font-size: 1.2rem; color: var(--text-light); max-width: 600px; margin: 0 auto;">
+                    One-Time Credit Packs, Unlimited Possibilities
+                </p>
+            </div>
+
+            <!-- Pricing Cards -->
+            <div class="pricing-grid">
+                <!-- Starter Package -->
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 class="pricing-title">Starter</h3>
+                        <div class="pricing-price">
+                            <span class="currency">€</span>
+                            <span class="amount">6</span>
+                        </div>
+                        <div class="pricing-credits">600 Credits</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Generate AI Images</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Create AI Videos</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Upscale Images</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Priority Processing</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">HD Quality Output</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">No Ads, No Watermarks</span>
+                        </li>
+                    </ul>
+                    <button class="pricing-button">Get Credits</button>
+                </div>
+
+                <!-- Popular Package -->
+                <div class="pricing-card pricing-card-popular">
+                    <div class="popular-badge">POPULAR</div>
+                    <div class="pricing-header">
+                        <h3 class="pricing-title">Pro</h3>
+                        <div class="pricing-price">
+                            <span class="currency">€</span>
+                            <span class="amount">18</span>
+                        </div>
+                        <div class="pricing-credits">1,900 Credits</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Generate AI Images</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Create AI Videos</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Upscale Images</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Priority Processing</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">HD Quality Output</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">No Ads, No Watermarks</span>
+                        </li>
+                    </ul>
+                    <button class="pricing-button pricing-button-popular">Get Credits</button>
+                </div>
+
+                <!-- Ultimate Package -->
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 class="pricing-title">Ultimate</h3>
+                        <div class="pricing-price">
+                            <span class="currency">€</span>
+                            <span class="amount">96</span>
+                        </div>
+                        <div class="pricing-credits">12,000 Credits</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Generate AI Images</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Create AI Videos</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Upscale Images</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Priority Processing</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">HD Quality Output</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">No Ads, No Watermarks</span>
+                        </li>
+                    </ul>
+                    <button class="pricing-button">Get Credits</button>
+                </div>
+            </div>
+           <div class="text-center mb-5">
+                <h1 style="font-size: 2.5rem; color: var(--primary-neon); text-shadow: 0 0 30px var(--shadow-cyan); margin-bottom: 20px;">
+                    Generation Costs Calculator
+                </h1>
+                <p style="font-size: 1.2rem; color: var(--text-light); max-width: 600px; margin: 0 auto;">
+                    See exactly how many generations you can create with each plan based on actual model costs
+                </p>
+            </div>
+
+            <!-- Plan Selector -->
+            <div class="calculator-section">
+                <div class="calculator-plan-selector">
+                    <label for="plan-select" class="plan-select-label">Select Plan:</label>
+                    <select id="plan-select" class="plan-select-dropdown">
+                        <option value="starter" selected>Starter</option>
+                        <option value="pro">Pro</option>
+                        <option value="ultimate">Ultimate</option>
+                    </select>
+                </div>
+
+                <div class="calculator-credits-info">
+                    <p id="credits-info-text" class="credits-info-text">Your Starter plan includes 600 credits</p>
+                </div>
+
+                <!-- Calculator Containers -->
+                <div class="calculator-grid">
+                    <div class="calculator-card">
+                        <h3 class="calculator-card-title">Image Generation</h3>
+                        <div class="calculator-card-content">
+                            <!-- Content will be added later -->
+                        </div>
+                    </div>
+
+                    <div class="calculator-card">
+                        <h3 class="calculator-card-title">Video Generation</h3>
+                        <div class="calculator-card-content">
+                            <!-- Content will be added later -->
+                        </div>
+                    </div>
+
+                    <div class="calculator-card">
+                        <h3 class="calculator-card-title">Other Features</h3>
+                        <div class="calculator-card-content">
+                            <!-- Content will be added later -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    </div>
+
+    <!-- PROFILE PAGE -->
+    <div id="profile-page" class="page-section">
+    <!-- Main Content -->
+    <main style="padding-top: 120px; padding-bottom: 60px;" class="section">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="text-center mb-5">
+                <h1 style="font-size: 2.5rem; color: var(--primary-neon); text-shadow: 0 0 30px var(--shadow-cyan); margin-bottom: 20px;">
+                    Operator Control Interface
+                </h1>
+                <p style="font-size: 1.2rem; color: var(--text-light); max-width: 600px; margin: 0 auto;">
+                    Manage your account, view your payments, and track your AI journey
+                </p>
+            </div>
+
+            <!-- Profile Cards Grid -->
+            <div class="profile-cards-grid">
+                
+                <!-- Card 1: Profile Information -->
+                <div class="profile-card profile-info-card">
+                    <div class="profile-card-header">
+                        <h3 class="profile-card-title">Profile Information</h3>
+                    </div>
+                    <div class="profile-card-body">
+                        <div class="profile-avatar-section">
+                            <div class="profile-avatar-large">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgdmlld0JveD0iMCAwIDEyMCAxMjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxjaXJjbGUgY3g9IjYwIiBjeT0iNjAiIHI9IjYwIiBmaWxsPSJ1cmwoI2dyYWRpZW50MCkiLz4KPHBhdGggZD0iTTYwIDMwQzUwLjA1ODggMzAgNDIgMzguMDU4OCA0MiA0OEM0MiA1Ny45NDEyIDUwLjA1ODggNjYgNjAgNjZDNjkuOTQxMiA2NiA3OCA1Ny45NDEyIDc4IDQ4Qzc4IDM4LjA1ODggNjkuOTQxMiAzMCA2MCAzMFoiIGZpbGw9IiMwMGZmZmYiLz4KPHBhdGggZD0iTTYwIDcyQzQzLjQzMTQgNzIgMzAgODUuNDMxNCAzMCAxMDJIOTBDOTAgODUuNDMxNCA3Ni41Njg2IDcyIDYwIDcyWiIgZmlsbD0iIzAwZmZmZiIvPgo8ZGVmcz4KPGxpbmVhckdyYWRpZW50IGlkPSJncmFkaWVudDAiIHgxPSIwIiB5MT0iMCIgeDI9IjEyMCIgeTI9IjEyMCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgo8c3RvcCBzdG9wLWNvbG9yPSIjMDBmZmZmIi8+CjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2ZmMDBmZiIvPgo8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+Cjwvc3ZnPgo=" alt="Profile Avatar" />
+                            </div>
+                        </div>
+                        <div class="profile-info-details">
+                            <div class="profile-info-item">
+                                <span class="profile-info-label">Name</span>
+                                <span class="profile-info-value">John Matrix</span>
+                            </div>
+                            <div class="profile-info-item">
+                                <span class="profile-info-label">Email</span>
+                                <span class="profile-info-value">john.matrix@neonlights.ai</span>
+                            </div>
+                            <div class="profile-info-item">
+                                <span class="profile-info-label">Joined</span>
+                                <span class="profile-info-value">January 15, 2025</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Account Management & Billing History -->
+                <div class="profile-card billing-card">
+                    <div class="profile-card-header">
+                        <h3 class="profile-card-title">Billing History</h3>
+                    </div>
+                    <div class="profile-card-body">
+                        <div class="billing-list">
+                            <div class="billing-item">
+                                <div class="billing-item-icon">💳</div>
+                                <div class="billing-item-details">
+                                    <div class="billing-item-amount">€96.00</div>
+                                    <div class="billing-item-credits">12,000 Credits</div>
+                                    <div class="billing-item-date">October 20, 2025</div>
+                                </div>
+                                <div class="billing-item-status billing-status-success">Paid</div>
+                            </div>
+                            <div class="billing-item">
+                                <div class="billing-item-icon">💳</div>
+                                <div class="billing-item-details">
+                                    <div class="billing-item-amount">€18.00</div>
+                                    <div class="billing-item-credits">1,900 Credits</div>
+                                    <div class="billing-item-date">October 5, 2025</div>
+                                </div>
+                                <div class="billing-item-status billing-status-success">Paid</div>
+                            </div>
+                            <div class="billing-item">
+                                <div class="billing-item-icon">💳</div>
+                                <div class="billing-item-details">
+                                    <div class="billing-item-amount">€6.00</div>
+                                    <div class="billing-item-credits">600 Credits</div>
+                                    <div class="billing-item-date">September 28, 2025</div>
+                                </div>
+                                <div class="billing-item-status billing-status-success">Paid</div>
+                            </div>
+                            <div class="billing-item">
+                                <div class="billing-item-icon">💳</div>
+                                <div class="billing-item-details">
+                                    <div class="billing-item-amount">€18.00</div>
+                                    <div class="billing-item-credits">1,900 Credits</div>
+                                    <div class="billing-item-date">September 10, 2025</div>
+                                </div>
+                                <div class="billing-item-status billing-status-success">Paid</div>
+                            </div>
+                        </div>
+                        <div class="billing-total">
+                            <span class="billing-total-label">Total Spent</span>
+                            <span class="billing-total-value">€138.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Usage Summary -->
+                <div class="profile-card usage-card">
+                    <div class="profile-card-header">
+                        <h3 class="profile-card-title">Usage Summary</h3>
+                    </div>
+                    <div class="profile-card-body">
+                        <!-- Credits Overview -->
+                        <div class="usage-credits-overview">
+                            <div class="usage-stat-box usage-stat-primary">
+                                <div class="usage-stat-content">
+                                    <div class="usage-stat-value">16,400</div>
+                                    <div class="usage-stat-label">Credits Bought</div>
+                                </div>
+                            </div>
+                            <div class="usage-stat-box usage-stat-warning">
+                                <div class="usage-stat-content">
+                                    <div class="usage-stat-value">8,750</div>
+                                    <div class="usage-stat-label">Credits Used</div>
+                                </div>
+                            </div>
+                            <div class="usage-stat-box usage-stat-success">
+                                <div class="usage-stat-content">
+                                    <div class="usage-stat-value">7,650</div>
+                                    <div class="usage-stat-label">Credits Remaining</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Generation Stats -->
+                        <div class="usage-divider"></div>
+                        <div class="usage-generation-stats">
+                            <div class="usage-gen-item">
+                                <span class="usage-gen-icon">🖼️</span>
+                                <span class="usage-gen-label">Images Generated</span>
+                                <span class="usage-gen-value">342</span>
+                            </div>
+                            <div class="usage-gen-item">
+                                <span class="usage-gen-icon">🎬</span>
+                                <span class="usage-gen-label">Videos Generated</span>
+                                <span class="usage-gen-value">48</span>
+                            </div>
+                            <div class="usage-gen-item usage-gen-total">
+                                <span class="usage-gen-icon">🎯</span>
+                                <span class="usage-gen-label">Total Generated</span>
+                                <span class="usage-gen-value">390</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4: Danger Zone -->
+                <div class="profile-card danger-card">
+                    <div class="profile-card-header danger-header">
+                        <h3 class="profile-card-title">⚠️ Danger Zone</h3>
+                    </div>
+                    <div class="profile-card-body">
+                        <div class="danger-content">
+                            <div class="danger-warning">
+                                <div class="danger-warning-icon">🚨</div>
+                                <div class="danger-warning-text">
+                                    <h4 class="danger-warning-title">Delete Account</h4>
+                                    <p class="danger-warning-description">
+                                        This action is <strong>irreversible</strong> and will permanently delete your account, 
+                                        all your media files, generation history, and remaining credits from our servers. 
+                                        This cannot be undone.
+                                    </p>
+                                </div>
+                            </div>
+                            <ul class="danger-consequences">
+                                <li>✗ All generated images and videos will be deleted</li>
+                                <li>✗ Your remaining credits will be forfeited</li>
+                                <li>✗ Billing history will be removed</li>
+                                <li>✗ Account recovery will not be possible</li>
+                            </ul>
+                            <button class="danger-button">
+                                <span class="danger-button-icon">🗑️</span>
+                                Delete My Account
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+    </div>
+
+    <!-- ABOUT PAGE -->
+    <div id="about-page" class="page-section">
+    <!-- Main Content -->
+    <main style="padding-top: 120px;" class="section">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="text-center mb-5">
+                <h1 style="font-size: 2.5rem; color: var(--primary-neon); text-shadow: 0 0 30px var(--shadow-cyan); margin-bottom: 20px;">
+                    About NeonLights AI
+                </h1>
+                <p style="font-size: 1.2rem; color: var(--text-light); max-width: 600px; margin: 0 auto;">
+                    Discover our mission and vision
+                </p>
+            </div>
+
+            <!-- Empty Container -->
+            <div class="about-container glass-panel" style="padding: 60px; min-height: 500px;">
+                <!-- Content will be added here -->
+            </div>
+        </div>
+    </main>
+    </div>
+
+    <!-- Global Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <!-- Left Side: Branding -->
+            <div class="footer-branding">
+                <div class="footer-logo-container">
+                    <img src="assets/1024x1024.png" alt="NeonLights AI Logo" class="footer-logo-img" />
+                </div>
+                <div class="footer-brand-text">
+                    <h2 class="footer-brand-name">NEONLIGHTS AI</h2>
+                    <p class="footer-brand-tagline">Commanding the Future of AI Creation</p>
+                </div>
+            </div>
+
+            <!-- Center & Right: Links Sections -->
+            <div class="footer-links-container">
+                <!-- Quick Links -->
+                <div class="footer-links-section">
+                    <h3 class="footer-links-title">Quick Links</h3>
+                    <ul class="footer-links-list">
+                        <li><a href="#image" onclick="navigateTo('image'); return false;" class="footer-link">Image</a></li>
+                        <li><a href="#video" onclick="navigateTo('video'); return false;" class="footer-link">Video</a></li>
+                        <li><a href="#upscale" onclick="navigateTo('upscale'); return false;" class="footer-link">Upscale</a></li>
+                        <li><a href="#about" onclick="navigateTo('about'); return false;" class="footer-link">About</a></li>
+                        <li><a href="#" class="footer-link">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal Links -->
+                <div class="footer-links-section">
+                    <h3 class="footer-links-title">Legal</h3>
+                    <ul class="footer-links-list">
+                        <li><a href="#" class="footer-link">Privacy Policy</a></li>
+                        <li><a href="#" class="footer-link">Terms of Use</a></li>
+                        <li><a href="#" class="footer-link">Impressum</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="footer-divider"></div>
+            <p class="footer-copyright">
+                © 2025 NeonLights.ai - All Rights Reserved
+            </p>
+        </div>
+    </footer>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="loading-logo">NEONLIGHTS AI</div>
+            <div class="loading-text">Initializing Neural Networks...</div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload Images Modal -->
+    <div class="upload-modal" id="uploadModal" style="display: none;">
+        <div class="upload-modal-overlay" onclick="closeUploadModal()"></div>
+        <div class="upload-modal-content">
+            <div class="upload-modal-header">
+                <h2>Select Reference Images</h2>
+                <button class="modal-close-btn" onclick="closeUploadModal()">✕</button>
+            </div>
+            
+            <div class="upload-modal-body">
+                <!-- Section 1: Drag and Drop Area -->
+                <div class="upload-dropzone" id="uploadDropzone">
+                    <div class="dropzone-content">
+                        <div class="dropzone-icon">📤</div>
+                        <p class="dropzone-text">Drop images here or click to upload</p>
+                        <p class="dropzone-subtext">PNG, JPG, WebP up to 5MB each</p>
+                        <input type="file" id="fileInput" multiple accept="image/png,image/jpeg,image/jpg,image/webp" style="display: none;">
+                        <button class="btn-choose-files" onclick="document.getElementById('fileInput').click()">
+                            <span>📁 Choose Files</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Previously Uploaded -->
+                <div class="previously-uploaded-section">
+                    <h3 class="section-subtitle">Previously Uploaded (<span id="uploadedCount">4</span>)</h3>
+                    <div class="uploaded-images-grid" id="uploadedImagesGrid">
+                        <!-- Sample uploaded images -->
+                        <div class="uploaded-image-item" data-filename="image1.jpg" data-filesize="2.3 MB">
+                            <img src="assets/image1.jpg" alt="image1.jpg">
+                            <div class="uploaded-image-info">
+                                <span class="uploaded-filename">image1.jpg</span>
+                                <span class="uploaded-filesize">2.3 MB</span>
+                            </div>
+                            <button class="uploaded-delete-btn" onclick="deleteUploadedImage(this)">🗑️</button>
+                            <div class="uploaded-selected-indicator">✓</div>
+                        </div>
+                        
+                        <div class="uploaded-image-item" data-filename="image2.jpg" data-filesize="1.8 MB">
+                            <img src="assets/image1.jpg" alt="image2.jpg">
+                            <div class="uploaded-image-info">
+                                <span class="uploaded-filename">image2.jpg</span>
+                                <span class="uploaded-filesize">1.8 MB</span>
+                            </div>
+                            <button class="uploaded-delete-btn" onclick="deleteUploadedImage(this)">🗑️</button>
+                            <div class="uploaded-selected-indicator">✓</div>
+                        </div>
+                        
+                        <div class="uploaded-image-item" data-filename="image3.jpg" data-filesize="3.1 MB">
+                            <img src="assets/image1.jpg" alt="image3.jpg">
+                            <div class="uploaded-image-info">
+                                <span class="uploaded-filename">image3.jpg</span>
+                                <span class="uploaded-filesize">3.1 MB</span>
+                            </div>
+                            <button class="uploaded-delete-btn" onclick="deleteUploadedImage(this)">🗑️</button>
+                            <div class="uploaded-selected-indicator">✓</div>
+                        </div>
+                        
+                        <div class="uploaded-image-item" data-filename="image4.jpg" data-filesize="2.7 MB">
+                            <img src="assets/image1.jpg" alt="image4.jpg">
+                            <div class="uploaded-image-info">
+                                <span class="uploaded-filename">image4.jpg</span>
+                                <span class="uploaded-filesize">2.7 MB</span>
+                            </div>
+                            <button class="uploaded-delete-btn" onclick="deleteUploadedImage(this)">🗑️</button>
+                            <div class="uploaded-selected-indicator">✓</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section 3: Modal Footer -->
+            <div class="upload-modal-footer">
+                <button class="btn-modal-cancel" onclick="closeUploadModal()">Cancel</button>
+                <button class="btn-modal-confirm" onclick="useSelectedImages()">Use Selected (<span id="selectedCount">0</span>)</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fullscreen Image Viewer Modal -->
+    <div class="fullscreen-viewer-modal" id="fullscreenViewer" style="display: none;">
+        <div class="fullscreen-viewer-overlay" onclick="closeFullscreenViewer()"></div>
+        <button class="fullscreen-close-btn" onclick="closeFullscreenViewer()">✕</button>
+        
+        <div class="fullscreen-viewer-content">
+            <!-- Left Side: Image Display -->
+            <div class="fullscreen-image-section">
+                <img id="fullscreenImage" src="" alt="Full view">
+                <video id="fullscreenVideo" controls loop style="display: none;">
+                    <source src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            
+            <!-- Right Side: Image Information -->
+            <div class="fullscreen-info-section">
+                <div class="fullscreen-info-content">
+                    <h3 class="fullscreen-info-title">Generation Details</h3>
+                    
+                    <div class="fullscreen-info-item">
+                        <span class="info-label">Model</span>
+                        <span class="info-value" id="fullscreenModel">Seedream 4</span>
+                    </div>
+                    
+                    <div class="fullscreen-info-item">
+                        <span class="info-label">Prompt</span>
+                        <p class="info-value" id="fullscreenPrompt">Futuristic cityscape with neon lights</p>
+                    </div>
+                    
+                    <div class="fullscreen-info-item">
+                        <span class="info-label">Generated</span>
+                        <span class="info-value" id="fullscreenDate">2 min ago</span>
+                    </div>
+                    
+                    <div class="fullscreen-info-item">
+                        <span class="info-label">Dimensions</span>
+                        <span class="info-value" id="fullscreenDimensions">1024×1024</span>
+                    </div>
+                    
+                    <div class="fullscreen-actions">
+                        <button class="fullscreen-action-btn" onclick="downloadFullscreenMedia()">
+                            <span>📥</span>
+                            <span>Download</span>
+                        </button>
+                        <button class="fullscreen-action-btn" onclick="copyFullscreenPrompt()">
+                            <span>�</span>
+                            <span>Copy Prompt</span>
+                        </button>
+                        <button class="fullscreen-action-btn delete" onclick="deleteFullscreenMedia()">
+                            <span>🗑️</span>
+                            <span>Delete</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Frame Upload Modal (for Video Page) -->
+    <div class="upload-modal" id="frameUploadModal" style="display: none;">
+        <div class="upload-modal-overlay" onclick="closeFrameUploadModal()"></div>
+        <div class="upload-modal-content">
+            <div class="upload-modal-header">
+                <h2 id="frameModalTitle">Select Frame Image</h2>
+                <button class="modal-close-btn" onclick="closeFrameUploadModal()">✕</button>
+            </div>
+            
+            <div class="upload-modal-body">
+                <!-- Section 1: Drag and Drop Area -->
+                <div class="upload-dropzone" id="frameUploadDropzone">
+                    <div class="dropzone-content">
+                        <div class="dropzone-icon">🎬</div>
+                        <p class="dropzone-text">Drop image here or click to upload</p>
+                        <p class="dropzone-subtext">PNG, JPG, WebP up to 5MB • Single image only</p>
+                        <input type="file" id="frameFileInput" accept="image/png,image/jpeg,image/jpg,image/webp" style="display: none;">
+                        <button class="btn-choose-files" onclick="document.getElementById('frameFileInput').click()">
+                            <span>📁 Choose File</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Previously Uploaded -->
+                <div class="previously-uploaded-section">
+                    <h3 class="section-subtitle">Previously Uploaded (<span id="frameUploadedCount">4</span>)</h3>
+                    <div class="uploaded-images-grid" id="frameUploadedImagesGrid">
+                        <!-- Sample uploaded images -->
+                        <div class="uploaded-image-item frame-selectable" data-filename="frame1.jpg" data-filesize="2.3 MB">
+                            <img src="assets/image1.jpg" alt="frame1.jpg">
+                            <div class="uploaded-image-info">
+                                <span class="uploaded-filename">frame1.jpg</span>
+                                <span class="uploaded-filesize">2.3 MB</span>
+                            </div>
+                            <button class="uploaded-delete-btn" onclick="deleteFrameUploadedImage(this)">🗑️</button>
+                            <div class="uploaded-selected-indicator">✓</div>
+                        </div>
+                        
+                        <div class="uploaded-image-item frame-selectable" data-filename="frame2.jpg" data-filesize="1.8 MB">
+                            <img src="assets/image1.jpg" alt="frame2.jpg">
+                            <div class="uploaded-image-info">
+                                <span class="uploaded-filename">frame2.jpg</span>
+                                <span class="uploaded-filesize">1.8 MB</span>
+                            </div>
+                            <button class="uploaded-delete-btn" onclick="deleteFrameUploadedImage(this)">🗑️</button>
+                            <div class="uploaded-selected-indicator">✓</div>
+                        </div>
+                        
+                        <div class="uploaded-image-item frame-selectable" data-filename="frame3.jpg" data-filesize="3.1 MB">
+                            <img src="assets/image1.jpg" alt="frame3.jpg">
+                            <div class="uploaded-image-info">
+                                <span class="uploaded-filename">frame3.jpg</span>
+                                <span class="uploaded-filesize">3.1 MB</span>
+                            </div>
+                            <button class="uploaded-delete-btn" onclick="deleteFrameUploadedImage(this)">🗑️</button>
+                            <div class="uploaded-selected-indicator">✓</div>
+                        </div>
+                        
+                        <div class="uploaded-image-item frame-selectable" data-filename="frame4.jpg" data-filesize="2.7 MB">
+                            <img src="assets/image1.jpg" alt="frame4.jpg">
+                            <div class="uploaded-image-info">
+                                <span class="uploaded-filename">frame4.jpg</span>
+                                <span class="uploaded-filesize">2.7 MB</span>
+                            </div>
+                            <button class="uploaded-delete-btn" onclick="deleteFrameUploadedImage(this)">🗑️</button>
+                            <div class="uploaded-selected-indicator">✓</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section 3: Modal Footer -->
+            <div class="upload-modal-footer">
+                <button class="btn-modal-cancel" onclick="closeFrameUploadModal()">Cancel</button>
+                <button class="btn-modal-confirm" onclick="useSelectedFrame()">Use Selected</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="scripts/animations.js"></script>
+    <script src="scripts/video-duration.js"></script>
+    <script>
+        // Parallax Scroll Effect
+        window.addEventListener('scroll', function() {
+            const parallax = document.querySelector('.parallax-section');
+            if (parallax) {
+                const scrolled = window.pageYOffset;
+                const parallaxOffset = parallax.offsetTop;
+                const parallaxHeight = parallax.offsetHeight;
+                
+                // Only apply parallax when section is in view
+                if (scrolled + window.innerHeight > parallaxOffset && scrolled < parallaxOffset + parallaxHeight) {
+                    const yPos = -(scrolled - parallaxOffset) * 0.3;
+                    parallax.style.backgroundPosition = `center ${yPos}px`;
+                }
+            }
+        });
+        
+        // Single Page Application Navigation
+        function navigateTo(pageName) {
+            // Hide all pages
+            document.querySelectorAll('.page-section').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            const targetPage = document.getElementById(pageName + '-page');
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+            
+            // Update active nav link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.dataset.page === pageName) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+            
+            // Update URL hash without page reload
+            history.pushState(null, '', '#' + pageName);
+        }
+        
+        // Handle browser back/forward buttons
+        window.addEventListener('popstate', function() {
+            const page = location.hash.slice(1) || 'home';
+            navigateTo(page);
+        });
+        
+        // Initialize navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize starfield
+            try {
+                const starfield = new SimpleStarField('starfield');
+                starfield.start();
+            } catch(e) {
+                // Starfield initialization failed, continue without it
+            }
+            
+            // Hide loading screen
+            setTimeout(() => {
+                const loadingScreen = document.getElementById('loadingScreen');
+                if (loadingScreen) {
+                    loadingScreen.style.display = 'none';
+                }
+            }, 1500);
+            
+            // Handle initial page load
+            const initialPage = location.hash.slice(1) || 'home';
+            if (initialPage !== 'home') {
+                navigateTo(initialPage);
+            }
+            
+            // Image Page - Model selection
+            const imageModelCosts = {
+                'seedream-4': 10,
+                'imagineart-1': 15,
+                'neonlights-retro': 8,
+                'nano-banana': 24,
+                'hunyuan-image-3': 8,
+                'wan-2': 6,
+                'minimax-image-01': 5,
+                'leonardo-phoenix': 24,
+                'flux-dev': 8,
+                'flux-pro-ultra': 24,
+                'flux-kontext': 30,
+                'ideogram-v3': 32,
+                'google-imagen-4': 24,
+                'google-imagen-4-ultra': 48,
+                'luma-photon': 10,
+                'recraft-v3': 13
+            };
+
+            document.querySelectorAll('.model-card:not(.disabled)').forEach(card => {
+                card.addEventListener('click', function() {
+                    document.querySelectorAll('.model-card').forEach(c => c.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update credit cost on generate button
+                    const modelName = this.getAttribute('data-model');
+                    const cost = imageModelCosts[modelName] || 10;
+                    const generateBtn = document.getElementById('generate-btn');
+                    if (generateBtn) {
+                        const costDisplay = generateBtn.querySelector('.btn-text span');
+                        if (costDisplay) {
+                            costDisplay.textContent = `-${cost}`;
+                        }
+                    }
+                });
+            });
+
+            // Image Page - Dimension selection
+            document.querySelectorAll('.dimension-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    document.querySelectorAll('.dimension-option').forEach(o => o.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            // Image Page - Generate button
+            const generateBtn = document.getElementById('generate-btn');
+            if (generateBtn) {
+                generateBtn.addEventListener('click', function() {
+                    const btnText = this.querySelector('.btn-text');
+                    const btnLoading = this.querySelector('.btn-loading');
+                    
+                    btnText.style.display = 'none';
+                    btnLoading.style.display = 'inline';
+                    this.disabled = true;
+                    
+                    // Simulate generation
+                    setTimeout(() => {
+                        btnText.style.display = 'inline';
+                        btnLoading.style.display = 'none';
+                        this.disabled = false;
+                        
+                        // Add new generation to the grid
+                        const grid = document.getElementById('generations-grid');
+                        if (grid) {
+                            const newItem = document.createElement('div');
+                            newItem.className = 'generation-item';
+                            newItem.innerHTML = `
+                                <div class="generation-image">
+                                    <div class="placeholder-image">✨</div>
+                                </div>
+                                <div class="generation-info">
+                                    <p class="generation-prompt">New generation complete!</p>
+                                    <div class="generation-meta">
+                                        <span>Flux Pro</span>
+                                        <span>1024×1024</span>
+                                        <span>Just now</span>
+                                    </div>
+                                    <div class="generation-actions">
+                                        <button class="action-btn">📥</button>
+                                        <button class="action-btn">❤️</button>
+                                        <button class="action-btn">🔗</button>
+                                        <button class="action-btn">🗑️</button>
+                                    </div>
+                                </div>
+                            `;
+                            grid.insertBefore(newItem, grid.firstChild);
+                        }
+                    }, 3000);
+                });
+            }
+
+            // Video Page - Render button
+            const videoPage = document.getElementById('video-page');
+            if (videoPage) {
+                const videoRenderBtn = videoPage.querySelector('#generate-btn');
+                if (videoRenderBtn) {
+                    videoRenderBtn.addEventListener('click', function() {
+                        const btnText = this.querySelector('.btn-text');
+                        const btnLoading = this.querySelector('.btn-loading');
+                        
+                        btnText.style.display = 'none';
+                        btnLoading.style.display = 'inline';
+                        this.disabled = true;
+                        
+                        // Simulate video rendering
+                        setTimeout(() => {
+                            btnText.style.display = 'inline';
+                            btnLoading.style.display = 'none';
+                            this.disabled = false;
+                            
+                            // Add new video generation to the grid
+                            const videoGrid = document.getElementById('video-generations-grid');
+                            if (videoGrid) {
+                                const newItem = document.createElement('div');
+                                newItem.className = 'generation-item';
+                                newItem.innerHTML = `
+                                    <div class="generation-image">
+                                        <video controls loop style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+                                            <source src="assets/portrait.mp4" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </div>
+                                    <div class="generation-info">
+                                        <p class="generation-prompt">New video generation complete!</p>
+                                        <div class="generation-meta">
+                                            <span>Video Model</span>
+                                            <span>Just now</span>
+                                        </div>
+                                        <div class="generation-actions">
+                                            <button class="action-btn">📥</button>
+                                            <button class="action-btn">🔗</button>
+                                            <button class="action-btn">🗑️</button>
+                                        </div>
+                                    </div>
+                                `;
+                                videoGrid.insertBefore(newItem, videoGrid.firstChild);
+                            }
+                        }, 3000);
+                    });
+                }
+            }
+            
+            // Parallax scroll effect
+            const parallaxImage = document.querySelector('.parallax-image');
+            if (parallaxImage) {
+                window.addEventListener('scroll', function() {
+                    const scrolled = window.pageYOffset;
+                    const parallaxSection = document.querySelector('.parallax-section');
+                    
+                    if (parallaxSection) {
+                        const sectionTop = parallaxSection.offsetTop;
+                        const sectionHeight = parallaxSection.offsetHeight;
+                        
+                        // Only apply parallax when section is in viewport
+                        if (scrolled + window.innerHeight > sectionTop && scrolled < sectionTop + sectionHeight) {
+                            const offset = (scrolled - sectionTop) * 0.5;
+                            parallaxImage.style.transform = `translateY(${offset}px)`;
+                        }
+                    }
+                });
+            }
+
+            // Gallery infinite scroll
+            let isLoadingGallery = false;
+            let galleryPage = 1;
+            
+            function loadMoreGalleryImages() {
+                if (isLoadingGallery) return;
+                
+                const galleryLoading = document.getElementById('gallery-loading');
+                const galleryGrid = document.getElementById('gallery-grid');
+                
+                if (!galleryGrid) return;
+                
+                isLoadingGallery = true;
+                if (galleryLoading) galleryLoading.style.display = 'block';
+                
+                // Simulate loading more images (replace with actual API call later)
+                setTimeout(() => {
+                    // For demo purposes, we'll just show the loading indicator
+                    // In production, you would fetch and append new gallery items here
+                    
+                    if (galleryLoading) galleryLoading.style.display = 'none';
+                    isLoadingGallery = false;
+                    galleryPage++;
+                }, 1500);
+            }
+            
+            // Infinite scroll detection
+            window.addEventListener('scroll', function() {
+                const galleryPage = document.getElementById('gallery-page');
+                if (!galleryPage || !galleryPage.classList.contains('active')) return;
+                
+                const scrollPosition = window.innerHeight + window.pageYOffset;
+                const threshold = document.documentElement.scrollHeight - 500;
+                
+                if (scrollPosition >= threshold && !isLoadingGallery) {
+                    loadMoreGalleryImages();
+                }
+            });
+
+            // Gallery button actions
+            document.addEventListener('click', function(e) {
+                const btn = e.target.closest('.gallery-btn');
+                if (!btn) return;
+                
+                const card = btn.closest('.gallery-card');
+                const btnText = btn.querySelector('.gallery-btn-text')?.textContent || btn.textContent;
+                
+                if (btnText.includes('Download')) {
+                    // Download functionality
+                    const img = card.querySelector('.gallery-image');
+                    if (img) {
+                        const link = document.createElement('a');
+                        link.href = img.src;
+                        link.download = 'neonlights-generated-image.jpg';
+                        link.click();
+                    }
+                } else if (btnText.includes('Copy')) {
+                    // Copy prompt functionality
+                    navigator.clipboard.writeText('Sample prompt for this image');
+                    btn.style.background = 'rgba(0, 255, 0, 0.2)';
+                    setTimeout(() => {
+                        btn.style.background = '';
+                    }, 1000);
+                } else if (btnText.includes('Delete')) {
+                    // Delete functionality
+                    if (confirm('Are you sure you want to delete this image?')) {
+                        card.style.opacity = '0';
+                        card.style.transform = 'scale(0.8)';
+                        setTimeout(() => {
+                            card.remove();
+                        }, 300);
+                    }
+                }
+            });
+        });
+
+            // Pricing Calculator Plan Selector
+            const planSelect = document.getElementById('plan-select');
+            const creditsInfoText = document.getElementById('credits-info-text');
+            
+            const planData = {
+                starter: { credits: 600, name: 'Starter' },
+                pro: { credits: 1900, name: 'Pro' },
+                ultimate: { credits: 12000, name: 'Ultimate' }
+            };
+
+            if (planSelect && creditsInfoText) {
+                planSelect.addEventListener('change', function() {
+                    const selectedPlan = this.value;
+                    const plan = planData[selectedPlan];
+                    
+                    if (plan) {
+                        creditsInfoText.textContent = `Your ${plan.name} plan includes ${plan.credits.toLocaleString()} credits`;
+                    }
+                });
+            }
+    </script>
+    
+    <!-- Upload Modal Script -->
+    <script>
+        let selectedImages = new Set();
+        
+        // Open upload modal
+        document.getElementById('upload-images-btn')?.addEventListener('click', function() {
+            document.getElementById('uploadModal').style.display = 'flex';
+            selectedImages.clear();
+            updateSelectedCount();
+            updateUploadedItems();
+        });
+        
+        // Close upload modal
+        function closeUploadModal() {
+            document.getElementById('uploadModal').style.display = 'none';
+            selectedImages.clear();
+        }
+        
+        // Handle drag and drop
+        const dropzone = document.getElementById('uploadDropzone');
+        if (dropzone) {
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                dropzone.addEventListener(eventName, preventDefaults, false);
+            });
+            
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dropzone.addEventListener(eventName, () => {
+                    dropzone.classList.add('drag-over');
+                }, false);
+            });
+            
+            ['dragleave', 'drop'].forEach(eventName => {
+                dropzone.addEventListener(eventName, () => {
+                    dropzone.classList.remove('drag-over');
+                }, false);
+            });
+            
+            dropzone.addEventListener('drop', handleDrop, false);
+            dropzone.addEventListener('click', () => {
+                document.getElementById('fileInput').click();
+            });
+        }
+        
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            handleFiles(files);
+        }
+        
+        document.getElementById('fileInput')?.addEventListener('change', function(e) {
+            handleFiles(e.target.files);
+        });
+        
+        function handleFiles(files) {
+            // In a real implementation, you would upload files here
+            console.log('Files to upload:', files);
+            alert(`${files.length} file(s) selected for upload. In a real app, these would be uploaded to the server.`);
+        }
+        
+        // Handle uploaded image selection
+        document.addEventListener('click', function(e) {
+            const uploadedItem = e.target.closest('.uploaded-image-item');
+            if (uploadedItem && !e.target.closest('.uploaded-delete-btn')) {
+                const filename = uploadedItem.dataset.filename;
+                
+                if (selectedImages.has(filename)) {
+                    selectedImages.delete(filename);
+                    uploadedItem.classList.remove('selected');
+                } else {
+                    if (selectedImages.size < 5) {
+                        selectedImages.add(filename);
+                        uploadedItem.classList.add('selected');
+                    } else {
+                        alert('You can select up to 5 images maximum.');
+                    }
+                }
+                
+                updateSelectedCount();
+            }
+        });
+        
+        function updateSelectedCount() {
+            const countSpan = document.getElementById('selectedCount');
+            if (countSpan) {
+                countSpan.textContent = selectedImages.size;
+            }
+        }
+        
+        function updateUploadedItems() {
+            const items = document.querySelectorAll('.uploaded-image-item');
+            items.forEach(item => {
+                item.classList.remove('selected');
+            });
+        }
+        
+        function deleteUploadedImage(btn) {
+            if (confirm('Are you sure you want to delete this image?')) {
+                const item = btn.closest('.uploaded-image-item');
+                const filename = item.dataset.filename;
+                
+                selectedImages.delete(filename);
+                updateSelectedCount();
+                
+                item.style.opacity = '0';
+                item.style.transform = 'scale(0.8)';
+                setTimeout(() => {
+                    item.remove();
+                    updateUploadedCount();
+                }, 300);
+            }
+        }
+        
+        function updateUploadedCount() {
+            const count = document.querySelectorAll('.uploaded-image-item').length;
+            document.getElementById('uploadedCount').textContent = count;
+        }
+        
+        function useSelectedImages() {
+            if (selectedImages.size === 0) {
+                alert('Please select at least one image.');
+                return;
+            }
+            
+            const container = document.getElementById('reference-images-container');
+            const grid = document.getElementById('reference-images-grid');
+            
+            // Clear existing thumbnails
+            grid.innerHTML = '';
+            
+            // Add selected images as thumbnails
+            selectedImages.forEach(filename => {
+                const thumbnail = document.createElement('div');
+                thumbnail.className = 'reference-thumbnail';
+                thumbnail.innerHTML = `
+                    <img src="assets/image1.jpg" alt="${filename}">
+                    <button class="reference-thumbnail-remove" onclick="removeReferenceThumbnail(this)">✕</button>
+                `;
+                grid.appendChild(thumbnail);
+            });
+            
+            // Show the container
+            container.style.display = 'block';
+            
+            // Close modal
+            closeUploadModal();
+        }
+        
+        function removeReferenceThumbnail(btn) {
+            const thumbnail = btn.closest('.reference-thumbnail');
+            thumbnail.style.opacity = '0';
+            thumbnail.style.transform = 'scale(0.8)';
+            setTimeout(() => {
+                thumbnail.remove();
+                const grid = document.getElementById('reference-images-grid');
+                if (grid.children.length === 0) {
+                    document.getElementById('reference-images-container').style.display = 'none';
+                }
+            }, 200);
+        }
+    </script>
+    
+    <!-- Fullscreen Viewer Script -->
+    <script>
+        let currentMediaData = {};
+        
+        // Open fullscreen viewer for images
+        function openFullscreenViewer(imageSrc, prompt, model, date, isVideo = false) {
+            const modal = document.getElementById('fullscreenViewer');
+            const image = document.getElementById('fullscreenImage');
+            const video = document.getElementById('fullscreenVideo');
+            
+            currentMediaData = { imageSrc, prompt, model, date, isVideo };
+            
+            if (isVideo) {
+                image.style.display = 'none';
+                video.style.display = 'block';
+                video.querySelector('source').src = imageSrc;
+                video.load();
+            } else {
+                video.style.display = 'none';
+                image.style.display = 'block';
+                image.src = imageSrc;
+            }
+            
+            document.getElementById('fullscreenPrompt').textContent = prompt;
+            document.getElementById('fullscreenModel').textContent = model;
+            document.getElementById('fullscreenDate').textContent = date;
+            
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Close fullscreen viewer
+        function closeFullscreenViewer() {
+            const modal = document.getElementById('fullscreenViewer');
+            const video = document.getElementById('fullscreenVideo');
+            
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            
+            if (video.style.display === 'block') {
+                video.pause();
+            }
+        }
+        
+        // Download media
+        function downloadFullscreenMedia() {
+            const link = document.createElement('a');
+            link.href = currentMediaData.imageSrc;
+            link.download = currentMediaData.isVideo ? 'neonlights-video.mp4' : 'neonlights-image.jpg';
+            link.click();
+        }
+        
+        // Copy prompt to clipboard
+        function copyFullscreenPrompt() {
+            navigator.clipboard.writeText(currentMediaData.prompt);
+            alert('Prompt copied to clipboard!');
+        }
+        
+        // Delete media
+        function deleteFullscreenMedia() {
+            if (confirm('Are you sure you want to delete this generation?')) {
+                closeFullscreenViewer();
+                alert('Generation deleted successfully!');
+            }
+        }
+        
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeFullscreenViewer();
+            }
+        });
+        
+        // Add click handlers to all generation items
+        document.addEventListener('click', function(e) {
+            const generationImage = e.target.closest('.generation-image');
+            if (generationImage && !e.target.closest('.action-btn')) {
+                const item = generationImage.closest('.generation-item');
+                const img = generationImage.querySelector('img');
+                const video = generationImage.querySelector('video');
+                const info = item.querySelector('.generation-info');
+                
+                if (info) {
+                    const prompt = info.querySelector('.generation-prompt')?.textContent || 'No prompt available';
+                    const metaSpans = info.querySelectorAll('.generation-meta span');
+                    const model = metaSpans[0]?.textContent || 'Unknown Model';
+                    const date = metaSpans[1]?.textContent || 'Unknown date';
+                    
+                    if (video) {
+                        openFullscreenViewer(video.querySelector('source').src, prompt, model, date, true);
+                    } else if (img) {
+                        openFullscreenViewer(img.src, prompt, model, date, false);
+                    }
+                }
+            }
+            
+            // Gallery page images
+            const galleryImage = e.target.closest('.gallery-image-container');
+            if (galleryImage && !e.target.closest('.gallery-btn')) {
+                const card = galleryImage.closest('.gallery-card');
+                const img = galleryImage.querySelector('.gallery-image');
+                const info = card.querySelector('.gallery-info');
+                
+                if (info && img) {
+                    const metaSpans = info.querySelectorAll('.gallery-meta span');
+                    const model = metaSpans[0]?.textContent || 'Unknown Model';
+                    const date = metaSpans[1]?.textContent || 'Unknown date';
+                    const prompt = 'Generated image from gallery'; // Gallery doesn't show prompts by default
+                    
+                    openFullscreenViewer(img.src, prompt, model, date, false);
+                }
+            }
+        });
+    </script>
+    
+    <!-- Frame Upload Script (Video Page) -->
+    <script>
+        let currentFrameType = ''; // 'start' or 'end'
+        let selectedFrameImage = null;
+        
+        // Open frame upload modal
+        document.getElementById('start-frame-btn')?.addEventListener('click', function() {
+            currentFrameType = 'start';
+            document.getElementById('frameModalTitle').textContent = 'Select Start Frame Image';
+            document.getElementById('frameUploadModal').style.display = 'flex';
+            selectedFrameImage = null;
+            updateFrameSelection();
+        });
+        
+        document.getElementById('end-frame-btn')?.addEventListener('click', function() {
+            currentFrameType = 'end';
+            document.getElementById('frameModalTitle').textContent = 'Select End Frame Image';
+            document.getElementById('frameUploadModal').style.display = 'flex';
+            selectedFrameImage = null;
+            updateFrameSelection();
+        });
+        
+        // Close frame upload modal
+        function closeFrameUploadModal() {
+            document.getElementById('frameUploadModal').style.display = 'none';
+            selectedFrameImage = null;
+        }
+        
+        // Handle drag and drop for frames
+        const frameDropzone = document.getElementById('frameUploadDropzone');
+        if (frameDropzone) {
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                frameDropzone.addEventListener(eventName, preventDefaults, false);
+            });
+            
+            ['dragenter', 'dragover'].forEach(eventName => {
+                frameDropzone.addEventListener(eventName, () => {
+                    frameDropzone.classList.add('drag-over');
+                }, false);
+            });
+            
+            ['dragleave', 'drop'].forEach(eventName => {
+                frameDropzone.addEventListener(eventName, () => {
+                    frameDropzone.classList.remove('drag-over');
+                }, false);
+            });
+            
+            frameDropzone.addEventListener('drop', handleFrameDrop, false);
+            frameDropzone.addEventListener('click', () => {
+                document.getElementById('frameFileInput').click();
+            });
+        }
+        
+        function handleFrameDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            if (files.length > 0) {
+                handleFrameFiles([files[0]]); // Only take first file
+            }
+        }
+        
+        document.getElementById('frameFileInput')?.addEventListener('change', function(e) {
+            if (e.target.files.length > 0) {
+                handleFrameFiles([e.target.files[0]]); // Only take first file
+            }
+        });
+        
+        function handleFrameFiles(files) {
+            console.log('Frame file to upload:', files[0]);
+            alert(`File "${files[0].name}" selected. In a real app, this would be uploaded to the server.`);
+        }
+        
+        // Handle frame image selection (only 1 allowed)
+        document.addEventListener('click', function(e) {
+            const frameItem = e.target.closest('.frame-selectable');
+            if (frameItem && !e.target.closest('.uploaded-delete-btn')) {
+                const filename = frameItem.dataset.filename;
+                const imgSrc = frameItem.querySelector('img').src;
+                
+                // Deselect all others
+                document.querySelectorAll('.frame-selectable').forEach(item => {
+                    item.classList.remove('selected');
+                });
+                
+                // Select this one
+                frameItem.classList.add('selected');
+                selectedFrameImage = {
+                    filename: filename,
+                    src: imgSrc
+                };
+            }
+        });
+        
+        function updateFrameSelection() {
+            const items = document.querySelectorAll('.frame-selectable');
+            items.forEach(item => {
+                item.classList.remove('selected');
+            });
+        }
+        
+        function deleteFrameUploadedImage(btn) {
+            if (confirm('Are you sure you want to delete this image?')) {
+                const item = btn.closest('.uploaded-image-item');
+                
+                item.style.opacity = '0';
+                item.style.transform = 'scale(0.8)';
+                setTimeout(() => {
+                    item.remove();
+                    updateFrameUploadedCount();
+                }, 300);
+            }
+        }
+        
+        function updateFrameUploadedCount() {
+            const count = document.querySelectorAll('#frameUploadedImagesGrid .uploaded-image-item').length;
+            document.getElementById('frameUploadedCount').textContent = count;
+        }
+        
+        function useSelectedFrame() {
+            if (!selectedFrameImage) {
+                alert('Please select an image.');
+                return;
+            }
+            
+            if (currentFrameType === 'start') {
+                const container = document.getElementById('start-frame-container');
+                const thumbnail = document.getElementById('start-frame-thumbnail');
+                
+                thumbnail.innerHTML = `
+                    <img src="${selectedFrameImage.src}" alt="${selectedFrameImage.filename}">
+                    <button class="frame-thumbnail-remove" onclick="removeFrameImage('start')">✕</button>
+                `;
+                container.style.display = 'block';
+                
+                // Enable End Frame button after Start Frame is set
+                const endFrameBtn = document.getElementById('end-frame-btn');
+                endFrameBtn.disabled = false;
+                endFrameBtn.classList.remove('disabled');
+                
+            } else if (currentFrameType === 'end') {
+                const container = document.getElementById('end-frame-container');
+                const thumbnail = document.getElementById('end-frame-thumbnail');
+                
+                thumbnail.innerHTML = `
+                    <img src="${selectedFrameImage.src}" alt="${selectedFrameImage.filename}">
+                    <button class="frame-thumbnail-remove" onclick="removeFrameImage('end')">✕</button>
+                `;
+                container.style.display = 'block';
+            }
+            
+            closeFrameUploadModal();
+        }
+        
+        function removeFrameImage(frameType) {
+            const container = document.getElementById(frameType + '-frame-container');
+            const thumbnail = document.getElementById(frameType + '-frame-thumbnail');
+            
+            thumbnail.innerHTML = '';
+            container.style.display = 'none';
+            
+            // If removing start frame, also disable and remove end frame
+            if (frameType === 'start') {
+                const endFrameBtn = document.getElementById('end-frame-btn');
+                endFrameBtn.disabled = true;
+                endFrameBtn.classList.add('disabled');
+                
+                // Also remove end frame if it exists
+                removeFrameImage('end');
+            }
+        }
+    </script>
+
+    <script>
+        // Upscale Page Functionality
+        
+        // Model selection
+        document.querySelectorAll('.upscale-model-option:not(.disabled)').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.upscale-model-option').forEach(opt => {
+                    opt.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+
+        // Scale factor selection
+        document.querySelectorAll('.upscale-scale-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.upscale-scale-btn').forEach(b => {
+                    b.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+
+        // Recent image selection (single selection)
+        document.querySelectorAll('.upscale-recent-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('.upscale-recent-item').forEach(i => {
+                    i.classList.remove('selected');
+                });
+                this.classList.add('selected');
+            });
+        });
+
+        // Slider value updates
+        const strengthSlider = document.getElementById('strengthSlider');
+        const strengthValue = document.getElementById('strengthValue');
+        if (strengthSlider) {
+            strengthSlider.addEventListener('input', function() {
+                strengthValue.textContent = this.value + '%';
+            });
+        }
+
+        const creativitySlider = document.getElementById('creativitySlider');
+        const creativityValue = document.getElementById('creativityValue');
+        if (creativitySlider) {
+            creativitySlider.addEventListener('input', function() {
+                creativityValue.textContent = this.value + '%';
+            });
+        }
+
+        // Face Enhancement toggle label update
+        const faceEnhancement = document.getElementById('faceEnhancement');
+        if (faceEnhancement) {
+            faceEnhancement.addEventListener('change', function() {
+                const label = this.closest('.upscale-toggle-container').querySelector('.upscale-toggle-label');
+                label.textContent = this.checked ? 'On' : 'Off';
+            });
+        }
+
+        // Drag and drop for upscale
+        const upscaleDropzone = document.getElementById('upscaleDropzone');
+        const upscaleFileInput = document.getElementById('upscaleFileInput');
+
+        if (upscaleDropzone) {
+            upscaleDropzone.addEventListener('click', function() {
+                upscaleFileInput.click();
+            });
+
+            upscaleDropzone.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                this.style.borderColor = 'var(--primary-neon)';
+                this.style.background = 'rgba(0, 255, 255, 0.1)';
+            });
+
+            upscaleDropzone.addEventListener('dragleave', function(e) {
+                e.preventDefault();
+                this.style.borderColor = 'rgba(0, 255, 255, 0.4)';
+                this.style.background = 'rgba(0, 0, 0, 0.2)';
+            });
+
+            upscaleDropzone.addEventListener('drop', function(e) {
+                e.preventDefault();
+                this.style.borderColor = 'rgba(0, 255, 255, 0.4)';
+                this.style.background = 'rgba(0, 0, 0, 0.2)';
+                
+                const files = e.dataTransfer.files;
+                if (files.length > 0) {
+                    handleUpscaleFile(files[0]);
+                }
+            });
+        }
+
+        if (upscaleFileInput) {
+            upscaleFileInput.addEventListener('change', function() {
+                if (this.files.length > 0) {
+                    handleUpscaleFile(this.files[0]);
+                }
+            });
+        }
+
+        function handleUpscaleFile(file) {
+            if (file.type.startsWith('image/')) {
+                console.log('File uploaded:', file.name);
+                // Here you would handle the file upload
+                // For now, just show a confirmation
+                alert('Image uploaded: ' + file.name);
+            } else {
+                alert('Please upload an image file (PNG, JPG, or WebP)');
+            }
+        }
+
+        // Upscale button click handler
+        document.querySelector('.upscale-generate-btn')?.addEventListener('click', function() {
+            console.log('Upscaling image...');
+            // Here you would trigger the upscale process
+            // For demonstration, show a result after 2 seconds
+            setTimeout(() => {
+                document.querySelector('.upscale-result-placeholder').style.display = 'none';
+                const resultContainer = document.querySelector('.upscale-result-image-container');
+                resultContainer.style.display = 'block';
+                
+                // Set a sample result image
+                document.getElementById('upscaleResultImage').src = 'https://via.placeholder.com/800x600';
+                
+                // Scroll to results
+                document.getElementById('upscaleResults').scrollIntoView({ behavior: 'smooth' });
+            }, 2000);
+        });
+
+        // Download button
+        document.querySelector('.upscale-download-btn')?.addEventListener('click', function() {
+            const img = document.getElementById('upscaleResultImage');
+            if (img.src) {
+                // Create download link
+                const link = document.createElement('a');
+                link.href = img.src;
+                link.download = 'upscaled-image.png';
+                link.click();
+            }
+        });
+    </script>
+</body>
+</html>
