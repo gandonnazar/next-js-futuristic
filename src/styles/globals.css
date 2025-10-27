@@ -208,6 +208,7 @@ h1, h2, h3, h4, h5, h6 {
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
   position: relative;
   overflow: hidden;
+  transition: all 0.3s ease;
 }
 
 .glass-panel::before {
@@ -219,6 +220,15 @@ h1, h2, h3, h4, h5, h6 {
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
   animation: shimmer 3s infinite;
+}
+
+.glass-panel:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 12px 40px var(--shadow-cyan),
+    0 0 30px rgba(0, 255, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  border-color: rgba(0, 255, 255, 0.4);
 }
 
 /* Holographic Effects */
@@ -278,6 +288,56 @@ h1, h2, h3, h4, h5, h6 {
 /* Stat Cards */
 .stat-card {
   text-align: center;
+  position: relative;
+  overflow: hidden;
+  animation: float 6s ease-in-out infinite;
+  transition: all 0.3s ease;
+}
+
+.stat-card:not(.hologram) {
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 30px;
+}
+
+.stat-card.hologram {
+  padding: 30px;
+}
+
+.stat-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+  animation: rotate 8s linear infinite;
+  z-index: 0;
+}
+
+.stat-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 
+    0 15px 40px var(--shadow-cyan),
+    0 0 30px rgba(0, 255, 255, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.stat-card.hologram:hover {
+  border-color: transparent;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 .stat-number {
@@ -287,6 +347,8 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--primary-neon);
   text-shadow: 0 0 20px var(--shadow-cyan);
   margin-bottom: 0.5rem;
+  position: relative;
+  z-index: 2;
 }
 
 .stat-label {
@@ -294,61 +356,65 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text-light);
   text-transform: uppercase;
   letter-spacing: 0.1em;
+  position: relative;
+  z-index: 2;
 }
 
 /* Buttons */
 .neon-button {
-  display: inline-block;
-  padding: 15px 40px;
   font-family: 'Orbitron', monospace;
-  font-size: 1rem;
   font-weight: 600;
   text-transform: uppercase;
-  text-decoration: none;
-  color: var(--text-white);
-  background: linear-gradient(45deg, var(--primary-neon), var(--secondary-neon));
+  letter-spacing: 0.1em;
+  padding: 15px 30px;
+  background: transparent;
   border: 2px solid var(--primary-neon);
-  border-radius: 50px;
-  box-shadow: 
-    0 0 20px var(--shadow-cyan),
-    0 0 40px var(--shadow-magenta);
-  transition: all 0.3s ease;
+  border-radius: 15px;
+  color: var(--primary-neon);
   cursor: pointer;
   position: relative;
   overflow: hidden;
-}
-
-.neon-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  transition: left 0.5s;
-}
-
-.neon-button:hover::before {
-  left: 100%;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
 }
 
 .neon-button:hover {
-  transform: scale(1.05);
+  color: var(--text-white);
+  background: var(--primary-neon);
   box-shadow: 
-    0 0 30px var(--shadow-cyan),
-    0 0 60px var(--shadow-magenta),
-    0 0 90px var(--shadow-purple);
+    0 0 20px var(--primary-neon),
+    0 0 40px var(--primary-neon),
+    0 0 60px var(--primary-neon);
+  transform: translateY(-2px);
 }
 
 .neon-button.secondary {
-  background: transparent;
-  color: var(--primary-neon);
+  border-color: var(--secondary-neon);
+  color: var(--secondary-neon);
 }
 
 .neon-button.secondary:hover {
-  background: linear-gradient(45deg, var(--primary-neon), var(--secondary-neon));
-  color: var(--text-white);
+  background: var(--secondary-neon);
+  box-shadow: 
+    0 0 20px var(--secondary-neon),
+    0 0 40px var(--secondary-neon),
+    0 0 60px var(--secondary-neon);
+}
+
+.cta-button {
+  font-size: 1.2rem;
+  padding: 20px 40px;
+  animation: button-pulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes button-pulse {
+  from { 
+    box-shadow: 0 0 20px var(--shadow-cyan);
+  }
+  to { 
+    box-shadow: 0 0 30px var(--shadow-cyan), 0 0 40px var(--shadow-cyan);
+  }
 }
 
 .btn-outline {
@@ -384,7 +450,12 @@ h1, h2, h3, h4, h5, h6 {
   }
   
   .neon-button {
-    padding: 12px 30px;
+    padding: 12px 25px;
     font-size: 0.9rem;
+  }
+  
+  .cta-button {
+    font-size: 1rem;
+    padding: 15px 30px;
   }
 }

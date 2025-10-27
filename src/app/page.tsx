@@ -1,7 +1,59 @@
+'use client';
+
 import Link from 'next/link';
+import { useEffect, useRef } from 'react';
 import styles from './page.module.css';
 
 export default function Home() {
+  const parallaxRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    // Parallax effect on mouse move
+    const parallaxElements = document.querySelectorAll('.glass-panel, .hologram');
+    
+    const handleMouseMove = (e: MouseEvent) => {
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+      
+      const moveX = (e.clientX - centerX) / centerX;
+      const moveY = (e.clientY - centerY) / centerY;
+      
+      parallaxElements.forEach((element, index) => {
+        const speed = (index % 3 + 1) * 0.5;
+        const x = moveX * speed;
+        const y = moveY * speed;
+        
+        (element as HTMLElement).style.transform = `translate(${x}px, ${y}px)`;
+      });
+    };
+
+    // Scroll-based parallax for background image
+    const handleScroll = () => {
+      if (parallaxRef.current) {
+        const scrolled = window.pageYOffset;
+        const parallaxElement = parallaxRef.current;
+        const rect = parallaxElement.getBoundingClientRect();
+        const elementTop = rect.top + scrolled;
+        const elementHeight = rect.height;
+        
+        // Calculate parallax offset
+        if (scrolled + window.innerHeight > elementTop && scrolled < elementTop + elementHeight) {
+          const yPos = -(scrolled - elementTop) * 0.5;
+          parallaxElement.style.backgroundPosition = `center ${yPos}px`;
+        }
+      }
+    };
+    
+    document.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial call
+    
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
     <main className={styles.main}>
       {/* Hero Section */}
@@ -58,7 +110,7 @@ export default function Home() {
       </div>
 
       {/* Parallax Section */}
-      <section className={styles.parallaxSection}></section>
+      <section ref={parallaxRef} className={styles.parallaxSection}></section>
 
       {/* Features Section */}
       <section className="section">

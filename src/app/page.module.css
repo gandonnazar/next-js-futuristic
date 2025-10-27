@@ -40,12 +40,7 @@
   background-repeat: no-repeat;
   background-attachment: scroll;
   margin: 60px 0;
-}
-
-@media (min-width: 768px) {
-  .parallaxSection {
-    background-attachment: fixed;
-  }
+  will-change: background-position;
 }
 
 .featuresTitle {
