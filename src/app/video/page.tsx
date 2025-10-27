@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import UploadModal from '@/components/UploadModal';
 import styles from './page.module.css';
 
 const VIDEO_MODELS = [
@@ -70,6 +71,8 @@ export default function VideoPage() {
   const [prompt, setPrompt] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
   const [credits, setCredits] = useState(12000);
+  const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
+  const [referenceImages, setReferenceImages] = useState<string[]>([]);
 
   const currentDuration = DURATIONS.find(d => d.value === selectedDuration);
 
@@ -78,15 +81,20 @@ export default function VideoPage() {
       alert('Please enter a prompt');
       return;
     }
-    setIsGenerating(true);
+    
     // Simulate generation
+    setIsGenerating(true);
     setTimeout(() => {
       setIsGenerating(false);
-      if (currentDuration) {
-        setCredits(prev => prev - currentDuration.cost);
-      }
-      alert('Video generation simulated! In production, this would call your AI API.');
-    }, 5000);
+      setCredits(prev => prev - (currentDuration?.cost || 15));
+      alert(`Video generation simulated${referenceImages.length > 0 ? ` with ${referenceImages.length} reference images` : ''}!`);
+    }, 4000);
+  };
+
+  const handleUploadConfirm = (selectedImages: string[]) => {
+    setReferenceImages(selectedImages);
+    setIsUploadModalOpen(false);
+    alert(`${selectedImages.length} start frame images selected!`);
   };
 
   return (
@@ -191,13 +199,48 @@ export default function VideoPage() {
 
                 {/* Action Buttons */}
                 <div className={styles.promptActionButtons}>
-                  <button className={styles.btnActionLong}>
+                  <button 
+                    className={styles.btnActionLong}
+                    onClick={() => setIsUploadModalOpen(true)}
+                  >
                     <span>🎬 Start Frame</span>
                   </button>
-                  <button className={`${styles.btnActionLong} ${styles.disabled}`} disabled>
+                  <button 
+                    className={`${styles.btnActionLong} ${referenceImages.length === 0 ? styles.disabled : ''}`} 
+                    disabled={referenceImages.length === 0}
+                    onClick={() => alert('End Frame selection simulated! This would open another upload modal for end frames.')}
+                  >
                     <span>🎬 End Frame</span>
                   </button>
                 </div>
+
+                {/* Frame Images Display */}
+                {referenceImages.length > 0 && (
+                  <div className={styles.frameImagesContainer}>
+                    {referenceImages.map((imgSrc, index) => (
+                      <div key={index} className={styles.frameImageItem}>
+                        <div className={styles.frameLabel}>
+                          {index === 0 ? 'Start Frame' : 'End Frame'}
+                        </div>
+                        <div className={styles.frameThumbnail}>
+                          <Image
+                            src={imgSrc}
+                            alt={`${index === 0 ? 'Start' : 'End'} Frame`}
+                            fill
+                            sizes="400px"
+                            style={{ objectFit: 'contain' }}
+                          />
+                          <button
+                            className={styles.frameThumbnailRemove}
+                            onClick={() => setReferenceImages(prev => prev.filter((_, i) => i !== index))}
+                          >
+                            ✕
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
 
               {/* Generate Button */}
@@ -283,6 +326,13 @@ export default function VideoPage() {
           </div>
         </section>
       </div>
+
+      {/* Upload Modal */}
+      <UploadModal 
+        isOpen={isUploadModalOpen}
+        onClose={() => setIsUploadModalOpen(false)}
+        onConfirm={handleUploadConfirm}
+      />
     </main>
   );
 }

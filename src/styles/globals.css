@@ -239,7 +239,6 @@ h1, h2, h3, h4, h5, h6 {
   border: 2px solid transparent;
   border-radius: 15px;
   background-clip: padding-box;
-  padding: 2rem;
 }
 
 .hologram::before {
@@ -254,6 +253,7 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-mask-composite: xor;
   animation: border-flow 3s linear infinite;
   background-size: 200% 200%;
+  z-index: 1;
 }
 
 .hologram::after {
@@ -274,6 +274,7 @@ h1, h2, h3, h4, h5, h6 {
   pointer-events: none;
   animation: hologram-flicker 0.15s infinite alternate;
   border-radius: inherit;
+  z-index: 2;
 }
 
 .hologram:hover {
@@ -287,6 +288,11 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Stat Cards */
 .stat-card {
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 30px;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -294,19 +300,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.3s ease;
 }
 
-.stat-card:not(.hologram) {
-  background: var(--bg-glass);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 20px;
-  padding: 30px;
-}
-
-.stat-card.hologram {
-  padding: 30px;
-}
-
-.stat-card::after {
+.stat-card::before {
   content: '';
   position: absolute;
   top: -50%;
@@ -318,16 +312,18 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 0;
 }
 
+.stat-number,
+.stat-label {
+  position: relative;
+  z-index: 3;
+}
+
 .stat-card:hover {
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 
-    0 15px 40px var(--shadow-cyan),
-    0 0 30px rgba(0, 255, 255, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transform: translateY(-5px);
 }
 
 .stat-card.hologram:hover {
-  border-color: transparent;
+  transform: translateY(-5px) translateZ(0) scale(1.01);
 }
 
 @keyframes float {

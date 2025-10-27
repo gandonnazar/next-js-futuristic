@@ -2,25 +2,26 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import UploadModal from '@/components/UploadModal';
 import styles from './page.module.css';
 
 const AI_MODELS = [
-  { id: 'seedream-4', name: 'Seedream 4', image: '/assets/models/seedream-4.jpg' },
-  { id: 'imagineart-1', name: 'ImagineArt-1', image: '/assets/models/imagineart-1.png' },
-  { id: 'neonlights-retro', name: 'Neonlights Retro', image: '/assets/models/neonlights-retro.jpg' },
-  { id: 'nano-banana', name: 'Nano Banana', image: '/assets/models/nano-banana.png' },
-  { id: 'hunyuan-image-3', name: 'Hunyuan Image 3', image: '/assets/models/hunyuan-image-3.jpg' },
-  { id: 'wan-2', name: 'Wan-2', image: '/assets/models/wan-2.jpg' },
-  { id: 'minimax-image-01', name: 'Minimax Image-01', image: '/assets/models/minimax-image-01.jpg' },
-  { id: 'leonardo-phoenix', name: 'Leonardo Phoenix 1.0', image: '/assets/models/leonardo-phoenix.png' },
-  { id: 'flux-dev', name: 'Flux Dev', image: '/assets/models/flux-dev.jpg' },
-  { id: 'flux-pro-ultra', name: 'Flux Pro1.1 Ultra', image: '/assets/models/flux-pro1.1-ultra.jpg' },
-  { id: 'flux-kontext', name: 'Flux Kontext Max', image: '/assets/models/flux-kontext.jpg' },
-  { id: 'ideogram-v3', name: 'Ideogram v3 Quality', image: '/assets/models/ideogram-v3.png' },
-  { id: 'google-imagen-4', name: 'Google Imagen 4', image: '/assets/models/google-imagen-4.jpg' },
-  { id: 'google-imagen-4-ultra', name: 'Google Imagen 4 Ultra', image: '/assets/models/google-imagen-4-ultra.jpg' },
-  { id: 'luma-photon', name: 'Luma Photon', image: '/assets/models/luma-photon.jpg' },
-  { id: 'recraft-v3', name: 'Recraft V3', image: '/assets/models/recraft-v3.jpg' },
+  { id: 'seedream-4', name: 'Seedream 4', image: '/assets/seedream-4.jpg' },
+  { id: 'imagineart-1', name: 'ImagineArt-1', image: '/assets/imagineart-1.png' },
+  { id: 'neonlights-retro', name: 'Neonlights Retro', image: '/assets/neonlights-retro.jpg' },
+  { id: 'nano-banana', name: 'Nano Banana', image: '/assets/nano-banana.png' },
+  { id: 'hunyuan-image-3', name: 'Hunyuan Image 3', image: '/assets/hunyuan-image-3.jpg' },
+  { id: 'wan-2', name: 'Wan-2', image: '/assets/wan-2.jpg' },
+  { id: 'minimax-image-01', name: 'Minimax Image-01', image: '/assets/minimax-image-01.jpg' },
+  { id: 'leonardo-phoenix', name: 'Leonardo Phoenix 1.0', image: '/assets/leonardo-phoenix.png' },
+  { id: 'flux-dev', name: 'Flux Dev', image: '/assets/flux-dev.jpg' },
+  { id: 'flux-pro-ultra', name: 'Flux Pro1.1 Ultra', image: '/assets/flux-pro1.1-ultra.jpg' },
+  { id: 'flux-kontext', name: 'Flux Kontext Max', image: '/assets/flux-kontext.jpg' },
+  { id: 'ideogram-v3', name: 'Ideogram v3 Quality', image: '/assets/ideogram-v3.png' },
+  { id: 'google-imagen-4', name: 'Google Imagen 4', image: '/assets/google-imagen-4.jpg' },
+  { id: 'google-imagen-4-ultra', name: 'Google Imagen 4 Ultra', image: '/assets/google-imagen-4-ultra.jpg' },
+  { id: 'luma-photon', name: 'Luma Photon', image: '/assets/luma-photon.jpg' },
+  { id: 'recraft-v3', name: 'Recraft V3', image: '/assets/recraft-v3.jpg' },
 ];
 
 const DIMENSIONS = [
@@ -67,19 +68,28 @@ export default function ImagePage() {
   const [prompt, setPrompt] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
   const [credits, setCredits] = useState(12000);
+  const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
+  const [referenceImages, setReferenceImages] = useState<string[]>([]);
 
   const handleGenerate = () => {
     if (!prompt.trim()) {
       alert('Please enter a prompt');
       return;
     }
-    setIsGenerating(true);
+    
     // Simulate generation
+    setIsGenerating(true);
     setTimeout(() => {
       setIsGenerating(false);
       setCredits(prev => prev - 10);
-      alert('Image generation simulated! In production, this would call your AI API.');
+      alert(`Image generation simulated${referenceImages.length > 0 ? ` with ${referenceImages.length} reference images` : ''}!`);
     }, 3000);
+  };
+
+  const handleUploadConfirm = (selectedImages: string[]) => {
+    setReferenceImages(selectedImages);
+    setIsUploadModalOpen(false);
+    alert(`${selectedImages.length} reference images selected!`);
   };
 
   return (
@@ -114,6 +124,7 @@ export default function ImagePage() {
                     fill
                     sizes="(max-width: 768px) 25vw, 12vw"
                     style={{ objectFit: 'cover' }}
+                    unoptimized
                   />
                   <div className={styles.modelName}>{model.name}</div>
                 </div>
@@ -168,10 +179,38 @@ export default function ImagePage() {
                   <button className={styles.btnActionLong}>
                     <span>✨ Enhance Prompt</span>
                   </button>
-                  <button className={styles.btnActionLong}>
+                  <button 
+                    className={styles.btnActionLong}
+                    onClick={() => setIsUploadModalOpen(true)}
+                  >
                     <span>📤 Upload Images</span>
                   </button>
                 </div>
+
+                {/* Reference Images Thumbnails */}
+                {referenceImages.length > 0 && (
+                  <div className={styles.referenceImagesContainer}>
+                    <div className={styles.referenceImagesGrid}>
+                      {referenceImages.map((imgSrc, index) => (
+                        <div key={index} className={styles.referenceThumbnail}>
+                          <Image
+                            src={imgSrc}
+                            alt={`Reference ${index + 1}`}
+                            fill
+                            sizes="100px"
+                            style={{ objectFit: 'cover' }}
+                          />
+                          <button
+                            className={styles.referenceThumbnailRemove}
+                            onClick={() => setReferenceImages(prev => prev.filter((_, i) => i !== index))}
+                          >
+                            ✕
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Generate Button */}
@@ -208,9 +247,10 @@ export default function ImagePage() {
                         <Image
                           src={gen.image}
                           alt="Generated image"
-                          width={400}
-                          height={400}
-                          style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '12px' }}
+                          fill
+                          sizes="(max-width: 768px) 50vw, 25vw"
+                          style={{ objectFit: 'cover' }}
+                          unoptimized
                         />
                       </div>
                       <div className={styles.generationInfo}>
@@ -260,6 +300,13 @@ export default function ImagePage() {
           </div>
         </section>
       </div>
+
+      {/* Upload Modal */}
+      <UploadModal 
+        isOpen={isUploadModalOpen}
+        onClose={() => setIsUploadModalOpen(false)}
+        onConfirm={handleUploadConfirm}
+      />
     </main>
   );
 }
