@@ -1,0 +1,213 @@
+.loadingScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #000011, #001122);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease-out;
+  animation: fadeOut 0.5s ease-out forwards;
+  animation-delay: 1.5s;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+.loadingContainer {
+  text-align: center;
+}
+
+.loadingLogo {
+  font-family: 'Audiowide', cursive;
+  font-size: 3rem;
+  background: linear-gradient(45deg, #00ffff, #ff00ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 40px;
+  animation: logoGlow 1s ease-in-out infinite alternate;
+}
+
+@keyframes logoGlow {
+  from {
+    filter: drop-shadow(0 0 20px #00ffff);
+  }
+  to {
+    filter: drop-shadow(0 0 40px #ff00ff);
+  }
+}
+
+.loadingSpinner {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 30px;
+}
+
+.spinnerRing {
+  position: absolute;
+  border: 3px solid transparent;
+  border-top: 3px solid #00ffff;
+  border-radius: 50%;
+  animation: spin 2s linear infinite;
+}
+
+.spinnerRing:nth-child(1) {
+  width: 100px;
+  height: 100px;
+  animation-duration: 1s;
+}
+
+.spinnerRing:nth-child(2) {
+  width: 70px;
+  height: 70px;
+  top: 15px;
+  left: 15px;
+  border-top-color: #ff00ff;
+  animation-duration: 0.75s;
+  animation-direction: reverse;
+}
+
+.spinnerRing:nth-child(3) {
+  width: 40px;
+  height: 40px;
+  top: 30px;
+  left: 30px;
+  border-top-color: #8a2be2;
+  animation-duration: 0.5s;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loadingText {
+  color: #ffffff;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  opacity: 0.8;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.loadingProgress {
+  width: 300px;
+  height: 4px;
+  background: rgba(0, 255, 255, 0.2);
+  border-radius: 2px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.progressBarFill {
+  height: 100%;
+  background: linear-gradient(90deg, #00ffff, #ff00ff);
+  border-radius: 2px;
+  animation: loadingProgress 1.5s ease-in-out;
+}
+
+@keyframes loadingProgress {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .loadingLogo {
+    font-size: 2rem;
+  }
+
+  .loadingSpinner {
+    width: 80px;
+    height: 80px;
+  }
+
+  .spinnerRing:nth-child(1) {
+    width: 80px;
+    height: 80px;
+  }
+
+  .spinnerRing:nth-child(2) {
+    width: 56px;
+    height: 56px;
+    top: 12px;
+    left: 12px;
+  }
+
+  .spinnerRing:nth-child(3) {
+    width: 32px;
+    height: 32px;
+    top: 24px;
+    left: 24px;
+  }
+
+  .loadingText {
+    font-size: 1rem;
+  }
+
+  .loadingProgress {
+    width: 250px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .loadingLogo {
+    font-size: 1.5rem;
+  }
+
+  .loadingSpinner {
+    width: 60px;
+    height: 60px;
+  }
+
+  .spinnerRing:nth-child(1) {
+    width: 60px;
+    height: 60px;
+  }
+
+  .spinnerRing:nth-child(2) {
+    width: 42px;
+    height: 42px;
+    top: 9px;
+    left: 9px;
+  }
+
+  .spinnerRing:nth-child(3) {
+    width: 24px;
+    height: 24px;
+    top: 18px;
+    left: 18px;
+  }
+
+  .loadingProgress {
+    width: 200px;
+  }
+}

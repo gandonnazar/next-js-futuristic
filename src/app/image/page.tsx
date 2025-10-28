@@ -107,10 +107,10 @@ export default function ImagePage() {
 
         {/* AI Models Panel */}
         <section className="section" style={{ paddingTop: 0, paddingBottom: '30px' }}>
-          <div className="glass-panel mb-4" style={{ padding: '25px' }}>
-            <h3 style={{ color: 'var(--primary-neon)', marginBottom: '20px', fontSize: '1.3rem' }}>
-              AI Models Panel
-            </h3>
+          <h3 style={{ color: 'var(--primary-neon)', marginBottom: '20px', fontSize: '1.3rem' }}>
+            AI Models Panel
+          </h3>
+          <div className="mb-4">
             <div className={styles.modelsGridHorizontal}>
               {AI_MODELS.map((model) => (
                 <div
@@ -139,10 +139,10 @@ export default function ImagePage() {
             {/* Left Column: Generation Controls */}
             <div className={styles.generationControls}>
               {/* Dimensional Matrix Panel */}
-              <div className="glass-panel mb-4" style={{ padding: '25px' }}>
-                <h3 style={{ color: 'var(--primary-neon)', marginBottom: '20px', fontSize: '1.3rem' }}>
-                  Dimensional Matrix
-                </h3>
+              <h3 style={{ color: 'var(--primary-neon)', marginBottom: '20px', fontSize: '1.3rem' }}>
+                Dimensional Matrix
+              </h3>
+              <div className="mb-4">
                 <div className={styles.dimensionSelectorVertical}>
                   {DIMENSIONS.map((dim) => (
                     <div
@@ -160,10 +160,10 @@ export default function ImagePage() {
               </div>
 
               {/* Prompt Input */}
-              <div className="glass-panel mb-4" style={{ padding: '25px' }}>
-                <h3 style={{ color: 'var(--primary-neon)', marginBottom: '20px', fontSize: '1.3rem' }}>
-                  Neural Prompt Interface
-                </h3>
+              <h3 style={{ color: 'var(--primary-neon)', marginBottom: '20px', fontSize: '1.3rem' }}>
+                Neural Prompt Interface
+              </h3>
+              <div className="mb-4">
                 <div className={styles.promptContainer}>
                   <textarea
                     className={styles.promptInput}
@@ -236,10 +236,10 @@ export default function ImagePage() {
 
             {/* Right Column: Recent Generations */}
             <div className={styles.recentGenerations}>
-              <div className="glass-panel" style={{ padding: '25px' }}>
-                <h3 style={{ color: 'var(--primary-neon)', marginBottom: '20px', fontSize: '1.3rem' }}>
-                  Recent Generations
-                </h3>
+              <h3 style={{ color: 'var(--primary-neon)', marginBottom: '20px', fontSize: '1.3rem' }}>
+                Recent Generations
+              </h3>
+              <div>
                 <div className={styles.generationsGrid}>
                   {RECENT_GENERATIONS.map((gen) => (
                     <div key={gen.id} className={styles.generationItem}>

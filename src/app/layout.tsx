@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Starfield from '@/components/Starfield';
+import Loading from '@/components/Loading';
 import '../styles/globals.css';
 
 export const metadata: Metadata = {
@@ -17,6 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <Loading />
         <Starfield />
         <Navbar />
         {children}

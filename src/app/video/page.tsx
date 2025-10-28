@@ -112,10 +112,10 @@ export default function VideoPage() {
 
         {/* Video Models Panel */}
         <section className="section" style={{ paddingTop: 0, paddingBottom: '30px' }}>
-          <div className="glass-panel mb-4" style={{ padding: '25px' }}>
-            <h3 style={{ color: 'var(--primary-neon)', marginBottom: '20px', fontSize: '1.3rem' }}>
-              Video Models Panel
-            </h3>
+          <h3 style={{ color: 'var(--primary-neon)', marginBottom: '20px', fontSize: '1.3rem' }}>
+            Video Models Panel
+          </h3>
+          <div className="mb-4">
             <div className={styles.modelsGrid2x5}>
               {VIDEO_MODELS.map((model) => (
                 <div
@@ -143,10 +143,10 @@ export default function VideoPage() {
             {/* Left Column: Generation Controls */}
             <div className={styles.generationControls}>
               {/* Dimensional Matrix Panel */}
-              <div className="glass-panel mb-4" style={{ padding: '25px' }}>
-                <h3 style={{ color: 'var(--primary-neon)', marginBottom: '20px', fontSize: '1.3rem' }}>
-                  Dimensional Matrix
-                </h3>
+              <h3 style={{ color: 'var(--primary-neon)', marginBottom: '20px', fontSize: '1.3rem' }}>
+                Dimensional Matrix
+              </h3>
+              <div className="mb-4">
                 <div className={styles.dimensionSelectorVertical}>
                   {DIMENSIONS.map((dim) => (
                     <div
@@ -164,10 +164,10 @@ export default function VideoPage() {
               </div>
 
               {/* Video Duration Selector */}
-              <div className="glass-panel mb-4" style={{ padding: '25px' }}>
-                <h3 style={{ color: 'var(--primary-neon)', marginBottom: '20px', fontSize: '1.3rem' }}>
-                  ⏱️ Video Duration
-                </h3>
+              <h3 style={{ color: 'var(--primary-neon)', marginBottom: '20px', fontSize: '1.3rem' }}>
+                ⏱️ Video Duration
+              </h3>
+              <div className="mb-4">
                 <select
                   className={styles.durationDropdown}
                   value={selectedDuration}
@@ -183,10 +183,10 @@ export default function VideoPage() {
               </div>
 
               {/* Prompt Input */}
-              <div className="glass-panel mb-4" style={{ padding: '25px' }}>
-                <h3 style={{ color: 'var(--primary-neon)', marginBottom: '20px', fontSize: '1.3rem' }}>
-                  Neural Prompt Interface
-                </h3>
+              <h3 style={{ color: 'var(--primary-neon)', marginBottom: '20px', fontSize: '1.3rem' }}>
+                Neural Prompt Interface
+              </h3>
+              <div className="mb-4">
                 <div className={styles.promptContainer}>
                   <textarea
                     className={styles.promptInput}
@@ -266,10 +266,10 @@ export default function VideoPage() {
 
             {/* Right Column: Recent Generations */}
             <div className={styles.recentGenerations}>
-              <div className="glass-panel" style={{ padding: '25px' }}>
-                <h3 style={{ color: 'var(--primary-neon)', marginBottom: '20px', fontSize: '1.3rem' }}>
-                  Recent Generations
-                </h3>
+              <h3 style={{ color: 'var(--primary-neon)', marginBottom: '20px', fontSize: '1.3rem' }}>
+                Recent Generations
+              </h3>
+              <div>
                 <div className={styles.generationsGrid}>
                   {RECENT_VIDEOS.map((gen) => (
                     <div key={gen.id} className={styles.generationItem}>

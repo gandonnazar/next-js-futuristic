@@ -192,17 +192,19 @@
 
 .promptInput {
   width: 100%;
-  min-height: 150px;
+  min-height: 240px;
   padding: 20px;
   background: rgba(255, 255, 255, 0.05);
   border: 2px solid rgba(0, 255, 255, 0.3);
   border-radius: 15px;
   color: var(--text-light);
   font-family: 'Rajdhani', sans-serif;
-  font-size: 1.1rem;
+  font-size: 2rem;
   line-height: 1.4;
   resize: vertical;
   transition: all 0.3s ease;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 .promptInput:focus {
@@ -323,14 +325,28 @@
 }
 
 .creditsDisplayBtn {
-  flex: 1;
-  padding: 15px 30px;
+  width: auto;
+  padding: 18px 30px;
   font-size: 1.1rem;
+  font-weight: 700;
+  justify-self: start;
+  animation: none !important;
+  box-shadow: none;
   cursor: default;
+  pointer-events: none;
+  border: none;
+  background: transparent;
+}
+
+.creditsDisplayBtn:hover {
+  animation: none !important;
+  box-shadow: none;
+  transform: none;
+  border: none;
 }
 
 .generateBtn {
-  flex: 2;
+  flex: 1;
   padding: 18px 40px;
   font-size: 1.2rem;
   font-weight: 700;
