@@ -10,8 +10,8 @@ const BILLING_HISTORY = [
 
 export default function ProfilePage() {
   return (
-    <div className={styles.profilePage}>
-      <div className={styles.container}>
+    <main style={{ paddingTop: '120px', paddingBottom: '60px' }}>
+      <div className="container">
         <div className="text-center mb-5">
           <h1 style={{ fontSize: '2.5rem', color: 'var(--primary-neon)', textShadow: '0 0 30px var(--shadow-cyan)', marginBottom: '20px' }}>
             Operator Control Interface
@@ -75,6 +75,6 @@ export default function ProfilePage() {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
