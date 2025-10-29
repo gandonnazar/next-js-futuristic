@@ -44,20 +44,42 @@ export default function UpscalePage() {
   const [credits, setCredits] = useState(12000);
   const [selectedRecent, setSelectedRecent] = useState<number | null>(null);
   const [resultImage, setResultImage] = useState<string | null>(null);
+  const [confirmedImage, setConfirmedImage] = useState<string | null>(null);
+  const [confirmedFile, setConfirmedFile] = useState<File | null>(null);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       setSelectedFile(e.target.files[0]);
       setSelectedRecent(null);
+      // Auto-confirm file selection
+      setConfirmedFile(e.target.files[0]);
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        setConfirmedImage(event.target?.result as string);
+      };
+      reader.readAsDataURL(e.target.files[0]);
     }
   };
 
   const handleConfirmSelection = () => {
-    // Selection confirmed, no alert needed
+    if (selectedRecent) {
+      const selectedUpload = RECENT_UPLOADS.find(u => u.id === selectedRecent);
+      if (selectedUpload) {
+        setConfirmedImage(selectedUpload.src);
+        setConfirmedFile(null);
+      }
+    }
+  };
+
+  const handleClearSelection = () => {
+    setConfirmedImage(null);
+    setConfirmedFile(null);
+    setSelectedFile(null);
+    setSelectedRecent(null);
   };
 
   const handleUpscale = () => {
-    if (!selectedFile && !selectedRecent) {
+    if (!confirmedImage) {
       alert('Please select an image first');
       return;
     }
@@ -65,7 +87,7 @@ export default function UpscalePage() {
     setTimeout(() => {
       setIsUpscaling(false);
       setCredits(prev => prev - 5);
-      setResultImage(getAssetPath('/assets/landscape.jpg')); // Placeholder result
+      setResultImage(confirmedImage); // Use the confirmed image as placeholder result
       alert('Upscaling simulated! In production, this would call your AI API.');
     }, 3000);
   };
@@ -118,10 +140,34 @@ export default function UpscalePage() {
                 </div>
               </div>
 
+              {/* Confirmed Image Preview */}
+              {confirmedImage && (
+                <div className={styles.confirmedPreview}>
+                  <div className={styles.previewImageContainer}>
+                    <Image
+                      src={confirmedImage}
+                      alt="Selected for upscaling"
+                      width={400}
+                      height={400}
+                      style={{ objectFit: 'contain', width: '100%', height: 'auto' }}
+                      unoptimized={!!confirmedFile}
+                    />
+                    <button 
+                      className={styles.clearBtn}
+                      onClick={handleClearSelection}
+                      title="Clear selection"
+                    >
+                      ✕
+                    </button>
+                  </div>
+                </div>
+              )}
+
               {/* Confirm Button */}
               <button 
                 className={styles.confirmBtn}
                 onClick={handleConfirmSelection}
+                disabled={!selectedRecent || !!confirmedImage}
               >
                 <span className={styles.btnIcon}>✓</span>
                 Confirm Selection

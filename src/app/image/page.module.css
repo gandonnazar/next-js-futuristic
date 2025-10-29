@@ -120,10 +120,21 @@
   box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
 }
 
-.ratioPreview {
+.dimensionOption.active .ratioPreview {
   background: var(--primary-neon);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+}
+
+.dimensionOption.active .dimensionInfo span {
+  color: var(--primary-neon);
+  font-weight: 700;
+}
+
+.ratioPreview {
+  background: rgba(0, 255, 255, 0.4);
   border-radius: 4px;
   flex-shrink: 0;
+  transition: all 0.3s ease;
 }
 
 .ratioPreview.square {
@@ -277,8 +288,9 @@
 /* Generation Action */
 .generationAction {
   display: flex;
-  gap: 15px;
+  gap: 25px;
   align-items: center;
+  margin-top: 30px;
 }
 
 .creditsDisplayBtn {
