@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+const isProd = process.env.NODE_ENV === 'production';
+
 const nextConfig = {
   output: 'export',
   reactStrictMode: true,
@@ -6,8 +8,8 @@ const nextConfig = {
     remotePatterns: [],
     unoptimized: true,
   },
-  basePath: '/next-js-futuristic',
-  assetPrefix: '/next-js-futuristic',
+  basePath: isProd ? '/next-js-futuristic' : '',
+  assetPrefix: isProd ? '/next-js-futuristic' : '',
 }
 
 module.exports = nextConfig

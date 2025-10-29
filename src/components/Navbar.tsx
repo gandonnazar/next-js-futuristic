@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import styles from '../styles/navbar.module.css';
+import { getAssetPath } from '@/lib/utils';
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -24,7 +25,7 @@ export default function Navbar() {
         <Link href="/" className={styles.logo}>
           <div className={styles.logoImageContainer}>
             <Image
-              src="/assets/128x128.png"
+              src={getAssetPath("/assets/128x128.png")}
               alt="NeonLights AI Logo"
               width={50}
               height={50}

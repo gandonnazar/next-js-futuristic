@@ -1,8 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import styles from './page.module.css';
+import { getAssetPath } from '@/lib/utils';
 
 export default function Home() {
   const parallaxRef = useRef<HTMLDivElement>(null);
@@ -248,7 +249,7 @@ export default function Home() {
                 <div key={`top-set1-${index}`} className={styles.hologramCard}>
                   <div className={styles.hologramInner}>
                     <img 
-                      src={`/assets/gallery/${image}`} 
+                      src={getAssetPath(`/assets/gallery/${image}`)} 
                       alt={`AI Generated Art ${index + 1}`}
                       className={styles.hologramImage}
                     />
@@ -262,7 +263,7 @@ export default function Home() {
                 <div key={`top-set2-${index}`} className={styles.hologramCard}>
                   <div className={styles.hologramInner}>
                     <img 
-                      src={`/assets/gallery/${image}`} 
+                      src={getAssetPath(`/assets/gallery/${image}`)} 
                       alt={`AI Generated Art ${index + 1}`}
                       className={styles.hologramImage}
                     />
@@ -282,7 +283,7 @@ export default function Home() {
                 <div key={`bottom-set1-${index}`} className={styles.hologramCard}>
                   <div className={styles.hologramInner}>
                     <img 
-                      src={`/assets/gallery/${image}`} 
+                      src={getAssetPath(`/assets/gallery/${image}`)} 
                       alt={`AI Generated Art ${index + 1}`}
                       className={styles.hologramImage}
                     />
@@ -296,7 +297,7 @@ export default function Home() {
                 <div key={`bottom-set2-${index}`} className={styles.hologramCard}>
                   <div className={styles.hologramInner}>
                     <img 
-                      src={`/assets/gallery/${image}`} 
+                      src={getAssetPath(`/assets/gallery/${image}`)} 
                       alt={`AI Generated Art ${index + 1}`}
                       className={styles.hologramImage}
                     />

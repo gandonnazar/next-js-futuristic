@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from '../styles/footer.module.css';
+import { getAssetPath } from '@/lib/utils';
 
 export default function Footer() {
   return (
@@ -10,7 +11,7 @@ export default function Footer() {
         <div className={styles.footerBranding}>
           <div className={styles.footerLogoContainer}>
             <Image 
-              src="/assets/1024x1024.png" 
+              src={getAssetPath("/assets/1024x1024.png")} 
               alt="NeonLights AI Logo" 
               className={styles.footerLogoImg}
               width={120}
