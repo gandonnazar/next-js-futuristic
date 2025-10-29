@@ -523,6 +523,8 @@
     box-shadow: none !important;
   }
 
+@media (max-width: 768px) {
+  /* Force proper active state even with !important */
   .dimensionOption.active .ratioPreview,
   .dimensionOption.active .ratioPreview.square,
   .dimensionOption.active .ratioPreview.landscape,
@@ -532,6 +534,18 @@
     border-color: var(--primary-neon) !important;
     box-shadow: 0 0 15px rgba(0, 255, 255, 0.6) !important;
   }
+
+  /* Force inactive (grayed out) state */
+  .dimensionOption:not(.active) .ratioPreview,
+  .dimensionOption:not(.active) .ratioPreview.square,
+  .dimensionOption:not(.active) .ratioPreview.landscape,
+  .dimensionOption:not(.active) .ratioPreview.portrait,
+  .dimensionOption:not(.active) .ratioPreview.classic {
+    background: rgba(10, 16, 24, 0.4) !important;
+    border: 2px solid rgba(255, 255, 255, 0.15) !important;
+    box-shadow: none !important;
+  }
+}
 
   .dimensionInfo span {
     font-size: 0.75rem;
