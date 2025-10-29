@@ -420,6 +420,10 @@
 
 /* Responsive Design */
 @media screen and (max-width: 1200px) {
+  .pricingPage {
+    padding: 140px 20px 80px;
+  }
+
   .calculatorGrid {
     grid-template-columns: repeat(2, 1fr);
   }

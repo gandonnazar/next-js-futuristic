@@ -159,7 +159,13 @@ export default function Home() {
       </div>
 
       {/* Parallax Section */}
-      <section ref={parallaxRef} className={styles.parallaxSection}>
+      <section 
+        ref={parallaxRef} 
+        className={styles.parallaxSection}
+        style={{
+          backgroundImage: `url('${getAssetPath('/assets/command-center.jpg')}')`
+        }}
+      >
         <div className={styles.parallaxContent}>
           {/* Optional content can go here */}
         </div>

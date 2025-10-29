@@ -463,7 +463,36 @@
   }
 
   .dimensionSelectorVertical {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+
+  .dimensionOption {
+    padding: 10px 8px;
+  }
+
+  .ratioPreview.square {
+    width: 20px;
+    height: 20px;
+  }
+
+  .ratioPreview.landscape {
+    width: 28px;
+    height: 16px;
+  }
+
+  .ratioPreview.portrait {
+    width: 14px;
+    height: 24px;
+  }
+
+  .ratioPreview.classic {
+    width: 26px;
+    height: 20px;
+  }
+
+  .dimensionInfo span {
+    font-size: 0.75rem;
   }
 
   .promptInput {
