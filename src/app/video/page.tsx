@@ -112,8 +112,8 @@ const RECENT_VIDEOS = [
 
 export default function VideoPage() {
   const [selectedModel, setSelectedModel] = useState('pixverse-v5');
-  const [selectedDimension, setSelectedDimension] = useState('square');
-  const [selectedDuration, setSelectedDuration] = useState(5);
+  const [selectedDimension, setSelectedDimension] = useState('portrait');
+  const [selectedDuration, setSelectedDuration] = useState<number>(5);
   const [prompt, setPrompt] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
   const [credits, setCredits] = useState(12000);

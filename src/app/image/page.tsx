@@ -84,7 +84,7 @@ const IMAGE_MODEL_COSTS: Record<string, number> = {
 
 export default function ImagePage() {
   const [selectedModel, setSelectedModel] = useState('seedream-4');
-  const [selectedDimension, setSelectedDimension] = useState('square');
+  const [selectedDimension, setSelectedDimension] = useState('portrait');
   const [prompt, setPrompt] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
   const [credits, setCredits] = useState(12000);

@@ -33,8 +33,8 @@ export default function Footer() {
               <li><Link href="/image" className={styles.footerLink}>Image</Link></li>
               <li><Link href="/video" className={styles.footerLink}>Video</Link></li>
               <li><Link href="/upscale" className={styles.footerLink}>Upscale</Link></li>
-              <li><Link href="/gallery" className={styles.footerLink}>Gallery</Link></li>
-              <li><Link href="/pricing" className={styles.footerLink}>Pricing</Link></li>
+              <li><Link href="/about" className={styles.footerLink}>About</Link></li>
+              <li><Link href="/contact" className={styles.footerLink}>Contact</Link></li>
             </ul>
           </div>
 
