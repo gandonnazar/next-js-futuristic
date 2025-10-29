@@ -4,24 +4,25 @@ import { useState } from 'react';
 import Image from 'next/image';
 import UploadModal from '@/components/UploadModal';
 import styles from './page.module.css';
+import { getAssetPath } from '@/lib/utils';
 
 const AI_MODELS = [
-  { id: 'seedream-4', name: 'Seedream 4', image: '/assets/seedream-4.jpg' },
-  { id: 'imagineart-1', name: 'ImagineArt-1', image: '/assets/imagineart-1.png' },
-  { id: 'neonlights-retro', name: 'Neonlights Retro', image: '/assets/neonlights-retro.jpg' },
-  { id: 'nano-banana', name: 'Nano Banana', image: '/assets/nano-banana.png' },
-  { id: 'hunyuan-image-3', name: 'Hunyuan Image 3', image: '/assets/hunyuan-image-3.jpg' },
-  { id: 'wan-2', name: 'Wan-2', image: '/assets/wan-2.jpg' },
-  { id: 'minimax-image-01', name: 'Minimax Image-01', image: '/assets/minimax-image-01.jpg' },
-  { id: 'leonardo-phoenix', name: 'Leonardo Phoenix 1.0', image: '/assets/leonardo-phoenix.png' },
-  { id: 'flux-dev', name: 'Flux Dev', image: '/assets/flux-dev.jpg' },
-  { id: 'flux-pro-ultra', name: 'Flux Pro1.1 Ultra', image: '/assets/flux-pro1.1-ultra.jpg' },
-  { id: 'flux-kontext', name: 'Flux Kontext Max', image: '/assets/flux-kontext.jpg' },
-  { id: 'ideogram-v3', name: 'Ideogram v3 Quality', image: '/assets/ideogram-v3.png' },
-  { id: 'google-imagen-4', name: 'Google Imagen 4', image: '/assets/google-imagen-4.jpg' },
-  { id: 'google-imagen-4-ultra', name: 'Google Imagen 4 Ultra', image: '/assets/google-imagen-4-ultra.jpg' },
-  { id: 'luma-photon', name: 'Luma Photon', image: '/assets/luma-photon.jpg' },
-  { id: 'recraft-v3', name: 'Recraft V3', image: '/assets/recraft-v3.jpg' },
+  { id: 'seedream-4', name: 'Seedream 4', image: getAssetPath('/assets/seedream-4.jpg') },
+  { id: 'imagineart-1', name: 'ImagineArt-1', image: getAssetPath('/assets/imagineart-1.png') },
+  { id: 'neonlights-retro', name: 'Neonlights Retro', image: getAssetPath('/assets/neonlights-retro.jpg') },
+  { id: 'nano-banana', name: 'Nano Banana', image: getAssetPath('/assets/nano-banana.png') },
+  { id: 'hunyuan-image-3', name: 'Hunyuan Image 3', image: getAssetPath('/assets/hunyuan-image-3.jpg') },
+  { id: 'wan-2', name: 'Wan-2', image: getAssetPath('/assets/wan-2.jpg') },
+  { id: 'minimax-image-01', name: 'Minimax Image-01', image: getAssetPath('/assets/minimax-image-01.jpg') },
+  { id: 'leonardo-phoenix', name: 'Leonardo Phoenix 1.0', image: getAssetPath('/assets/leonardo-phoenix.png') },
+  { id: 'flux-dev', name: 'Flux Dev', image: getAssetPath('/assets/flux-dev.jpg') },
+  { id: 'flux-pro-ultra', name: 'Flux Pro1.1 Ultra', image: getAssetPath('/assets/flux-pro1.1-ultra.jpg') },
+  { id: 'flux-kontext', name: 'Flux Kontext Max', image: getAssetPath('/assets/flux-kontext.jpg') },
+  { id: 'ideogram-v3', name: 'Ideogram v3 Quality', image: getAssetPath('/assets/ideogram-v3.png') },
+  { id: 'google-imagen-4', name: 'Google Imagen 4', image: getAssetPath('/assets/google-imagen-4.jpg') },
+  { id: 'google-imagen-4-ultra', name: 'Google Imagen 4 Ultra', image: getAssetPath('/assets/google-imagen-4-ultra.jpg') },
+  { id: 'luma-photon', name: 'Luma Photon', image: getAssetPath('/assets/luma-photon.jpg') },
+  { id: 'recraft-v3', name: 'Recraft V3', image: getAssetPath('/assets/recraft-v3.jpg') },
 ];
 
 const DIMENSIONS = [
@@ -34,28 +35,28 @@ const DIMENSIONS = [
 const RECENT_GENERATIONS = [
   {
     id: 1,
-    image: '/assets/landscape.jpg',
+    image: getAssetPath('/assets/landscape.jpg'),
     prompt: 'Futuristic cityscape with neon lights',
     model: 'Seedream 4',
     time: '2 min ago'
   },
   {
     id: 2,
-    image: '/assets/portrait1.jpg',
+    image: getAssetPath('/assets/portrait1.jpg'),
     prompt: 'Abstract cosmic art with vibrant colors',
     model: 'Leonardo Phoenix 1.0',
     time: '5 min ago'
   },
   {
     id: 3,
-    image: '/assets/portrait2.jpg',
+    image: getAssetPath('/assets/portrait2.jpg'),
     prompt: 'Cyberpunk warrior in digital rain',
     model: 'Flux1.1 Pro Ultra',
     time: '12 min ago'
   },
   {
     id: 4,
-    image: '/assets/classic.jpg',
+    image: getAssetPath('/assets/classic.jpg'),
     prompt: 'Anime character in fantasy landscape',
     model: 'ImagineArt-1',
     time: '18 min ago'

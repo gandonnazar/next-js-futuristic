@@ -3,16 +3,17 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import styles from './page.module.css';
+import { getAssetPath } from '@/lib/utils';
 
 const GALLERY_IMAGES = [
-  { id: 1, src: '/assets/portrait1.jpg', title: 'Cyberpunk Portrait', category: 'portrait', model: 'Flux Pro1.1 Ultra', timestamp: '2 hours ago', prompt: 'A cyberpunk character with neon lights' },
-  { id: 2, src: '/assets/portrait2.jpg', title: 'Neon Character', category: 'portrait', model: 'Leonardo Phoenix 1.0', timestamp: '3 hours ago', prompt: 'Futuristic warrior in digital rain' },
-  { id: 3, src: '/assets/portrait3.jpg', title: 'Digital Art', category: 'portrait', model: 'Seedream 4', timestamp: '5 hours ago', prompt: 'Abstract cosmic art with vibrant colors' },
-  { id: 4, src: '/assets/portrait4.jpg', title: 'Future Vision', category: 'portrait', model: 'ImagineArt-1', timestamp: '1 day ago', prompt: 'Anime character in fantasy landscape' },
-  { id: 5, src: '/assets/landscape.jpg', title: 'Futuristic Cityscape', category: 'landscape', model: 'Google Imagen 4', timestamp: '2 days ago', prompt: 'Futuristic cityscape with neon lights' },
-  { id: 6, src: '/assets/classic.jpg', title: 'Anime Landscape', category: 'landscape', model: 'Ideogram v3', timestamp: '3 days ago', prompt: 'Serene anime landscape at sunset' },
-  { id: 7, src: '/assets/portrait5.jpg', title: 'Sci-Fi Character', category: 'portrait', model: 'Recraft V3', timestamp: '4 days ago', prompt: 'Sci-fi character with glowing armor' },
-  { id: 8, src: '/assets/image1.jpg', title: 'Abstract Art', category: 'abstract', model: 'Luma Photon', timestamp: '5 days ago', prompt: 'Abstract geometric patterns with neon colors' },
+  { id: 1, src: getAssetPath('/assets/portrait1.jpg'), title: 'Cyberpunk Portrait', category: 'portrait', model: 'Flux Pro1.1 Ultra', timestamp: '2 hours ago', prompt: 'A cyberpunk character with neon lights' },
+  { id: 2, src: getAssetPath('/assets/portrait2.jpg'), title: 'Neon Character', category: 'portrait', model: 'Leonardo Phoenix 1.0', timestamp: '3 hours ago', prompt: 'Futuristic warrior in digital rain' },
+  { id: 3, src: getAssetPath('/assets/portrait3.jpg'), title: 'Digital Art', category: 'portrait', model: 'Seedream 4', timestamp: '5 hours ago', prompt: 'Abstract cosmic art with vibrant colors' },
+  { id: 4, src: getAssetPath('/assets/portrait4.jpg'), title: 'Future Vision', category: 'portrait', model: 'ImagineArt-1', timestamp: '1 day ago', prompt: 'Anime character in fantasy landscape' },
+  { id: 5, src: getAssetPath('/assets/landscape.jpg'), title: 'Futuristic Cityscape', category: 'landscape', model: 'Google Imagen 4', timestamp: '2 days ago', prompt: 'Futuristic cityscape with neon lights' },
+  { id: 6, src: getAssetPath('/assets/classic.jpg'), title: 'Anime Landscape', category: 'landscape', model: 'Ideogram v3', timestamp: '3 days ago', prompt: 'Serene anime landscape at sunset' },
+  { id: 7, src: getAssetPath('/assets/portrait5.jpg'), title: 'Sci-Fi Character', category: 'portrait', model: 'Recraft V3', timestamp: '4 days ago', prompt: 'Sci-fi character with glowing armor' },
+  { id: 8, src: getAssetPath('/assets/image1.jpg'), title: 'Abstract Art', category: 'abstract', model: 'Luma Photon', timestamp: '5 days ago', prompt: 'Abstract geometric patterns with neon colors' },
 ];
 
 export default function GalleryPage() {

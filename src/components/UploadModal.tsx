@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import styles from './UploadModal.module.css';
+import { getAssetPath } from '@/lib/utils';
 
 interface UploadModalProps {
   isOpen: boolean;
@@ -11,10 +12,10 @@ interface UploadModalProps {
 }
 
 const SAMPLE_IMAGES = [
-  { id: 1, filename: 'image1.jpg', size: '2.3 MB', src: '/assets/image1.jpg' },
-  { id: 2, filename: 'portrait1.jpg', size: '1.8 MB', src: '/assets/portrait1.jpg' },
-  { id: 3, filename: 'landscape.jpg', size: '3.1 MB', src: '/assets/landscape.jpg' },
-  { id: 4, filename: 'portrait2.jpg', size: '2.7 MB', src: '/assets/portrait2.jpg' },
+  { id: 1, filename: 'image1.jpg', size: '2.3 MB', src: getAssetPath('/assets/image1.jpg') },
+  { id: 2, filename: 'portrait1.jpg', size: '1.8 MB', src: getAssetPath('/assets/portrait1.jpg') },
+  { id: 3, filename: 'landscape.jpg', size: '3.1 MB', src: getAssetPath('/assets/landscape.jpg') },
+  { id: 4, filename: 'portrait2.jpg', size: '2.7 MB', src: getAssetPath('/assets/portrait2.jpg') },
 ];
 
 export default function UploadModal({ isOpen, onClose, onConfirm }: UploadModalProps) {

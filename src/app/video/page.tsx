@@ -4,18 +4,19 @@ import { useState } from 'react';
 import Image from 'next/image';
 import UploadModal from '@/components/UploadModal';
 import styles from './page.module.css';
+import { getAssetPath } from '@/lib/utils';
 
 const VIDEO_MODELS = [
-  { id: 'pixverse-v5', name: 'Pixverse V5', image: '/assets/pixverse-v5.jpg' },
-  { id: 'kling-master-v2', name: 'Kling Master V2', image: '/assets/kling-master-v2.png' },
-  { id: 'kling-2.5-turbo-pro', name: 'Kling 2.5 Turbo Pro', image: '/assets/kling-2.5-turbo-pro.jpg' },
-  { id: 'minimax-helios-2', name: 'Minimax Helios 2', image: '/assets/minimax-helios-2.png' },
-  { id: 'sora-2', name: 'Sora 2', image: '/assets/sora-2.jpg' },
-  { id: 'sora-2-pro', name: 'Sora 2 Pro', image: '/assets/sora-2-pro.jpg' },
-  { id: 'sora-2-pro-max', name: 'Sora 2 Pro Max', image: '/assets/sora-2-pro-max.jpg' },
-  { id: 'veo-3.1', name: 'Veo 3.1', image: '/assets/veo-3.1.jpg' },
-  { id: 'veo-3.1-fast', name: 'Veo 3.1 Fast', image: '/assets/veo-3.1-fast.jpg' },
-  { id: 'coming-soon', name: 'Coming Soon', image: '/assets/128x128.png', disabled: true },
+  { id: 'pixverse-v5', name: 'Pixverse V5', image: getAssetPath('/assets/pixverse-v5.jpg') },
+  { id: 'kling-master-v2', name: 'Kling Master V2', image: getAssetPath('/assets/kling-master-v2.png') },
+  { id: 'kling-2.5-turbo-pro', name: 'Kling 2.5 Turbo Pro', image: getAssetPath('/assets/kling-2.5-turbo-pro.jpg') },
+  { id: 'minimax-helios-2', name: 'Minimax Helios 2', image: getAssetPath('/assets/minimax-helios-2.png') },
+  { id: 'sora-2', name: 'Sora 2', image: getAssetPath('/assets/sora-2.jpg') },
+  { id: 'sora-2-pro', name: 'Sora 2 Pro', image: getAssetPath('/assets/sora-2-pro.jpg') },
+  { id: 'sora-2-pro-max', name: 'Sora 2 Pro Max', image: getAssetPath('/assets/sora-2-pro-max.jpg') },
+  { id: 'veo-3.1', name: 'Veo 3.1', image: getAssetPath('/assets/veo-3.1.jpg') },
+  { id: 'veo-3.1-fast', name: 'Veo 3.1 Fast', image: getAssetPath('/assets/veo-3.1-fast.jpg') },
+  { id: 'coming-soon', name: 'Coming Soon', image: getAssetPath('/assets/128x128.png'), disabled: true },
 ];
 
 const DIMENSIONS = [
@@ -36,28 +37,28 @@ const DURATIONS = [
 const RECENT_VIDEOS = [
   {
     id: 1,
-    video: '/assets/video1.mp4',
+    video: getAssetPath('/assets/video1.mp4'),
     prompt: 'Ring rotates around space ship',
     model: 'Video Model 1',
     time: '2 min ago'
   },
   {
     id: 2,
-    video: '/assets/video2.mp4',
+    video: getAssetPath('/assets/video2.mp4'),
     prompt: 'Abstract cosmic animation with vibrant colors',
     model: 'Video Model 3',
     time: '5 min ago'
   },
   {
     id: 3,
-    video: '/assets/video3.mp4',
+    video: getAssetPath('/assets/video3.mp4'),
     prompt: 'Cyberpunk city with neon lights at night',
     model: 'Video Model 5',
     time: '12 min ago'
   },
   {
     id: 4,
-    video: '/assets/video4.mp4',
+    video: getAssetPath('/assets/video4.mp4'),
     prompt: 'Smooth camera fly through futuristic corridor',
     model: 'Video Model 2',
     time: '18 min ago'

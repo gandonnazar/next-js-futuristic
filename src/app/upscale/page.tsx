@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import styles from './page.module.css';
+import { getAssetPath } from '@/lib/utils';
 
 const UPSCALE_MODELS = [
   { id: 'standard-v2', name: 'Standard V2', icon: '⚡', disabled: false },
@@ -14,21 +15,21 @@ const UPSCALE_MODELS = [
 ];
 
 const RECENT_UPLOADS = [
-  { id: 1, src: '/assets/portrait1.jpg' },
-  { id: 2, src: '/assets/portrait2.jpg' },
-  { id: 3, src: '/assets/portrait3.jpg' },
-  { id: 4, src: '/assets/portrait4.jpg' },
-  { id: 5, src: '/assets/portrait5.jpg' },
-  { id: 6, src: '/assets/landscape.jpg' },
-  { id: 7, src: '/assets/classic.jpg' },
-  { id: 8, src: '/assets/image1.jpg' },
-  { id: 9, src: '/assets/portrait1.jpg' },
-  { id: 10, src: '/assets/portrait2.jpg' },
-  { id: 11, src: '/assets/portrait3.jpg' },
-  { id: 12, src: '/assets/portrait4.jpg' },
-  { id: 13, src: '/assets/portrait5.jpg' },
-  { id: 14, src: '/assets/landscape.jpg' },
-  { id: 15, src: '/assets/classic.jpg' },
+  { id: 1, src: getAssetPath('/assets/portrait1.jpg') },
+  { id: 2, src: getAssetPath('/assets/portrait2.jpg') },
+  { id: 3, src: getAssetPath('/assets/portrait3.jpg') },
+  { id: 4, src: getAssetPath('/assets/portrait4.jpg') },
+  { id: 5, src: getAssetPath('/assets/portrait5.jpg') },
+  { id: 6, src: getAssetPath('/assets/landscape.jpg') },
+  { id: 7, src: getAssetPath('/assets/classic.jpg') },
+  { id: 8, src: getAssetPath('/assets/image1.jpg') },
+  { id: 9, src: getAssetPath('/assets/portrait1.jpg') },
+  { id: 10, src: getAssetPath('/assets/portrait2.jpg') },
+  { id: 11, src: getAssetPath('/assets/portrait3.jpg') },
+  { id: 12, src: getAssetPath('/assets/portrait4.jpg') },
+  { id: 13, src: getAssetPath('/assets/portrait5.jpg') },
+  { id: 14, src: getAssetPath('/assets/landscape.jpg') },
+  { id: 15, src: getAssetPath('/assets/classic.jpg') },
 ];
 
 export default function UpscalePage() {
@@ -70,7 +71,7 @@ export default function UpscalePage() {
     setTimeout(() => {
       setIsUpscaling(false);
       setCredits(prev => prev - 5);
-      setResultImage('/assets/landscape.jpg'); // Placeholder result
+      setResultImage(getAssetPath('/assets/landscape.jpg')); // Placeholder result
       alert('Upscaling simulated! In production, this would call your AI API.');
     }, 3000);
   };
