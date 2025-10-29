@@ -53,13 +53,7 @@ export default function UpscalePage() {
   };
 
   const handleConfirmSelection = () => {
-    if (selectedRecent) {
-      alert(`Selected image ${selectedRecent}`);
-    } else if (selectedFile) {
-      alert(`Selected file: ${selectedFile.name}`);
-    } else {
-      alert('Please select an image first');
-    }
+    // Selection confirmed, no alert needed
   };
 
   const handleUpscale = () => {

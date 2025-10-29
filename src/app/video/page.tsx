@@ -152,7 +152,6 @@ export default function VideoPage() {
   const handleUploadConfirm = (selectedImages: string[]) => {
     setReferenceImages(selectedImages);
     setIsUploadModalOpen(false);
-    alert(`${selectedImages.length} start frame images selected!`);
   };
 
   return (

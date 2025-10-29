@@ -112,7 +112,6 @@ export default function ImagePage() {
   const handleUploadConfirm = (selectedImages: string[]) => {
     setReferenceImages(selectedImages);
     setIsUploadModalOpen(false);
-    alert(`${selectedImages.length} reference images selected!`);
   };
 
   return (
