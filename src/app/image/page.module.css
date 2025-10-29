@@ -344,7 +344,7 @@
   gap: 15px;
   max-height: 600px;
   overflow-y: auto;
-  padding-right: 10px;
+  padding: 10px 10px 10px 5px;
 }
 
 .generationsGrid::-webkit-scrollbar {

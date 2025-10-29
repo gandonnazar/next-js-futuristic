@@ -73,6 +73,7 @@ export default function VideoPage() {
   const [credits, setCredits] = useState(12000);
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
   const [referenceImages, setReferenceImages] = useState<string[]>([]);
+  const [selectedVideo, setSelectedVideo] = useState<typeof RECENT_VIDEOS[0] | null>(null);
 
   const currentDuration = DURATIONS.find(d => d.value === selectedDuration);
 
@@ -273,11 +274,66 @@ export default function VideoPage() {
                 <div className={styles.generationsGrid}>
                   {RECENT_VIDEOS.map((gen) => (
                     <div key={gen.id} className={styles.generationItem}>
-                      <div className={styles.generationVideo}>
-                        <video controls loop style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '12px' }}>
+                      <div 
+                        className={styles.generationVideo}
+                        onClick={() => setSelectedVideo(gen)}
+                        style={{ cursor: 'pointer', position: 'relative' }}
+                        onMouseEnter={(e) => {
+                          const playBtn = e.currentTarget.querySelector('.play-overlay') as HTMLElement;
+                          if (playBtn) {
+                            playBtn.style.transform = 'translate(-50%, -50%) scale(1.2)';
+                            playBtn.style.background = 'rgba(0, 255, 255, 0.4)';
+                            playBtn.style.boxShadow = '0 0 30px rgba(0, 255, 255, 0.6)';
+                          }
+                        }}
+                        onMouseLeave={(e) => {
+                          const playBtn = e.currentTarget.querySelector('.play-overlay') as HTMLElement;
+                          if (playBtn) {
+                            playBtn.style.transform = 'translate(-50%, -50%) scale(1)';
+                            playBtn.style.background = 'rgba(0, 255, 255, 0.2)';
+                            playBtn.style.boxShadow = 'none';
+                          }
+                        }}
+                      >
+                        <video 
+                          loop 
+                          muted
+                          style={{ 
+                            width: '100%', 
+                            height: '100%', 
+                            objectFit: 'cover', 
+                            borderRadius: '12px',
+                            pointerEvents: 'none'
+                          }}
+                        >
                           <source src={gen.video} type="video/mp4" />
                           Your browser does not support the video tag.
                         </video>
+                        {/* Play overlay indicator */}
+                        <div 
+                          className="play-overlay"
+                          style={{
+                            position: 'absolute',
+                            top: '50%',
+                            left: '50%',
+                            transform: 'translate(-50%, -50%)',
+                            width: '50px',
+                            height: '50px',
+                            borderRadius: '50%',
+                            background: 'rgba(0, 255, 255, 0.2)',
+                            backdropFilter: 'blur(10px)',
+                            border: '2px solid var(--primary-neon)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            fontSize: '1.5rem',
+                            color: 'var(--primary-neon)',
+                            transition: 'all 0.3s ease',
+                            pointerEvents: 'none'
+                          }}
+                        >
+                          ▶
+                        </div>
                       </div>
                       <div className={styles.generationInfo}>
                         <p className={styles.generationPrompt}>{gen.prompt}</p>
@@ -333,6 +389,347 @@ export default function VideoPage() {
         onClose={() => setIsUploadModalOpen(false)}
         onConfirm={handleUploadConfirm}
       />
+
+      {/* Fullscreen Video Viewer Modal */}
+      {selectedVideo && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            zIndex: 10000,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            animation: 'fadeIn 0.3s ease'
+          }}
+        >
+          {/* Overlay */}
+          <div
+            onClick={() => setSelectedVideo(null)}
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              background: 'rgba(0, 0, 0, 0.95)',
+              backdropFilter: 'blur(10px)'
+            }}
+          />
+          
+          {/* Close Button */}
+          <button
+            className="fullscreen-close-button"
+            onClick={() => setSelectedVideo(null)}
+            style={{
+              position: 'absolute',
+              top: '30px',
+              right: '30px',
+              width: '50px',
+              height: '50px',
+              borderRadius: '50%',
+              background: 'rgba(255, 255, 255, 0.1)',
+              backdropFilter: 'blur(10px)',
+              border: '2px solid rgba(255, 255, 255, 0.2)',
+              color: 'white',
+              fontSize: '1.8rem',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              transition: 'all 0.3s ease',
+              zIndex: 10002
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'rgba(255, 0, 100, 0.3)';
+              e.currentTarget.style.borderColor = '#ff0066';
+              e.currentTarget.style.color = '#ff0066';
+              e.currentTarget.style.transform = 'rotate(90deg) scale(1.1)';
+              e.currentTarget.style.boxShadow = '0 0 30px rgba(255, 0, 100, 0.5)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
+              e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+              e.currentTarget.style.color = 'white';
+              e.currentTarget.style.transform = 'none';
+              e.currentTarget.style.boxShadow = 'none';
+            }}
+          >
+            ✕
+          </button>
+          
+          {/* Modal Content */}
+          <div
+            className="fullscreen-modal-content"
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              position: 'relative',
+              width: '95%',
+              height: '90vh',
+              maxWidth: '1600px',
+              display: 'grid',
+              gridTemplateColumns: '2fr 1fr',
+              gap: 0,
+              zIndex: 10001,
+              background: 'linear-gradient(135deg, rgba(10, 10, 30, 0.95), rgba(20, 10, 40, 0.95))',
+              border: '2px solid var(--primary-neon)',
+              borderRadius: '20px',
+              overflow: 'hidden',
+              boxShadow: '0 0 60px rgba(0, 255, 255, 0.4)',
+              animation: 'slideUp 0.3s ease'
+            }}
+          >
+            {/* Left Side: Video Display */}
+            <div className="fullscreen-modal-image-section" style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              background: '#000',
+              padding: '20px',
+              position: 'relative',
+              overflow: 'hidden'
+            }}>
+              <video 
+                controls 
+                autoPlay 
+                loop
+                style={{
+                  maxWidth: '100%',
+                  maxHeight: '100%',
+                  width: 'auto',
+                  height: 'auto',
+                  borderRadius: '10px',
+                  boxShadow: '0 0 50px rgba(0, 255, 255, 0.3)'
+                }}
+              >
+                <source src={selectedVideo.video} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            
+            {/* Right Side: Information */}
+            <div className="fullscreen-modal-info-section" style={{
+              background: 'linear-gradient(135deg, rgba(15, 15, 40, 0.98), rgba(25, 15, 50, 0.98))',
+              borderLeft: '2px solid rgba(0, 255, 255, 0.3)',
+              display: 'flex',
+              flexDirection: 'column',
+              overflowY: 'auto',
+              scrollbarWidth: 'thin',
+              scrollbarColor: 'var(--primary-neon) transparent'
+            }}>
+              <div className="fullscreen-modal-info-content" style={{
+                padding: '40px 30px',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '30px'
+              }}>
+                {/* Title */}
+                <h3 style={{
+                  fontFamily: "'Orbitron', monospace",
+                  fontSize: '1.5rem',
+                  color: 'var(--primary-neon)',
+                  margin: '0 0 20px 0',
+                  textShadow: '0 0 20px var(--shadow-cyan)',
+                  paddingBottom: '20px',
+                  borderBottom: '2px solid rgba(0, 255, 255, 0.2)'
+                }}>
+                  Generation Details
+                </h3>
+                
+                {/* Model */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                  <span style={{
+                    fontFamily: "'Orbitron', monospace",
+                    fontSize: '0.85rem',
+                    color: 'var(--secondary-neon)',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.1em',
+                    fontWeight: 600
+                  }}>
+                    Model
+                  </span>
+                  <span style={{
+                    fontSize: '1.1rem',
+                    color: 'var(--text-light)',
+                    lineHeight: 1.6
+                  }}>
+                    {selectedVideo.model}
+                  </span>
+                </div>
+                
+                {/* Prompt */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                  <span style={{
+                    fontFamily: "'Orbitron', monospace",
+                    fontSize: '0.85rem',
+                    color: 'var(--secondary-neon)',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.1em',
+                    fontWeight: 600
+                  }}>
+                    Prompt
+                  </span>
+                  <p style={{
+                    fontSize: '1.1rem',
+                    color: 'var(--text-light)',
+                    lineHeight: 1.6,
+                    wordBreak: 'break-word',
+                    margin: 0
+                  }}>
+                    {selectedVideo.prompt}
+                  </p>
+                </div>
+                
+                {/* Generated */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                  <span style={{
+                    fontFamily: "'Orbitron', monospace",
+                    fontSize: '0.85rem',
+                    color: 'var(--secondary-neon)',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.1em',
+                    fontWeight: 600
+                  }}>
+                    Generated
+                  </span>
+                  <span style={{
+                    fontSize: '1.1rem',
+                    color: 'var(--text-light)',
+                    lineHeight: 1.6
+                  }}>
+                    {selectedVideo.time}
+                  </span>
+                </div>
+                
+                {/* Action Buttons */}
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '12px',
+                  marginTop: '20px',
+                  paddingTop: '30px',
+                  borderTop: '2px solid rgba(0, 255, 255, 0.2)'
+                }}>
+                  <button
+                    onClick={() => {
+                      alert('Download feature');
+                    }}
+                    style={{
+                      fontFamily: "'Orbitron', monospace",
+                      fontWeight: 600,
+                      padding: '15px 20px',
+                      background: 'rgba(0, 255, 255, 0.1)',
+                      border: '2px solid var(--primary-neon)',
+                      borderRadius: '12px',
+                      color: 'var(--primary-neon)',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '12px',
+                      fontSize: '0.95rem'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'var(--primary-neon)';
+                      e.currentTarget.style.color = '#000';
+                      e.currentTarget.style.boxShadow = '0 0 25px var(--primary-neon)';
+                      e.currentTarget.style.transform = 'translateX(5px)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = 'rgba(0, 255, 255, 0.1)';
+                      e.currentTarget.style.color = 'var(--primary-neon)';
+                      e.currentTarget.style.boxShadow = 'none';
+                      e.currentTarget.style.transform = 'none';
+                    }}
+                  >
+                    <span style={{ fontSize: '1.3rem' }}>📥</span>
+                    <span>Download</span>
+                  </button>
+                  
+                  <button
+                    onClick={() => {
+                      navigator.clipboard.writeText(selectedVideo.prompt);
+                      alert('Prompt copied to clipboard!');
+                    }}
+                    style={{
+                      fontFamily: "'Orbitron', monospace",
+                      fontWeight: 600,
+                      padding: '15px 20px',
+                      background: 'rgba(0, 255, 255, 0.1)',
+                      border: '2px solid var(--primary-neon)',
+                      borderRadius: '12px',
+                      color: 'var(--primary-neon)',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '12px',
+                      fontSize: '0.95rem'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'var(--primary-neon)';
+                      e.currentTarget.style.color = '#000';
+                      e.currentTarget.style.boxShadow = '0 0 25px var(--primary-neon)';
+                      e.currentTarget.style.transform = 'translateX(5px)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = 'rgba(0, 255, 255, 0.1)';
+                      e.currentTarget.style.color = 'var(--primary-neon)';
+                      e.currentTarget.style.boxShadow = 'none';
+                      e.currentTarget.style.transform = 'none';
+                    }}
+                  >
+                    <span style={{ fontSize: '1.3rem' }}>📋</span>
+                    <span>Copy Prompt</span>
+                  </button>
+                  
+                  <button
+                    onClick={() => {
+                      if (confirm('Are you sure you want to delete this video?')) {
+                        alert('Delete feature');
+                        setSelectedVideo(null);
+                      }
+                    }}
+                    style={{
+                      fontFamily: "'Orbitron', monospace",
+                      fontWeight: 600,
+                      padding: '15px 20px',
+                      background: 'rgba(255, 0, 100, 0.1)',
+                      border: '2px solid #ff0066',
+                      borderRadius: '12px',
+                      color: '#ff0066',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '12px',
+                      fontSize: '0.95rem'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = '#ff0066';
+                      e.currentTarget.style.color = 'white';
+                      e.currentTarget.style.boxShadow = '0 0 25px rgba(255, 0, 100, 0.6)';
+                      e.currentTarget.style.transform = 'translateX(5px)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = 'rgba(255, 0, 100, 0.1)';
+                      e.currentTarget.style.color = '#ff0066';
+                      e.currentTarget.style.boxShadow = 'none';
+                      e.currentTarget.style.transform = 'none';
+                    }}
+                  >
+                    <span style={{ fontSize: '1.3rem' }}>🗑️</span>
+                    <span>Delete</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
