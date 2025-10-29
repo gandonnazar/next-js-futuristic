@@ -77,6 +77,7 @@ const IMAGE_MODEL_COSTS: Record<string, number> = {
 
 export default function ImagePage() {
   const [selectedModel, setSelectedModel] = useState('seedream-4');
+  const [selectedAspectRatio, setSelectedAspectRatio] = useState('portrait');
   const [prompt, setPrompt] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
   const [credits, setCredits] = useState(12000);
@@ -152,6 +153,40 @@ export default function ImagePage() {
           <div className={styles.imageGenLayout}>
             {/* Left Column: Generation Controls */}
             <div className={styles.generationControls}>
+              {/* Aspect Ratio Selector */}
+              <div className={styles.aspectRatioSection}>
+                <div className={styles.aspectRatioGrid}>
+                  <div
+                    className={`${styles.aspectRatioCard} ${selectedAspectRatio === 'portrait' ? styles.aspectRatioActive : ''}`}
+                    onClick={() => setSelectedAspectRatio('portrait')}
+                  >
+                    <div className={styles.aspectRatioIcon}>9:16</div>
+                    <div className={styles.aspectRatioLabel}>Portrait</div>
+                  </div>
+                  <div
+                    className={`${styles.aspectRatioCard} ${selectedAspectRatio === 'square' ? styles.aspectRatioActive : ''}`}
+                    onClick={() => setSelectedAspectRatio('square')}
+                  >
+                    <div className={styles.aspectRatioIcon}>1:1</div>
+                    <div className={styles.aspectRatioLabel}>Square</div>
+                  </div>
+                  <div
+                    className={`${styles.aspectRatioCard} ${selectedAspectRatio === 'landscape' ? styles.aspectRatioActive : ''}`}
+                    onClick={() => setSelectedAspectRatio('landscape')}
+                  >
+                    <div className={styles.aspectRatioIcon}>16:9</div>
+                    <div className={styles.aspectRatioLabel}>Landscape</div>
+                  </div>
+                  <div
+                    className={`${styles.aspectRatioCard} ${selectedAspectRatio === 'classic' ? styles.aspectRatioActive : ''}`}
+                    onClick={() => setSelectedAspectRatio('classic')}
+                  >
+                    <div className={styles.aspectRatioIcon}>4:3</div>
+                    <div className={styles.aspectRatioLabel}>Classic</div>
+                  </div>
+                </div>
+              </div>
+
               {/* Prompt Input */}
               <h3 style={{ color: 'var(--primary-neon)', marginTop: '40px', marginBottom: '20px', fontSize: '1.3rem' }}>
                 Neural Prompt Interface

@@ -86,6 +86,68 @@
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
+/* Aspect Ratio Selector */
+.aspectRatioSection {
+  margin-top: 40px;
+  margin-bottom: 0;
+}
+
+.aspectRatioGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.aspectRatioCard {
+  background: rgba(100, 100, 100, 0.3);
+  border: 2px solid rgba(100, 100, 100, 0.5);
+  border-radius: 12px;
+  padding: 20px 15px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.aspectRatioCard:hover {
+  background: rgba(100, 100, 100, 0.4);
+  border-color: rgba(0, 255, 255, 0.5);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.aspectRatioCard.aspectRatioActive {
+  background: rgba(0, 255, 255, 0.15);
+  border-color: var(--primary-neon);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.4);
+}
+
+.aspectRatioIcon {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-light);
+  font-family: 'Rajdhani', sans-serif;
+}
+
+.aspectRatioCard.aspectRatioActive .aspectRatioIcon {
+  color: var(--primary-neon);
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.aspectRatioLabel {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-light);
+  font-family: 'Rajdhani', sans-serif;
+}
+
+.aspectRatioCard.aspectRatioActive .aspectRatioLabel {
+  color: var(--primary-neon);
+}
+
 /* Prompt Interface */
 .promptContainer {
   position: relative;
@@ -388,6 +450,23 @@
 @media (max-width: 768px) {
   .modelsGridHorizontal {
     grid-template-columns: repeat(4, 1fr);
+  }
+
+  .aspectRatioGrid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+
+  .aspectRatioCard {
+    padding: 15px 10px;
+  }
+
+  .aspectRatioIcon {
+    font-size: 1.1rem;
+  }
+
+  .aspectRatioLabel {
+    font-size: 0.9rem;
   }
 
   .dimensionInfo span {
