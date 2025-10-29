@@ -12,9 +12,13 @@ export default function ProfilePage() {
   return (
     <div className={styles.profilePage}>
       <div className={styles.container}>
-        <div className={styles.pageHeader}>
-          <h1>Operator Control Interface</h1>
-          <p>Manage your account, view your payments, and track your AI journey</p>
+        <div className="text-center mb-5">
+          <h1 style={{ fontSize: '2.5rem', color: 'var(--primary-neon)', textShadow: '0 0 30px var(--shadow-cyan)', marginBottom: '20px' }}>
+            Operator Control Interface
+          </h1>
+          <p style={{ fontSize: '1.2rem', color: 'var(--text-light)', maxWidth: '800px', margin: '0 auto' }}>
+            Manage your account, view your payments, and track your AI journey
+          </p>
         </div>
         <div className={styles.profileCardsGrid}>
           <div className={styles.profileCard}>

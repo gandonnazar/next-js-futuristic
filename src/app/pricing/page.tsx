@@ -50,9 +50,13 @@ export default function PricingPage() {
   return (
     <div className={styles.pricingPage}>
       <div className={styles.container}>
-        <div className={styles.pageHeader}>
-          <h1>Power Up Your Creativity</h1>
-          <p>One-Time Credit Packs, Unlimited Possibilities</p>
+        <div className="text-center mb-5">
+          <h1 style={{ fontSize: '2.5rem', color: 'var(--primary-neon)', textShadow: '0 0 30px var(--shadow-cyan)', marginBottom: '20px' }}>
+            Power Up Your Creativity
+          </h1>
+          <p style={{ fontSize: '1.2rem', color: 'var(--text-light)', maxWidth: '600px', margin: '0 auto' }}>
+            One-Time Credit Packs, Unlimited Possibilities
+          </p>
         </div>
 
         <div className={styles.pricingGrid}>
@@ -89,9 +93,13 @@ export default function PricingPage() {
         </div>
 
         <div className={styles.calculatorSection}>
-          <div className={styles.pageHeader}>
-            <h1>Generation Costs Calculator</h1>
-            <p>See exactly how many generations you can create with each plan based on actual model costs</p>
+          <div className="text-center mb-5">
+            <h1 style={{ fontSize: '2.5rem', color: 'var(--primary-neon)', textShadow: '0 0 30px var(--shadow-cyan)', marginBottom: '20px' }}>
+              Generation Costs Calculator
+            </h1>
+            <p style={{ fontSize: '1.2rem', color: 'var(--text-light)', maxWidth: '800px', margin: '0 auto' }}>
+              See exactly how many generations you can create with each plan based on actual model costs
+            </p>
           </div>
 
           <div className={styles.calculatorPlanSelector}>
