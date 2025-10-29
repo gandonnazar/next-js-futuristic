@@ -63,6 +63,25 @@ const RECENT_GENERATIONS = [
   },
 ];
 
+const IMAGE_MODEL_COSTS: Record<string, number> = {
+  'seedream-4': 10,
+  'imagineart-1': 15,
+  'neonlights-retro': 8,
+  'nano-banana': 24,
+  'hunyuan-image-3': 8,
+  'wan-2': 6,
+  'minimax-image-01': 5,
+  'leonardo-phoenix': 24,
+  'flux-dev': 8,
+  'flux-pro-ultra': 24,
+  'flux-kontext': 30,
+  'ideogram-v3': 32,
+  'google-imagen-4': 24,
+  'google-imagen-4-ultra': 48,
+  'luma-photon': 10,
+  'recraft-v3': 13
+};
+
 export default function ImagePage() {
   const [selectedModel, setSelectedModel] = useState('seedream-4');
   const [selectedDimension, setSelectedDimension] = useState('square');
@@ -72,6 +91,8 @@ export default function ImagePage() {
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
   const [referenceImages, setReferenceImages] = useState<string[]>([]);
   const [selectedImage, setSelectedImage] = useState<typeof RECENT_GENERATIONS[0] | null>(null);
+
+  const currentModelCost = IMAGE_MODEL_COSTS[selectedModel] || 10;
 
   const handleGenerate = () => {
     if (!prompt.trim()) {
@@ -83,7 +104,7 @@ export default function ImagePage() {
     setIsGenerating(true);
     setTimeout(() => {
       setIsGenerating(false);
-      setCredits(prev => prev - 10);
+      setCredits(prev => prev - currentModelCost);
       alert(`Image generation simulated${referenceImages.length > 0 ? ` with ${referenceImages.length} reference images` : ''}!`);
     }, 3000);
   };
@@ -229,7 +250,7 @@ export default function ImagePage() {
                     <span>⚡ Generating...</span>
                   ) : (
                     <span>
-                      🚀 Generate <span style={{ color: '#ff4444', fontSize: '0.85em', marginLeft: '5px' }}>-10</span>
+                      🚀 Generate <span style={{ color: '#ff4444', fontSize: '0.85em', marginLeft: '5px' }}>-{currentModelCost}</span>
                     </span>
                   )}
                 </button>

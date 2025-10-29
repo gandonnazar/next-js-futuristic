@@ -304,12 +304,13 @@
 
 .generateBtn {
   flex: 2;
-  padding: 18px 50px;
-  font-size: 1.2rem;
+  padding: 18px 40px;
+  font-size: 1.1rem;
   font-weight: 700;
-  min-width: 200px;
+  min-width: 220px;
   position: relative;
   overflow: hidden;
+  white-space: nowrap;
 }
 
 .generateBtn::before {

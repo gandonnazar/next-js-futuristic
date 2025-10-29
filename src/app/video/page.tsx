@@ -11,12 +11,12 @@ const VIDEO_MODELS = [
   { id: 'kling-master-v2', name: 'Kling Master V2', image: getAssetPath('/assets/kling-master-v2.png') },
   { id: 'kling-2.5-turbo-pro', name: 'Kling 2.5 Turbo Pro', image: getAssetPath('/assets/kling-2.5-turbo-pro.jpg') },
   { id: 'minimax-helios-2', name: 'Minimax Helios 2', image: getAssetPath('/assets/minimax-helios-2.png') },
+  { id: 'minimax-hailuo-2.3', name: 'Minimax Hailuo 2.3', image: getAssetPath('/assets/minimax-hailuo-2.3.jpg') },
   { id: 'sora-2', name: 'Sora 2', image: getAssetPath('/assets/sora-2.jpg') },
   { id: 'sora-2-pro', name: 'Sora 2 Pro', image: getAssetPath('/assets/sora-2-pro.jpg') },
   { id: 'sora-2-pro-max', name: 'Sora 2 Pro Max', image: getAssetPath('/assets/sora-2-pro-max.jpg') },
   { id: 'veo-3.1', name: 'Veo 3.1', image: getAssetPath('/assets/veo-3.1.jpg') },
   { id: 'veo-3.1-fast', name: 'Veo 3.1 Fast', image: getAssetPath('/assets/veo-3.1-fast.jpg') },
-  { id: 'coming-soon', name: 'Coming Soon', image: getAssetPath('/assets/128x128.png'), disabled: true },
 ];
 
 const DIMENSIONS = [
@@ -26,13 +26,58 @@ const DIMENSIONS = [
   { id: 'classic', ratio: '4:3', size: '1536x1152', class: 'classic' },
 ];
 
-const DURATIONS = [
-  { value: '3', label: '3 seconds', cost: 10 },
-  { value: '5', label: '5 seconds', cost: 15 },
-  { value: '8', label: '8 seconds', cost: 20 },
-  { value: '10', label: '10 seconds', cost: 25 },
-  { value: '12', label: '12 seconds', cost: 30 },
-];
+interface VideoDuration {
+  duration: number;
+  label: string;
+  time: string;
+  credits: number;
+}
+
+const VIDEO_MODEL_DURATIONS: Record<string, VideoDuration[]> = {
+  'pixverse-v5': [
+    { duration: 5, label: 'Short', time: '5s', credits: 200 },
+    { duration: 8, label: 'Medium', time: '8s', credits: 320 }
+  ],
+  'kling-master-v2': [
+    { duration: 5, label: 'Short', time: '5s', credits: 320 },
+    { duration: 10, label: 'Long', time: '10s', credits: 640 }
+  ],
+  'kling-2.5-turbo-pro': [
+    { duration: 5, label: 'Short', time: '5s', credits: 90 },
+    { duration: 10, label: 'Long', time: '10s', credits: 180 }
+  ],
+  'minimax-helios-2': [
+    { duration: 6, label: 'Short', time: '6s', credits: 68 },
+    { duration: 10, label: 'Long', time: '10s', credits: 112 }
+  ],
+  'sora-2': [
+    { duration: 4, label: 'Short', time: '4s', credits: 100 },
+    { duration: 8, label: 'Medium', time: '8s', credits: 200 },
+    { duration: 12, label: 'Long', time: '12s', credits: 300 }
+  ],
+  'sora-2-pro': [
+    { duration: 4, label: 'Short', time: '4s', credits: 300 },
+    { duration: 8, label: 'Medium', time: '8s', credits: 600 },
+    { duration: 12, label: 'Long', time: '12s', credits: 900 }
+  ],
+  'sora-2-pro-max': [
+    { duration: 4, label: 'Short', time: '4s', credits: 500 },
+    { duration: 8, label: 'Medium', time: '8s', credits: 1000 },
+    { duration: 12, label: 'Long', time: '12s', credits: 1500 }
+  ],
+  'veo-3.1': [
+    { duration: 4, label: 'Short', time: '4s', credits: 450 },
+    { duration: 8, label: 'Medium', time: '8s', credits: 900 }
+  ],
+  'veo-3.1-fast': [
+    { duration: 4, label: 'Short', time: '4s', credits: 225 },
+    { duration: 8, label: 'Medium', time: '8s', credits: 450 }
+  ],
+  'minimax-hailuo-2.3': [
+    { duration: 6, label: 'Short', time: '6s', credits: 130 },
+    { duration: 10, label: 'Long', time: '10s', credits: 220 }
+  ]
+};
 
 const RECENT_VIDEOS = [
   {
@@ -68,7 +113,7 @@ const RECENT_VIDEOS = [
 export default function VideoPage() {
   const [selectedModel, setSelectedModel] = useState('pixverse-v5');
   const [selectedDimension, setSelectedDimension] = useState('square');
-  const [selectedDuration, setSelectedDuration] = useState('5');
+  const [selectedDuration, setSelectedDuration] = useState(5);
   const [prompt, setPrompt] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
   const [credits, setCredits] = useState(12000);
@@ -76,7 +121,18 @@ export default function VideoPage() {
   const [referenceImages, setReferenceImages] = useState<string[]>([]);
   const [selectedVideo, setSelectedVideo] = useState<typeof RECENT_VIDEOS[0] | null>(null);
 
-  const currentDuration = DURATIONS.find(d => d.value === selectedDuration);
+  // Get available durations for selected model
+  const availableDurations = VIDEO_MODEL_DURATIONS[selectedModel] || VIDEO_MODEL_DURATIONS['pixverse-v5'];
+  
+  // Get current duration details
+  const currentDurationDetails = availableDurations.find(d => d.duration === selectedDuration) || availableDurations[0];
+
+  // Update selected duration when model changes
+  const handleModelChange = (modelId: string) => {
+    setSelectedModel(modelId);
+    const newAvailableDurations = VIDEO_MODEL_DURATIONS[modelId] || VIDEO_MODEL_DURATIONS['pixverse-v5'];
+    setSelectedDuration(newAvailableDurations[0].duration);
+  };
 
   const handleGenerate = () => {
     if (!prompt.trim()) {
@@ -88,7 +144,7 @@ export default function VideoPage() {
     setIsGenerating(true);
     setTimeout(() => {
       setIsGenerating(false);
-      setCredits(prev => prev - (currentDuration?.cost || 15));
+      setCredits(prev => prev - currentDurationDetails.credits);
       alert(`Video generation simulated${referenceImages.length > 0 ? ` with ${referenceImages.length} reference images` : ''}!`);
     }, 4000);
   };
@@ -122,8 +178,8 @@ export default function VideoPage() {
               {VIDEO_MODELS.map((model) => (
                 <div
                   key={model.id}
-                  className={`${styles.modelCard} ${selectedModel === model.id ? styles.active : ''} ${model.disabled ? styles.disabled : ''}`}
-                  onClick={() => !model.disabled && setSelectedModel(model.id)}
+                  className={`${styles.modelCard} ${selectedModel === model.id ? styles.active : ''}`}
+                  onClick={() => handleModelChange(model.id)}
                 >
                   <Image
                     src={model.image}
@@ -173,12 +229,12 @@ export default function VideoPage() {
                 <select
                   className={styles.durationDropdown}
                   value={selectedDuration}
-                  onChange={(e) => setSelectedDuration(e.target.value)}
+                  onChange={(e) => setSelectedDuration(Number(e.target.value))}
                   disabled={isGenerating}
                 >
-                  {DURATIONS.map((duration) => (
-                    <option key={duration.value} value={duration.value}>
-                      {duration.label} (-{duration.cost} credits)
+                  {availableDurations.map((duration) => (
+                    <option key={duration.duration} value={duration.duration}>
+                      {duration.label} ({duration.time}) - {duration.credits} credits
                     </option>
                   ))}
                 </select>
@@ -259,7 +315,7 @@ export default function VideoPage() {
                     <span>⚡ Rendering...</span>
                   ) : (
                     <span>
-                      🚀 Render <span style={{ color: '#ff4444', fontSize: '0.85em', marginLeft: '5px' }}>-{currentDuration?.cost}</span>
+                      🚀 Render <span style={{ color: '#ff4444', fontSize: '0.85em', marginLeft: '5px' }}>-{currentDurationDetails.credits}</span>
                     </span>
                   )}
                 </button>

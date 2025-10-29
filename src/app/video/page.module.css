@@ -156,14 +156,16 @@
 /* Duration Dropdown */
 .durationDropdown {
   width: 100%;
-  padding: 15px 20px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 2px solid rgba(0, 255, 255, 0.3);
-  border-radius: 12px;
-  color: var(--text-light);
-  font-size: 1rem;
-  font-weight: 600;
+  padding: 12px 30px;
   font-family: 'Rajdhani', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--primary-neon);
+  background: var(--bg-glass);
+  border: 2px solid rgba(0, 255, 255, 0.5);
+  border-radius: 12px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   cursor: pointer;
   transition: all 0.3s ease;
   outline: none;
@@ -175,14 +177,19 @@
 }
 
 .durationDropdown:hover {
-  background: rgba(0, 255, 255, 0.1);
-  border-color: var(--primary-neon);
-  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+  border-color: rgba(0, 255, 255, 0.8);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
 }
 
 .durationDropdown:focus {
   border-color: var(--primary-neon);
   box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+.durationDropdown option {
+  background: #1a1a2e;
+  color: var(--primary-neon);
+  padding: 10px;
 }
 
 /* Prompt Interface */
@@ -347,12 +354,13 @@
 
 .generateBtn {
   flex: 2;
-  padding: 18px 50px;
-  font-size: 1.2rem;
+  padding: 18px 35px;
+  font-size: 1.05rem;
   font-weight: 700;
-  min-width: 200px;
+  min-width: 240px;
   position: relative;
   overflow: hidden;
+  white-space: nowrap;
 }
 
 .generateBtn::before {
@@ -503,7 +511,36 @@
   }
 
   .dimensionSelectorVertical {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+
+  .dimensionOption {
+    padding: 10px 8px;
+  }
+
+  .ratioPreview.square {
+    width: 20px;
+    height: 20px;
+  }
+
+  .ratioPreview.landscape {
+    width: 28px;
+    height: 16px;
+  }
+
+  .ratioPreview.portrait {
+    width: 14px;
+    height: 24px;
+  }
+
+  .ratioPreview.classic {
+    width: 26px;
+    height: 20px;
+  }
+
+  .dimensionInfo span {
+    font-size: 0.75rem;
   }
 
   .promptInput {

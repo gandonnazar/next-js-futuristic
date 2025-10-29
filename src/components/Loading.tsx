@@ -1,18 +1,28 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import styles from './Loading.module.css';
 
+let hasShownLoading = false;
+
 export default function Loading() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const mountedRef = useRef(false);
 
   useEffect(() => {
-    // Hide loading screen after a short delay
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1500);
+    // Only show loading on hard refresh/initial load, not on client-side navigation
+    if (!mountedRef.current && !hasShownLoading) {
+      mountedRef.current = true;
+      hasShownLoading = true;
+      setIsLoading(true);
+      
+      // Hide loading screen after a short delay
+      const timer = setTimeout(() => {
+        setIsLoading(false);
+      }, 1500);
 
-    return () => clearTimeout(timer);
+      return () => clearTimeout(timer);
+    }
   }, []);
 
   if (!isLoading) return null;

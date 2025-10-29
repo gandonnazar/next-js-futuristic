@@ -75,7 +75,7 @@
   top: 15px;
   left: 15px;
   border-top-color: #ff00ff;
-  animation-duration: 0.75s;
+  animation-duration: 0.5s;
   animation-direction: reverse;
 }
 
@@ -85,7 +85,7 @@
   top: 30px;
   left: 30px;
   border-top-color: #8a2be2;
-  animation-duration: 0.5s;
+  animation-duration: 0.25s;
 }
 
 @keyframes spin {

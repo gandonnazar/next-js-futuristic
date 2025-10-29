@@ -426,6 +426,10 @@
 }
 
 @media screen and (max-width: 768px) {
+  .pricingPage {
+    padding: 140px 20px 80px;
+  }
+
   .pageHeader h1 {
     font-size: 2.2rem;
   }
