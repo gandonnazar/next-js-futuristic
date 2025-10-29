@@ -222,7 +222,7 @@ export default function VideoPage() {
 
               {/* Video Duration Selector */}
               <h3 style={{ color: 'var(--primary-neon)', marginTop: '40px', marginBottom: '20px', fontSize: '1.3rem' }}>
-                ⏱️ Video Duration
+                Video Duration
               </h3>
               <div className="mb-4">
                 <select
