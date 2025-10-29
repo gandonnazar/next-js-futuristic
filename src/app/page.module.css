@@ -19,6 +19,28 @@
   line-height: 1.6;
 }
 
+.typewriterTitle {
+  position: relative;
+  display: inline-block;
+  min-height: 1.2em;
+}
+
+.cursor {
+  display: inline-block;
+  color: var(--primary-neon);
+  animation: cursorBlink 1s infinite;
+  margin-left: 2px;
+}
+
+@keyframes cursorBlink {
+  0%, 49% {
+    opacity: 1;
+  }
+  50%, 100% {
+    opacity: 0;
+  }
+}
+
 .commandTitle {
   font-size: 2rem;
   color: var(--primary-neon);

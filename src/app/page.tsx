@@ -4,10 +4,18 @@ import Link from 'next/link';
 import { useEffect, useRef } from 'react';
 import styles from './page.module.css';
 import { getAssetPath } from '@/lib/utils';
+import { useTypewriter } from '@/hooks/useTypewriter';
 
 export default function Home() {
   const parallaxRef = useRef<HTMLDivElement>(null);
   const ticking = useRef(false);
+  
+  // Typewriter effect using custom hook
+  const { displayText: displayedText, cursorOpacity } = useTypewriter({
+    text: 'NEONLIGHTS AI',
+    speed: 100,
+    delay: 500
+  });
 
   useEffect(() => {
     // Parallax effect on mouse move
@@ -109,7 +117,10 @@ export default function Home() {
       <section className={styles.heroSection}>
         <div className="container">
           <div className="text-center">
-            <h1 className="hero-title mb-3">NEONLIGHTS AI</h1>
+            <h1 className={`hero-title mb-3 ${styles.typewriterTitle}`}>
+              {displayedText}
+              <span className={styles.cursor} style={{ opacity: cursorOpacity }}>|</span>
+            </h1>
             <p className={styles.heroSubtitle}>
               Generate the Future.
             </p>
