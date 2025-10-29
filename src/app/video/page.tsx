@@ -112,7 +112,7 @@ export default function VideoPage() {
 
         {/* Video Models Panel */}
         <section className="section" style={{ paddingTop: 0, paddingBottom: '30px' }}>
-          <h3 style={{ color: 'var(--primary-neon)', marginBottom: '20px', fontSize: '1.3rem' }}>
+          <h3 style={{ color: 'var(--primary-neon)', marginTop: '40px', marginBottom: '20px', fontSize: '1.3rem' }}>
             Video Models Panel
           </h3>
           <div className="mb-4">
@@ -143,7 +143,7 @@ export default function VideoPage() {
             {/* Left Column: Generation Controls */}
             <div className={styles.generationControls}>
               {/* Dimensional Matrix Panel */}
-              <h3 style={{ color: 'var(--primary-neon)', marginBottom: '20px', fontSize: '1.3rem' }}>
+              <h3 style={{ color: 'var(--primary-neon)', marginTop: '40px', marginBottom: '20px', fontSize: '1.3rem' }}>
                 Dimensional Matrix
               </h3>
               <div className="mb-4">
@@ -164,7 +164,7 @@ export default function VideoPage() {
               </div>
 
               {/* Video Duration Selector */}
-              <h3 style={{ color: 'var(--primary-neon)', marginBottom: '20px', fontSize: '1.3rem' }}>
+              <h3 style={{ color: 'var(--primary-neon)', marginTop: '40px', marginBottom: '20px', fontSize: '1.3rem' }}>
                 ⏱️ Video Duration
               </h3>
               <div className="mb-4">
@@ -183,7 +183,7 @@ export default function VideoPage() {
               </div>
 
               {/* Prompt Input */}
-              <h3 style={{ color: 'var(--primary-neon)', marginBottom: '20px', fontSize: '1.3rem' }}>
+              <h3 style={{ color: 'var(--primary-neon)', marginTop: '40px', marginBottom: '20px', fontSize: '1.3rem' }}>
                 Neural Prompt Interface
               </h3>
               <div className="mb-4">
@@ -266,7 +266,7 @@ export default function VideoPage() {
 
             {/* Right Column: Recent Generations */}
             <div className={styles.recentGenerations}>
-              <h3 style={{ color: 'var(--primary-neon)', marginBottom: '20px', fontSize: '1.3rem' }}>
+              <h3 style={{ color: 'var(--primary-neon)', marginTop: '40px', marginBottom: '20px', fontSize: '1.3rem' }}>
                 Recent Generations
               </h3>
               <div>

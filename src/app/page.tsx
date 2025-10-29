@@ -5,7 +5,8 @@ import { useEffect, useRef } from 'react';
 import styles from './page.module.css';
 
 export default function Home() {
-  const parallaxRef = useRef<HTMLElement>(null);
+  const parallaxRef = useRef<HTMLDivElement>(null);
+  const ticking = useRef(false);
 
   useEffect(() => {
     // Parallax effect on mouse move
@@ -27,25 +28,36 @@ export default function Home() {
       });
     };
 
-    // Scroll-based parallax for background image
+    // Parallax scroll effect with requestAnimationFrame
     const handleScroll = () => {
-      if (parallaxRef.current) {
-        const scrolled = window.pageYOffset;
-        const parallaxElement = parallaxRef.current;
-        const rect = parallaxElement.getBoundingClientRect();
-        const elementTop = rect.top + scrolled;
-        const elementHeight = rect.height;
-        
-        // Calculate parallax offset
-        if (scrolled + window.innerHeight > elementTop && scrolled < elementTop + elementHeight) {
-          const yPos = -(scrolled - elementTop) * 0.5;
-          parallaxElement.style.backgroundPosition = `center ${yPos}px`;
-        }
+      if (!ticking.current) {
+        window.requestAnimationFrame(() => {
+          const parallax = parallaxRef.current;
+          if (!parallax) {
+            ticking.current = false;
+            return;
+          }
+
+          const scrolled = window.pageYOffset;
+          const parallaxOffset = parallax.offsetTop;
+          const parallaxHeight = parallax.offsetHeight;
+
+          // Only apply parallax when section is in view
+          if (scrolled + window.innerHeight > parallaxOffset && 
+              scrolled < parallaxOffset + parallaxHeight) {
+            const yPos = -(scrolled - parallaxOffset) * 0.3;
+            parallax.style.backgroundPosition = `center ${yPos}px`;
+          }
+
+          ticking.current = false;
+        });
+
+        ticking.current = true;
       }
     };
     
     document.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll(); // Initial call
     
     return () => {
@@ -110,7 +122,11 @@ export default function Home() {
       </div>
 
       {/* Parallax Section */}
-      <section ref={parallaxRef} className={styles.parallaxSection}></section>
+      <section ref={parallaxRef} className={styles.parallaxSection}>
+        <div className={styles.parallaxContent}>
+          {/* Optional content can go here */}
+        </div>
+      </section>
 
       {/* Features Section */}
       <section className="section">
