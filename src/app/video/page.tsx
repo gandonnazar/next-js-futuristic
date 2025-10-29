@@ -379,6 +379,19 @@ export default function VideoPage() {
                 </p>
               </div>
             </div>
+
+            {/* NSFW Warning */}
+            <div className={styles.warningSection}>
+              <div className={styles.warningContent}>
+                <div className={styles.warningIcon}>⚠️</div>
+                <div className={styles.warningText}>
+                  <h4 className={styles.warningTitle}>Important: NSFW Content Policy</h4>
+                  <p className={styles.warningMessage}>
+                    If your generation fails due to NSFW content, credits will <strong>not be refunded</strong>.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
       </div>
