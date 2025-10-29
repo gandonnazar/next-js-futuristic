@@ -8,6 +8,14 @@ import '../styles/globals.css';
 export const metadata: Metadata = {
   title: 'Neonlights.ai - Command the Power of AI Creation',
   description: 'Generate the Future with AI-powered image and video generation',
+  icons: {
+    icon: [
+      {
+        url: '/favicon.ico',
+        sizes: 'any',
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
@@ -16,8 +24,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body>
+    <html lang="en" suppressHydrationWarning>
+      <body suppressHydrationWarning>
         <Loading />
         <Starfield />
         <Navbar />
