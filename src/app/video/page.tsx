@@ -19,13 +19,6 @@ const VIDEO_MODELS = [
   { id: 'veo-3.1-fast', name: 'Veo 3.1 Fast', image: getAssetPath('/assets/veo-3.1-fast.jpg') },
 ];
 
-const DIMENSIONS = [
-  { id: 'portrait', ratio: '9:16', size: '1080x1920', class: 'portrait' },
-  { id: 'landscape', ratio: '16:9', size: '1920x1080', class: 'landscape' },
-  { id: 'square', ratio: '1:1', size: '1024x1024', class: 'square' },
-  { id: 'classic', ratio: '4:3', size: '1536x1152', class: 'classic' },
-];
-
 interface VideoDuration {
   duration: number;
   label: string;
@@ -112,7 +105,6 @@ const RECENT_VIDEOS = [
 
 export default function VideoPage() {
   const [selectedModel, setSelectedModel] = useState('pixverse-v5');
-  const [selectedDimension, setSelectedDimension] = useState('portrait');
   const [selectedDuration, setSelectedDuration] = useState<number>(5);
   const [prompt, setPrompt] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
@@ -219,27 +211,6 @@ export default function VideoPage() {
           <div className={styles.videoGenLayout}>
             {/* Left Column: Generation Controls */}
             <div className={styles.generationControls}>
-              {/* Dimensional Matrix Panel */}
-              <h3 style={{ color: 'var(--primary-neon)', marginTop: '40px', marginBottom: '20px', fontSize: '1.3rem' }}>
-                Dimensional Matrix
-              </h3>
-              <div className="mb-4">
-                <div className={styles.dimensionSelectorVertical}>
-                  {DIMENSIONS.map((dim) => (
-                    <div
-                      key={dim.id}
-                      className={`${styles.dimensionOption} ${selectedDimension === dim.id ? styles.active : ''}`}
-                      onClick={() => setSelectedDimension(dim.id)}
-                    >
-                      <div className={`${styles.ratioPreview} ${styles[dim.class]}`}></div>
-                      <div className={styles.dimensionInfo}>
-                        <span>{dim.id.charAt(0).toUpperCase() + dim.id.slice(1)}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
               {/* Video Duration Selector */}
               <h3 style={{ color: 'var(--primary-neon)', marginTop: '40px', marginBottom: '20px', fontSize: '1.3rem' }}>
                 Video Duration

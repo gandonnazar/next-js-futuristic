@@ -25,13 +25,6 @@ const AI_MODELS = [
   { id: 'recraft-v3', name: 'Recraft V3', image: getAssetPath('/assets/recraft-v3.jpg') },
 ];
 
-const DIMENSIONS = [
-  { id: 'portrait', ratio: '9:16', size: '1080x1920', class: 'portrait' },
-  { id: 'landscape', ratio: '16:9', size: '1920x1080', class: 'landscape' },
-  { id: 'square', ratio: '1:1', size: '1024x1024', class: 'square' },
-  { id: 'classic', ratio: '4:3', size: '1536x1152', class: 'classic' },
-];
-
 const RECENT_GENERATIONS = [
   {
     id: 1,
@@ -84,7 +77,6 @@ const IMAGE_MODEL_COSTS: Record<string, number> = {
 
 export default function ImagePage() {
   const [selectedModel, setSelectedModel] = useState('seedream-4');
-  const [selectedDimension, setSelectedDimension] = useState('portrait');
   const [prompt, setPrompt] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
   const [credits, setCredits] = useState(12000);
@@ -160,27 +152,6 @@ export default function ImagePage() {
           <div className={styles.imageGenLayout}>
             {/* Left Column: Generation Controls */}
             <div className={styles.generationControls}>
-              {/* Dimensional Matrix Panel */}
-              <h3 style={{ color: 'var(--primary-neon)', marginTop: '40px', marginBottom: '20px', fontSize: '1.3rem' }}>
-                Dimensional Matrix
-              </h3>
-              <div className="mb-4">
-                <div className={styles.dimensionSelectorVertical}>
-                  {DIMENSIONS.map((dim) => (
-                    <div
-                      key={dim.id}
-                      className={`${styles.dimensionOption} ${selectedDimension === dim.id ? styles.active : ''}`}
-                      onClick={() => setSelectedDimension(dim.id)}
-                    >
-                      <div className={`${styles.ratioPreview} ${styles[dim.class]}`}></div>
-                      <div className={styles.dimensionInfo}>
-                        <span>{dim.id.charAt(0).toUpperCase() + dim.id.slice(1)}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
               {/* Prompt Input */}
               <h3 style={{ color: 'var(--primary-neon)', marginTop: '40px', marginBottom: '20px', fontSize: '1.3rem' }}>
                 Neural Prompt Interface
