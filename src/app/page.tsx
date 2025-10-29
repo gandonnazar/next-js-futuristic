@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './page.module.css';
 
 export default function Home() {
@@ -65,6 +65,42 @@ export default function Home() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  // All gallery images
+  const allImages = [
+    'an_anime_style_drawing_of_a_wh_ba1ad9ac.jpg',
+    'an_anime_style_image_of_a_whit_b62d0cad.jpg',
+    'an_anime_woman_with_long_purpl_60dd1f4d.jpg',
+    'a_futuristic_crystal_city_on_m_79e231d5.jpg',
+    'a_hyperrealistic_photo_of_a_ma_2bc885c2.jpg',
+    'a_majestic_man_with_a_glowing__367fccb6.jpg',
+    'a_majestic_white_samurai_fox_w_c69cb7db.jpg',
+    'a_surrealistic_image_of_a_woma_9379b347.jpg',
+    'black_ferrari_f50_with_blue_xe_fe13ffca.jpg',
+    'image-_a_hyperrealistic_glass_of_wat-1e16282d.jpg',
+    'tmp9a96cwxj.jpg',
+    '_anime_style_boy_with_a_high_t_7a58a4f9.jpg',
+    '_anime_style_female_android_wi_354a2f5a.jpg',
+    '_an_anime_style_wizard_with_gl_513f2928.jpg',
+    '_an_astronaut_in_a_glossy_whit_16ac47b2.jpg',
+    '_a_black_cat_with_glowing_blue_27ba9cc4.jpg',
+    '_a_crystal_palace_floating_in__b6559497.jpg',
+    '_a_cybernetic_owl_perched_on_t_9315b241.jpg',
+    '_a_futuristic_violin_made_of_t_341dacc9.jpg',
+    '_a_glowing_white_owl_with_wide_f97d9b2b.jpg',
+    '_a_human_sized_floating_eye_wr_94acdf35.jpg',
+    '_a_lone_astronaut_walking_towa_be148ade.jpg',
+    '_a_melting_white_face_mask_flo_f2252075.jpg',
+    '_a_purple_monolith_levitating__4ef0ce1a.jpg',
+    '_a_sleek_white_private_jet_fly_4cef3801.jpg',
+    '_a_white_cat_in_a_glossy_white_93271703.jpg',
+    '_a_white_formula_1_car_racing__81735b21.jpg',
+    '_a_white_stealth_fighter_jet_s_bcbe63de.jpg',
+    '_a_woman_with_long_silver_hair_11b37154.jpg',
+    '_surreal_close_up_of_a_tarantu_62583e39.jpg',
+    '_white_futuristic_motorcycle_s_22e6d854.jpg',
+    '_white_lamborghini_aventador_d_75ee5be5.jpg',
+  ];
 
   return (
     <main className={styles.main}>
@@ -187,6 +223,88 @@ export default function Home() {
                   </p>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Holographic Gallery Section */}
+      <section className="section">
+        <div className="container">
+          <div className="text-center mb-5">
+            <h2 className={styles.galleryTitle}>
+              Holographic <span className="neon-text">Creations</span>
+            </h2>
+            <p className={styles.gallerySubtitle}>
+              Explore the infinite possibilities of AI-generated art
+            </p>
+          </div>
+
+          {/* Top Row - Normal Speed */}
+          <div className={styles.galleryWrapper}>
+            <div className={styles.galleryTrack}>
+              {/* First set of images */}
+              {allImages.map((image, index) => (
+                <div key={`top-set1-${index}`} className={styles.hologramCard}>
+                  <div className={styles.hologramInner}>
+                    <img 
+                      src={`/assets/gallery/${image}`} 
+                      alt={`AI Generated Art ${index + 1}`}
+                      className={styles.hologramImage}
+                    />
+                    <div className={styles.hologramOverlay}></div>
+                    <div className={styles.scanLine}></div>
+                  </div>
+                </div>
+              ))}
+              {/* Duplicate set for seamless loop */}
+              {allImages.map((image, index) => (
+                <div key={`top-set2-${index}`} className={styles.hologramCard}>
+                  <div className={styles.hologramInner}>
+                    <img 
+                      src={`/assets/gallery/${image}`} 
+                      alt={`AI Generated Art ${index + 1}`}
+                      className={styles.hologramImage}
+                    />
+                    <div className={styles.hologramOverlay}></div>
+                    <div className={styles.scanLine}></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Bottom Row - Slower Speed */}
+          <div className={styles.galleryWrapper}>
+            <div className={`${styles.galleryTrack} ${styles.galleryTrackSlow}`}>
+              {/* First set of images */}
+              {allImages.map((image, index) => (
+                <div key={`bottom-set1-${index}`} className={styles.hologramCard}>
+                  <div className={styles.hologramInner}>
+                    <img 
+                      src={`/assets/gallery/${image}`} 
+                      alt={`AI Generated Art ${index + 1}`}
+                      className={styles.hologramImage}
+                    />
+                    <div className={styles.hologramOverlay}></div>
+                    <div className={styles.scanLine}></div>
+                  </div>
+                </div>
+              ))}
+              {/* Duplicate set for seamless loop */}
+              {allImages.map((image, index) => (
+                <div key={`bottom-set2-${index}`} className={styles.hologramCard}>
+                  <div className={styles.hologramInner}>
+                    <img 
+                      src={`/assets/gallery/${image}`} 
+                      alt={`AI Generated Art ${index + 1}`}
+                      className={styles.hologramImage}
+                    />
+                    <div className={styles.hologramOverlay}></div>
+                    <div className={styles.scanLine}></div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

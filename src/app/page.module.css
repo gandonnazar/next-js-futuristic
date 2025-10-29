@@ -21,8 +21,8 @@
 
 .commandTitle {
   font-size: 2rem;
-  color: #ffffff;
-  text-shadow: 0 0 30px rgba(0, 0, 0, 0.8), 0 2px 10px rgba(0, 0, 0, 0.5);
+  color: var(--primary-neon);
+  text-shadow: 0 0 30px var(--shadow-cyan);
 }
 
 .parallaxSection {
@@ -94,6 +94,183 @@
 .featureDescription {
   color: var(--text-light);
   line-height: 1.6;
+}
+
+/* Holographic Gallery Styles */
+.galleryTitle {
+  font-size: 2.5rem;
+  color: var(--text-white);
+  text-shadow: 0 0 30px var(--shadow-cyan);
+  margin-bottom: 15px;
+}
+
+.gallerySubtitle {
+  font-size: 1.2rem;
+  color: var(--text-light);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.galleryWrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin-top: 40px;
+  padding: 20px 0;
+}
+
+.galleryWrapper:first-of-type {
+  margin-top: 40px;
+}
+
+.galleryWrapper:last-of-type {
+  margin-top: 20px;
+}
+
+.galleryTrack {
+  display: flex;
+  gap: 20px;
+  animation: infiniteScroll 60s linear infinite;
+  width: fit-content;
+}
+
+.galleryTrackSlow {
+  animation: infiniteScroll 90s linear infinite;
+}
+
+@keyframes infiniteScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.hologramCard {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  flex-shrink: 0;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.hologramInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.hologramCard:hover .hologramInner {
+  transform: rotateY(5deg) rotateX(5deg) scale(1.05);
+}
+
+.hologramImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+  border: 2px solid rgba(0, 255, 255, 0.2);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hologramCard:hover .hologramImage {
+  border-color: var(--primary-neon);
+  box-shadow: 
+    0 0 30px var(--shadow-cyan),
+    inset 0 0 30px rgba(0, 255, 255, 0.1);
+}
+
+.hologramOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 255, 255, 0) 0%,
+    rgba(0, 255, 255, 0.1) 50%,
+    rgba(255, 0, 255, 0.1) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  border-radius: 15px;
+}
+
+.hologramCard:hover .hologramOverlay {
+  opacity: 1;
+}
+
+.scanLine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--primary-neon),
+    transparent
+  );
+  opacity: 0;
+  animation: scan 2s linear infinite;
+  pointer-events: none;
+}
+
+.hologramCard:hover .scanLine {
+  opacity: 0.8;
+}
+
+@keyframes scan {
+  0% {
+    top: 0;
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+/* Responsive adjustments for gallery */
+@media (max-width: 1024px) {
+  .hologramCard {
+    width: 220px;
+    height: 220px;
+  }
+  
+  .galleryTrack {
+    gap: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hologramCard {
+    width: 180px;
+    height: 180px;
+  }
+  
+  .galleryTrack {
+    gap: 12px;
+  }
+  
+  .galleryTitle {
+    font-size: 1.8rem;
+  }
+  
+  .gallerySubtitle {
+    font-size: 1rem;
+  }
 }
 
 .ctaTitle {
