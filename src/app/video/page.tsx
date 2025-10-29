@@ -118,8 +118,13 @@ export default function VideoPage() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [credits, setCredits] = useState(12000);
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
-  const [referenceImages, setReferenceImages] = useState<string[]>([]);
+  const [isEndFrameModalOpen, setIsEndFrameModalOpen] = useState(false);
+  const [startFrame, setStartFrame] = useState<string>('');
+  const [endFrame, setEndFrame] = useState<string>('');
   const [selectedVideo, setSelectedVideo] = useState<typeof RECENT_VIDEOS[0] | null>(null);
+
+  // Check if selected model supports end frame
+  const supportsEndFrame = selectedModel === 'pixverse-v5';
 
   // Get available durations for selected model
   const availableDurations = VIDEO_MODEL_DURATIONS[selectedModel] || VIDEO_MODEL_DURATIONS['pixverse-v5'];
@@ -132,6 +137,10 @@ export default function VideoPage() {
     setSelectedModel(modelId);
     const newAvailableDurations = VIDEO_MODEL_DURATIONS[modelId] || VIDEO_MODEL_DURATIONS['pixverse-v5'];
     setSelectedDuration(newAvailableDurations[0].duration);
+    // Clear end frame if new model doesn't support it
+    if (modelId !== 'pixverse-v5') {
+      setEndFrame('');
+    }
   };
 
   const handleGenerate = () => {
@@ -145,13 +154,24 @@ export default function VideoPage() {
     setTimeout(() => {
       setIsGenerating(false);
       setCredits(prev => prev - currentDurationDetails.credits);
-      alert(`Video generation simulated${referenceImages.length > 0 ? ` with ${referenceImages.length} reference images` : ''}!`);
+      const frameInfo = startFrame ? (endFrame ? ' with start and end frames' : ' with start frame') : '';
+      alert(`Video generation simulated${frameInfo}!`);
     }, 4000);
   };
 
-  const handleUploadConfirm = (selectedImages: string[]) => {
-    setReferenceImages(selectedImages);
+  const handleStartFrameConfirm = (selectedImages: string[]) => {
+    if (selectedImages.length > 0) {
+      setStartFrame(selectedImages[0]);
+    }
     setIsUploadModalOpen(false);
+  };
+
+  const handleEndFrameConfirm = (selectedImages: string[]) => {
+    if (selectedImages.length > 0) {
+      setEndFrame(selectedImages[0]);
+    }
+    setIsEndFrameModalOpen(false);
+    setIsEndFrameModalOpen(false);
   };
 
   return (
@@ -263,39 +283,65 @@ export default function VideoPage() {
                     <span>🎬 Start Frame</span>
                   </button>
                   <button 
-                    className={`${styles.btnActionLong} ${referenceImages.length === 0 ? styles.disabled : ''}`} 
-                    disabled={referenceImages.length === 0}
-                    onClick={() => alert('End Frame selection simulated! This would open another upload modal for end frames.')}
+                    className={`${styles.btnActionLong} ${!supportsEndFrame || !startFrame ? styles.disabled : ''}`} 
+                    disabled={!supportsEndFrame || !startFrame}
+                    onClick={() => setIsEndFrameModalOpen(true)}
+                    title={!supportsEndFrame ? 'End frame only supported for Pixverse V5' : !startFrame ? 'Please select start frame first' : 'Select end frame'}
                   >
                     <span>🎬 End Frame</span>
                   </button>
                 </div>
 
                 {/* Frame Images Display */}
-                {referenceImages.length > 0 && (
+                {(startFrame || endFrame) && (
                   <div className={styles.frameImagesContainer}>
-                    {referenceImages.map((imgSrc, index) => (
-                      <div key={index} className={styles.frameImageItem}>
+                    {startFrame && (
+                      <div className={styles.frameImageItem}>
                         <div className={styles.frameLabel}>
-                          {index === 0 ? 'Start Frame' : 'End Frame'}
+                          Start Frame
                         </div>
                         <div className={styles.frameThumbnail}>
                           <Image
-                            src={imgSrc}
-                            alt={`${index === 0 ? 'Start' : 'End'} Frame`}
+                            src={startFrame}
+                            alt="Start Frame"
                             fill
                             sizes="400px"
                             style={{ objectFit: 'contain' }}
                           />
                           <button
                             className={styles.frameThumbnailRemove}
-                            onClick={() => setReferenceImages(prev => prev.filter((_, i) => i !== index))}
+                            onClick={() => {
+                              setStartFrame('');
+                              setEndFrame('');
+                            }}
                           >
                             ✕
                           </button>
                         </div>
                       </div>
-                    ))}
+                    )}
+                    {endFrame && (
+                      <div className={styles.frameImageItem}>
+                        <div className={styles.frameLabel}>
+                          End Frame
+                        </div>
+                        <div className={styles.frameThumbnail}>
+                          <Image
+                            src={endFrame}
+                            alt="End Frame"
+                            fill
+                            sizes="400px"
+                            style={{ objectFit: 'contain' }}
+                          />
+                          <button
+                            className={styles.frameThumbnailRemove}
+                            onClick={() => setEndFrame('')}
+                          >
+                            ✕
+                          </button>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
@@ -452,11 +498,18 @@ export default function VideoPage() {
         </section>
       </div>
 
-      {/* Upload Modal */}
+      {/* Upload Modal for Start Frame */}
       <UploadModal 
         isOpen={isUploadModalOpen}
         onClose={() => setIsUploadModalOpen(false)}
-        onConfirm={handleUploadConfirm}
+        onConfirm={handleStartFrameConfirm}
+      />
+
+      {/* Upload Modal for End Frame */}
+      <UploadModal 
+        isOpen={isEndFrameModalOpen}
+        onClose={() => setIsEndFrameModalOpen(false)}
+        onConfirm={handleEndFrameConfirm}
       />
 
       {/* Fullscreen Video Viewer Modal */}

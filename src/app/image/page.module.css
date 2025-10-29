@@ -121,7 +121,8 @@
 }
 
 .dimensionOption.active .ratioPreview {
-  background: var(--primary-neon);
+  background: rgba(0, 255, 255, 0.65);
+  border-color: var(--primary-neon);
   box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
 }
 
@@ -131,7 +132,8 @@
 }
 
 .ratioPreview {
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(10, 16, 24, 0.7);
+  border: 2px solid rgba(255, 255, 255, 0.35);
   border-radius: 4px;
   flex-shrink: 0;
   transition: all 0.3s ease;
@@ -484,35 +486,40 @@
   }
 
   .ratioPreview {
-    background: rgba(255, 255, 255, 0.4) !important;
+    background: rgba(10, 16, 24, 0.7) !important;
+    border: 2px solid rgba(255, 255, 255, 0.35) !important;
     box-shadow: none !important;
   }
 
   .ratioPreview.square {
     width: 20px;
     height: 20px;
-    background: rgba(255, 255, 255, 0.4) !important;
+    background: rgba(10, 16, 24, 0.7) !important;
+    border: 2px solid rgba(255, 255, 255, 0.35) !important;
     box-shadow: none !important;
   }
 
   .ratioPreview.landscape {
     width: 28px;
     height: 16px;
-    background: rgba(255, 255, 255, 0.4) !important;
+    background: rgba(10, 16, 24, 0.7) !important;
+    border: 2px solid rgba(255, 255, 255, 0.35) !important;
     box-shadow: none !important;
   }
 
   .ratioPreview.portrait {
     width: 14px;
     height: 24px;
-    background: rgba(255, 255, 255, 0.4) !important;
+    background: rgba(10, 16, 24, 0.7) !important;
+    border: 2px solid rgba(255, 255, 255, 0.35) !important;
     box-shadow: none !important;
   }
 
   .ratioPreview.classic {
     width: 26px;
     height: 20px;
-    background: rgba(255, 255, 255, 0.4) !important;
+    background: rgba(10, 16, 24, 0.7) !important;
+    border: 2px solid rgba(255, 255, 255, 0.35) !important;
     box-shadow: none !important;
   }
 
@@ -521,7 +528,8 @@
   .dimensionOption.active .ratioPreview.landscape,
   .dimensionOption.active .ratioPreview.portrait,
   .dimensionOption.active .ratioPreview.classic {
-    background: var(--primary-neon) !important;
+    background: rgba(0, 255, 255, 0.65) !important;
+    border-color: var(--primary-neon) !important;
     box-shadow: 0 0 15px rgba(0, 255, 255, 0.6) !important;
   }
 

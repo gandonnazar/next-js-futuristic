@@ -3,7 +3,7 @@ import styles from './page.module.css';
 const PRICING_PLANS = [
   {
     id: 1,
-    name: 'Starter',
+    name: 'Pilot',
     price: 6,
     credits: '600',
     features: [
@@ -17,7 +17,7 @@ const PRICING_PLANS = [
   },
   {
     id: 2,
-    name: 'Pro',
+    name: 'Commander',
     price: 18,
     credits: '1,900',
     popular: true,
@@ -32,7 +32,7 @@ const PRICING_PLANS = [
   },
   {
     id: 3,
-    name: 'Ultimate',
+    name: 'Admiral',
     price: 96,
     credits: '12,000',
     features: [
@@ -105,14 +105,14 @@ export default function PricingPage() {
           <div className={styles.calculatorPlanSelector}>
             <label htmlFor="plan-select" className={styles.planSelectLabel}>Select Plan:</label>
             <select id="plan-select" className={styles.planSelectDropdown}>
-              <option value="starter">Starter</option>
-              <option value="pro">Pro</option>
-              <option value="ultimate">Ultimate</option>
+              <option value="pilot">Pilot</option>
+              <option value="commander">Commander</option>
+              <option value="admiral">Admiral</option>
             </select>
           </div>
 
           <div className={styles.calculatorCreditsInfo}>
-            <p className={styles.creditsInfoText}>Your Starter plan includes 600 credits</p>
+            <p className={styles.creditsInfoText}>Your Pilot plan includes 600 credits</p>
           </div>
 
           <div className={styles.calculatorGrid}>
