@@ -74,8 +74,8 @@ export default function AboutPage() {
           <div className={styles.aboutContainer}>
             <div className={styles.aboutContent}>
               <p>
-                Welcome aboard NeonLights.ai — the next evolution of AI creation.
-                Founded by Heyselcuk, a leading AI content creator with over 500,000 followers, NeonLights.ai was built to push imagination beyond the limits of the ordinary web.
+                Welcome aboard Neonlights.ai — the next evolution of AI creation.
+                Founded by Heyselcuk, a leading AI content creator with over 500,000 followers, Neonlights.ai was built to push imagination beyond the limits of the ordinary web.
               </p>
 
               <p>
