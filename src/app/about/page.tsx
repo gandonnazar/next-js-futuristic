@@ -79,21 +79,21 @@ export default function AboutPage() {
               </p>
 
               <p>
-                Here, creativity doesn't happen on a flat screen — it happens inside a living starship of light.
+                Here, creativity doesn&apos;t happen on a flat screen — it happens inside a living starship of light.
                 Every command you give feels like operating a futuristic control deck, every image and video you generate is a spark in the endless neon void of possibility.
               </p>
 
               <p>
-                NeonLights.ai isn't just a tool — it's an experience.<br />
+                NeonLights.ai isn&apos;t just a tool — it&apos;s an experience.<br />
                 A fusion of high design and high technology, engineered for artists, creators, and visionaries who want to shape the future — not just scroll through it.
               </p>
 
               <p>
-                Inside this digital starship, every glowing interface, holographic display, and pulse of color is designed to make creation feel cinematic — as if you're commanding the engines of imagination itself.
+                Inside this digital starship, every glowing interface, holographic display, and pulse of color is designed to make creation feel cinematic — as if you&apos;re commanding the engines of imagination itself.
               </p>
 
               <p>
-                Whether you're generating photorealistic portraits, cinematic worlds, or dreamlike AI films, NeonLights.ai turns your ideas into pure light.
+                Whether you&apos;re generating photorealistic portraits, cinematic worlds, or dreamlike AI films, NeonLights.ai turns your ideas into pure light.
                  Instantly. Effortlessly. Brilliantly.
               </p>
             </div>
