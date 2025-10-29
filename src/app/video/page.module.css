@@ -532,31 +532,36 @@
   }
 
   .ratioPreview {
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.4) !important;
+    box-shadow: none !important;
   }
 
   .ratioPreview.square {
     width: 20px;
     height: 20px;
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.4) !important;
+    box-shadow: none !important;
   }
 
   .ratioPreview.landscape {
     width: 28px;
     height: 16px;
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.4) !important;
+    box-shadow: none !important;
   }
 
   .ratioPreview.portrait {
     width: 14px;
     height: 24px;
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.4) !important;
+    box-shadow: none !important;
   }
 
   .ratioPreview.classic {
     width: 26px;
     height: 20px;
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.4) !important;
+    box-shadow: none !important;
   }
 
   .dimensionOption.active .ratioPreview,
@@ -565,7 +570,7 @@
   .dimensionOption.active .ratioPreview.portrait,
   .dimensionOption.active .ratioPreview.classic {
     background: var(--primary-neon) !important;
-    box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.6) !important;
   }
 
   .dimensionInfo span {
